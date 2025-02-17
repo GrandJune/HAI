@@ -22,10 +22,10 @@ class Q_learn():
             for i in range(len(local_peaks)):
                 self.reality[peak_indices[i + 1]] = local_peaks[i]
 
-    def Q_update(self, state, action, reward, next_state, alpha=0.8, gamma=0.9):
+    def Q_update(self, state, action, alpha=0.8, gamma=0.9):
         """
         :param state: current state, int
-        :param action: current action
+        :param action: 0 - N, with N representing status quo
         :param reward: immediate reward received for current action (R in the paper)
         :param next_state: the reaching state after the action, int
         :param alpha: weight for (R + gamma Q')
@@ -33,11 +33,23 @@ class Q_learn():
         :param gamma: weight for next state quality;
         :return: updated Q table
         """
-        reward = self.reality[next_state]  # the immediate reward associated with next state
-        self.Q_tabel[state][action] = (1 - alpha) * self.Q_tabel[state][action] + alpha * (reward + gamma * self.Q_tabel[next_state][action])
+        state_bin = [int(bit) for bit in bin(n)[2:]]
+        if action == self.N:
+            next_state = state
+        else:
+            next_state_bin = state_bin.copy()
+            next_state_bin[action] = 1 - state_bin[action]
+            next_state = int(''.join(map(str, next_state_bin)), 2)
+        reward = self.reality[state]  # the immediate reward associated with next state
+        next_state_quality = max(self.Q_tabel[next_state])
+        self.Q_tabel[state][action] = (1 - alpha) * self.Q_tabel[state][action] + alpha * (reward + gamma * next_propriate_action)
 
 
 if __name__ == '__main__':
-    q_learn = Q_learn(N=5,global_peak=50, local_peaks=[10, 20], peak_num=3)
+    q_learn = Q_learn(N=5, global_peak=50, local_peaks=[10, 20], peak_num=3)
     # print(q_learn.Q_tabel)
     print(q_learn.reality)
+    # print(q_learn)
+    n = 1025
+    bits = [int(bit) for bit in bin(n)[2:]]
+    print(bits)
