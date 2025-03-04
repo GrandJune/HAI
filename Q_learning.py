@@ -24,32 +24,7 @@ class Agent():
             self.reality[self.peak_indices[i + 1]] = local_peaks[i]
         self.state = [random.randint(0, 1) for _ in range(self.N)]
 
-    def Q_update(self, action, alpha=0.8, gamma=0.9):
-        """
-        :param state: current state, int
-        :param action: 0 - N, with N representing status quo
-        :param reward: immediate reward received for current action (R in the paper)
-        :param next_state: the reaching state after the action, int
-        :param alpha: weight for (R + gamma Q')
-        :param 1 - alpha: weight for Q
-        :param gamma: weight for next state quality;
-        :return: updated Q table
-        """
-        if action == self.N:
-            cur_state_index = int(''.join(map(str, self.state)), 2)
-            next_state_index = int(''.join(map(str, self.state)), 2)
-        else:
-            next_state = self.state.copy()
-            next_state[action] = 1 - self.state[action]
-            cur_state_index = int(''.join(map(str, self.state)), 2)
-            next_state_index = int(''.join(map(str, next_state)), 2)
-            self.state = next_state
-        reward = self.reality[next_state_index]  # the immediate reward associated with current state and current action (so it's next state)
-        next_state_quality = max(self.Q_tabel[next_state_index])  # can be the quality of current state
-        self.Q_tabel[cur_state_index][action] = (1 - alpha) * self.Q_tabel[cur_state_index][action] + alpha * (reward + gamma * next_state_quality)
-        return reward
-
-    def search(self, tau):
+    def learn(self, tau=20, alpha=0.8, gamma=0.9):
         """
         Larger Tau: exploration (at 30, random walk);  Smaller Tau: exploitation
         :param tau: temperature regulates how sensitive the probability of choosing a given action is to the estimated Q
@@ -57,14 +32,47 @@ class Agent():
         :return:
         """
         cur_state_index = int(''.join(map(str, self.state)), 2)
+        # print(self.state, cur_state_index)
         q_row = self.Q_tabel[cur_state_index]
         exp_prob_row = [np.exp(each / tau) for each in q_row]
         prob_row = [each / sum(exp_prob_row) for each in exp_prob_row]
         action = np.random.choice(range(self.N + 1), p=prob_row)
-        # print("State: ", self.state, "action: ", action)
-        print(self.Q_tabel[self.peak_indices[1]])
-        reward = self.Q_update(action)
+
+        # taking an appropriate action from next state; based on current beliefs
+        next_state = self.state.copy()
+        if action < self.N:
+            next_state[action] = 1 - self.state[action]
+        next_state_index = int(''.join(map(str, next_state)), 2)
+        next_q_row = self.Q_tabel[next_state_index]
+        next_exp_prob_row = [np.exp(each / tau) for each in next_q_row]
+        next_prob_row = [each / sum(next_exp_prob_row) for each in next_exp_prob_row]
+        next_proper_action = np.random.choice(range(self.N + 1), p=next_prob_row)
+        next_state_quality = self.Q_tabel[next_state_index][next_proper_action]
+        # the immediate reward associated with current state and current action (so it's next state)
+        reward = self.reality[next_state_index]
+        self.Q_tabel[cur_state_index][action] = (1 - alpha) * self.Q_tabel[cur_state_index][action] + alpha * (reward + gamma * next_state_quality)
+        # print(self.Q_tabel[self.peak_indices[0]])
+        # if reward:
+        print(exp_prob_row)
+        # print(next_state_index, self.Q_tabel[next_state_index])
+        print("------")
+        # update the state
+        self.state = next_state
         return reward
+
+    def perform(self, tau=20):
+        # re-initialize
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
+        cur_state_index = int(''.join(map(str, self.state)), 2)
+        # print(self.state, cur_state_index)
+        q_row = self.Q_tabel[cur_state_index]
+        exp_prob_row = [np.exp(each / tau) for each in q_row]
+        prob_row = [each / sum(exp_prob_row) for each in exp_prob_row]
+        action = np.random.choice(range(self.N + 1), p=prob_row)
+
+        next_state = self.state.copy()
+        next_state[action] = 1 - self.state[action]
+        self.state = next_state
 
     def int_to_binary_list(self, state):
         return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
@@ -76,7 +84,6 @@ class Agent():
           while the columns (X-axis) correspond to the elements within each sublist.
         :return:
         """
-        import matplotlib.pyplot as plt
         # Convert to NumPy array (optional, but helps with indexing)
         data_array = np.array(self.Q_tabel)
 
@@ -95,8 +102,8 @@ if __name__ == '__main__':
     # 2 ^ 5 = 32 states
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
     # print(q_learn.Q_tabel)
-    print(q_agent.reality)
-    for i in range(2000):
-        reward = q_agent.search(tau=10)
-        if i % 100 == 0:
+    # print(q_agent.reality)
+    for i in range(350):
+        reward = q_agent.learn(tau=30, alpha=0.8, gamma=0.9)
+        if i % 50 == 0:
             q_agent.visualize()
