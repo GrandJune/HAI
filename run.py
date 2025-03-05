@@ -11,14 +11,6 @@ import time
 from multiprocessing import Semaphore
 import pickle
 
-if __name__ == '__main__':
-    # 2 ^ 5 = 32 states
-    # print(q_learn.Q_tabel)
-    # print(q_agent.reality)
-
-
-
-
 def func(learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
