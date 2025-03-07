@@ -24,24 +24,26 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    repetition = 2000
+    repetition = 50
+    hyper_repetition = 40
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     percentage_high_across_learning_length, percentage_low_across_learning_length = [], []
     for learning_length in learning_length_list:
         performance_list = []
-        sema = Semaphore(concurrency)
-        manager = mp.Manager()
-        jobs = []
-        return_dict = manager.dict()
-        for loop in range(repetition):
-            sema.acquire()
-            p = mp.Process(target=func, args=(learning_length, loop, return_dict, sema))
-            jobs.append(p)
-            p.start()
-        for proc in jobs:
-            proc.join()
-        results = return_dict.values()  # Don't need dict index, since it is repetition.
-        performance_list += [result[0] for result in results]
+        for hyper_loop in range(hyper_repetition):
+            manager = mp.Manager()
+            jobs = []
+            return_dict = manager.dict()
+            sema = Semaphore(concurrency)
+            for loop in range(repetition):
+                sema.acquire()
+                p = mp.Process(target=func, args=(learning_length, loop, return_dict, sema))
+                jobs.append(p)
+                p.start()
+            for proc in jobs:
+                proc.join()
+            results = return_dict.values()  # Don't need dict index, since it is repetition.
+            performance_list += [result[0] for result in results]
 
         percentage_high = sum([1 if reward == 50 else 0 for reward in performance_list]) / repetition
         percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / repetition
