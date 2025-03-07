@@ -24,8 +24,8 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    repetition = 50
-    hyper_repetition = 40
+    repetition = 120
+    hyper_repetition = 10
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     percentage_high_across_learning_length, percentage_low_across_learning_length = [], []
     for learning_length in learning_length_list:
@@ -45,8 +45,8 @@ if __name__ == '__main__':
             results = return_dict.values()  # Don't need dict index, since it is repetition.
             performance_list += [result[0] for result in results]
 
-        percentage_high = sum([1 if reward == 50 else 0 for reward in performance_list]) / repetition
-        percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / repetition
+        percentage_high = sum([1 if reward == 50 else 0 for reward in performance_list]) / len(performance_list)
+        percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / len(performance_list)
 
         percentage_high_across_learning_length.append(percentage_high)
         percentage_low_across_learning_length.append(percentage_low)
