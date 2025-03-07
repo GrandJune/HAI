@@ -41,7 +41,7 @@ class Agent():
         :return:
         """
         # avoid unlimited search
-        for _ in range(self.max_length):
+        for step in range(self.max_length):
             cur_state_index = int(''.join(map(str, self.state)), 2)
             # print(self.state, cur_state_index)
             q_row = self.Q_tabel[cur_state_index]
@@ -58,6 +58,7 @@ class Agent():
             if reward:
                 # update the preceding state quality
                 self.Q_tabel[cur_state_index][action] = (1 - alpha) * self.Q_tabel[cur_state_index][action] + alpha * reward
+                # print("Steps to peaks: ", step)
                 break
             else:
                 # according to (Denrell, 2004), the next state quality/credit is the best state-action pair
@@ -67,7 +68,7 @@ class Agent():
                 self.state = next_state
 
     def perform(self, tau=20.0):
-        for _ in range(self.max_length):
+        for step in range(self.max_length):
             # re-initialize
             self.state = [random.randint(0, 1) for _ in range(self.N)]
             cur_state_index = int(''.join(map(str, self.state)), 2)
@@ -84,8 +85,7 @@ class Agent():
             reward = self.reality[next_state_index]
             self.state = next_state
             if reward:
-                return reward
-
+                return [reward, step]
 
     def int_to_binary_list(self, state):
         return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
@@ -137,26 +137,33 @@ if __name__ == '__main__':
     # print(q_learn.Q_tabel)
     # print(q_agent.reality)
     percentage_high_across_learning_length, percentage_low_across_learning_length = [], []
+    step_across_length = []
     # [50, 100, 150, 200, 250, 300, 350]
     learning_length_list = [100, 200, 300]
-    agent_num = 200
+    agent_num = 50
     for learning_length in learning_length_list:
         reward_across_agents = []
+        step_across_agents = []
         for _ in range(agent_num):
+            np.random.seed(None)
             q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
             for _ in range(learning_length):
                 q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
-            reward = q_agent.perform(tau=20)
+            reward, step = q_agent.perform(tau=20)
             reward_across_agents.append(reward)
+            step_across_agents.append(step)
 
         percentage_high = sum([1 if reward == 50 else 0 for reward in reward_across_agents]) / agent_num
         percentage_low = sum([1 if reward == 10 else 0 for reward in reward_across_agents]) / agent_num
+        ave_step = sum(step_across_agents) / len(step_across_agents)
 
         percentage_high_across_learning_length.append(percentage_high)
         percentage_low_across_learning_length.append(percentage_low)
+        step_across_length.append(ave_step)
 
-    plt.plot(learning_length_list, percentage_high_across_learning_length, "-", color='red', linewidth=2, label="High Peak")
-    plt.plot(learning_length_list, percentage_low_across_learning_length, "--", color='blue', linewidth=2, label="Low Peak")
+    plt.plot(learning_length_list, percentage_high_across_learning_length, "-", color='k', linewidth=2, label="High Peak")
+    plt.plot(learning_length_list, percentage_low_across_learning_length, "--", color='k', linewidth=2, label="Low Peak")
+    plt.plot(learning_length_list, step_across_length, "-", color='grey', linewidth=2, label="Low Peak")
     # Add labels and title
     plt.xlabel('Performance')
     plt.ylabel('Learning Length')
