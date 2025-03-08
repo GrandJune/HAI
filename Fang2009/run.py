@@ -24,8 +24,8 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    repetition = 120
-    hyper_repetition = 10
+    repetition = 50
+    hyper_repetition = 20
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     percentage_high_across_learning_length, percentage_low_across_learning_length = [], []
     for learning_length in learning_length_list:
@@ -51,10 +51,10 @@ if __name__ == '__main__':
         percentage_high_across_learning_length.append(percentage_high)
         percentage_low_across_learning_length.append(percentage_low)
 
-    with open("highs_across_learning_length", 'wb') as out_file:
-        pickle.dump(percentage_high_across_learning_length, out_file)
-    with open("lows_across_learning_length", 'wb') as out_file:
-        pickle.dump(percentage_low_across_learning_length, out_file)
+    with open("highs_across_learning_length", 'wb') as out_file_1:
+        pickle.dump(percentage_high_across_learning_length, out_file_1)
+    with open("lows_across_learning_length", 'wb') as out_file_2:
+        pickle.dump(percentage_low_across_learning_length, out_file_2)
 
     t1 = time.time()
     print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
