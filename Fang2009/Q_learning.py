@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import random
 
-class Agent():
+class Agent:
     def __init__(self, N, global_peak, local_peaks):
         self.N = N
         self.max_value = 2 ** self.N - 1  # Maximum possible state index
@@ -26,8 +26,11 @@ class Agent():
         for i in range(len(local_peaks)):
             self.reality[self.peak_indices[i + 1]] = local_peaks[i]
         self.state = [random.randint(0, 1) for _ in range(self.N)]
+        self.max_length = 100000  # make sure an episode can end with peaks
         self.informed_percentage = 0  # the percentage of states that are informed
-        self.max_length = 5000  # make sure an episode can end with peaks
+        self.performance = 0
+        self.steps = 0
+
 
     def learn(self, tau=20.0, alpha=0.8, gamma=0.9):
         """
@@ -40,7 +43,7 @@ class Agent():
         :return:
         """
         for _ in range(self.max_length):
-            cur_state_index = int(''.join(map(str, self.state)), 2)
+            cur_state_index = self.binary_list_to_int(self.state)
             # print(self.state, cur_state_index)
             q_row = self.Q_table[cur_state_index]
             exp_prob_row = [np.exp(each / tau) for each in q_row]
@@ -62,14 +65,13 @@ class Agent():
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * (
                             reward + gamma * next_state_quality)
                 self.state = next_state
-            self.get_informed()
+        self.get_informed()
 
     def perform(self, tau=20.0):
         for perform_step in range(self.max_length):
             # re-initialize
             self.state = [random.randint(0, 1) for _ in range(self.N)]
-            cur_state_index = int(''.join(map(str, self.state)), 2)
-            # print(self.state, cur_state_index)
+            cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             exp_prob_row = [np.exp(each / tau) for each in q_row]
             prob_row = [each / sum(exp_prob_row) for each in exp_prob_row]
@@ -82,11 +84,15 @@ class Agent():
             reward = self.reality[next_state_index]
             self.state = next_state
             if reward:
-                return [reward, perform_step]
-        return [self.local_peaks[0], self.max_length]
+                self.performance = reward
+                self.steps = perform_step
+                break
 
     def int_to_binary_list(self, state):
         return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
+
+    def binary_list_to_int(self, state):
+        return int(''.join(map(str, state)), 2)
 
     def get_informed(self):
         informed = 0
@@ -95,6 +101,21 @@ class Agent():
                 informed += 1
         self.informed_percentage = informed / (2 ** self.N)
         # print(self.informed_percentage)
+
+    def generate_state_with_hamming_distance(self, orientation_state, hamming_distance):
+        """
+        Generate a new state that is at a specific Hamming distance from the original state.
+
+        :param original_state: The original state (e.g., global peak).
+        :param hamming_distance: The number of bit flips to make.
+        :return: A new state with the specified Hamming distance.
+        """
+        new_state = orientation_state.copy()
+        indices = list(range(self.N))
+        flip_indices = random.sample(indices, hamming_distance)
+        for idx in flip_indices:
+            new_state[idx] = 1 - new_state[idx]
+        return new_state
 
     def visualize(self):
         # Custom colormap: Light gray for zero, then blue → red for positive values
@@ -133,11 +154,11 @@ if __name__ == '__main__':
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
     for index in range(50):
         q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
-        # print(q_agent.informed_percentage)
+        print("Informed: ", q_agent.informed_percentage)
         # if index % 25 == 0:
         #     q_agent.visualize()
-    reward, step = q_agent.perform(tau=20)
-    print(reward, step)
+    q_agent.perform(tau=20)
+    print(q_agent.performance, q_agent.steps)
 
 
     # print(q_agent.reality)

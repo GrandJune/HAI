@@ -16,20 +16,21 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
     for _ in range(learning_length):
         q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
-    reward = q_agent.perform(tau=20)
-    return_dict[loop] = [reward]
+    q_agent.perform(tau=0.1)
+    return_dict[loop] = [q_agent.performance, q_agent.steps, q_agent.informed_percentage]
     sema.release()
 
 
 if __name__ == '__main__':
     t0 = time.time()
-    concurrency = 100
-    repetition = 100
-    hyper_repetition = 10
+    concurrency = 50
+    repetition = 50
+    hyper_repetition = 20
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
-    percentage_high_across_learning_length, percentage_low_across_learning_length = [], []
+    (percentage_high_across_learning_length, percentage_low_across_learning_length,
+     steps_across_learning_length, informed_across_learning_length) = [], [], [], []
     for learning_length in learning_length_list:
-        performance_list = []
+        performance_list, steps_list, informed_percentage_list = [], [], []
         for hyper_loop in range(hyper_repetition):
             manager = mp.Manager()
             jobs = []
@@ -44,17 +45,25 @@ if __name__ == '__main__':
                 proc.join()
             results = return_dict.values()  # Don't need dict index, since it is repetition.
             performance_list += [result[0] for result in results]
+            steps_list += [result[1] for result in results]
+            informed_percentage_list += [result[2] for result in results]
 
         percentage_high = sum([1 if reward == 50 else 0 for reward in performance_list]) / len(performance_list)
         percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / len(performance_list)
 
         percentage_high_across_learning_length.append(percentage_high)
         percentage_low_across_learning_length.append(percentage_low)
+        steps_across_learning_length.append(sum(steps_list) / len(steps_list))
+        informed_across_learning_length.append(sum(informed_percentage_list) / len(informed_percentage_list))
 
-    with open("highs_across_learning_length", 'wb') as out_file_1:
+    with open("high_softmax_across_learning_length", 'wb') as out_file_1:
         pickle.dump(percentage_high_across_learning_length, out_file_1)
-    with open("lows_across_learning_length", 'wb') as out_file_2:
+    with open("lows_softmax_across_learning_length", 'wb') as out_file_2:
         pickle.dump(percentage_low_across_learning_length, out_file_2)
+    with open("steps_softmax_across_learning_length", 'wb') as out_file_3:
+        pickle.dump(steps_across_learning_length, out_file_3)
+    with open("informed_softmax_across_learning_length", 'wb') as out_file_4:
+        pickle.dump(informed_across_learning_length, out_file_4)
 
     t1 = time.time()
     print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
