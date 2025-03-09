@@ -28,8 +28,8 @@ def func(distance=None, learning_length=None, loop=None, return_dict=None, sema=
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    repetition = 20
-    hyper_repetition = 10
+    repetition = 50
+    hyper_repetition = 20
     learning_length = 300
     distance_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     percentage_high_across_distance, percentage_low_across_distance, informed_across_distance = [], [], []

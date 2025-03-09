@@ -56,13 +56,13 @@ if __name__ == '__main__':
         steps_across_learning_length.append(sum(steps_list) / len(steps_list))
         informed_across_learning_length.append(sum(informed_percentage_list) / len(informed_percentage_list))
 
-    with open("high_softmax_across_learning_length", 'wb') as out_file_1:
+    with open("high_max_across_learning_length", 'wb') as out_file_1:
         pickle.dump(percentage_high_across_learning_length, out_file_1)
-    with open("lows_softmax_across_learning_length", 'wb') as out_file_2:
+    with open("lows_max_across_learning_length", 'wb') as out_file_2:
         pickle.dump(percentage_low_across_learning_length, out_file_2)
-    with open("steps_softmax_across_learning_length", 'wb') as out_file_3:
+    with open("steps_max_across_learning_length", 'wb') as out_file_3:
         pickle.dump(steps_across_learning_length, out_file_3)
-    with open("informed_softmax_across_learning_length", 'wb') as out_file_4:
+    with open("informed_max_across_learning_length", 'wb') as out_file_4:
         pickle.dump(informed_across_learning_length, out_file_4)
 
     t1 = time.time()
