@@ -42,7 +42,7 @@ if __name__ == '__main__':
             sema = Semaphore(concurrency)
             for loop in range(repetition):
                 sema.acquire()
-                p = mp.Process(target=func, args=(learning_length, loop, return_dict, sema))
+                p = mp.Process(target=func, args=(distance, learning_length, loop, return_dict, sema))
                 jobs.append(p)
                 p.start()
             for proc in jobs:
