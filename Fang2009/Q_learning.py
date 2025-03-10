@@ -42,14 +42,17 @@ class Agent:
         :param gamma: emphasis on positional value (cf. Denrell 2004)
         :return:
         """
+        # for each episode, randomly initialize
+        # print("-------------------------------")
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
         for _ in range(self.max_length):
             cur_state_index = self.binary_list_to_int(self.state)
-            # print(self.state, cur_state_index)
             q_row = self.Q_table[cur_state_index]
             q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
             exp_prob_row = np.exp(q_row / tau)
             prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N + 1), p=prob_row)
+            # print(self.state, cur_state_index, action)
 
             # taking an appropriate action from next state; based on current beliefs
             next_state = self.state.copy()
@@ -61,7 +64,7 @@ class Agent:
             # Standard Q-learning update
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
                                                      alpha * (reward + gamma * next_state_quality))
-            self.state = next_state
+            self.state = next_state  # within one episode, it is sequential search
             if reward:  # If we reach a rewarded state, stop learning; but we still incorporate the future position quality into Q updating
                 break
         self.informed_percentage = np.count_nonzero(np.any(self.Q_table > 0, axis=1)) / (2 ** self.N)
@@ -142,6 +145,7 @@ class Agent:
 
 if __name__ == '__main__':
     # 2 ^ 5 = 32 states
+    random.seed(0)
     reward_list, step_list = [], []
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
     for index in range(50):
