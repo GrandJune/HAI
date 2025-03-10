@@ -46,8 +46,9 @@ class Agent:
             cur_state_index = self.binary_list_to_int(self.state)
             # print(self.state, cur_state_index)
             q_row = self.Q_table[cur_state_index]
-            exp_prob_row = [np.exp(each / tau) for each in q_row]
-            prob_row = [each / sum(exp_prob_row) for each in exp_prob_row]
+            q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
+            exp_prob_row = np.exp(q_row / tau)
+            prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N + 1), p=prob_row)
 
             # taking an appropriate action from next state; based on current beliefs
@@ -56,18 +57,16 @@ class Agent:
                 next_state[action] = 1 - self.state[action]
             next_state_index = int(''.join(map(str, next_state)), 2)
             reward = self.reality[next_state_index]
-            if reward:
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
+            next_state_quality = np.max(self.Q_table[next_state_index])
+            # Standard Q-learning update
+            self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
+                                                     alpha * (reward + gamma * next_state_quality))
+            self.state = next_state
+            if reward:  # If we reach a rewarded state, stop learning; but we still incorporate the future position quality into Q updating
                 break
-            else:
-                # according to (Denrell, 2004), the next state quality/credit is the best state-action pair
-                next_state_quality = max(self.Q_table[next_state_index], default=0)
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * (
-                            reward + gamma * next_state_quality)
-                self.state = next_state
-        self.get_informed()
+        self.informed_percentage = np.count_nonzero(np.any(self.Q_table > 0, axis=1)) / (2 ** self.N)
 
-    def perform(self, tau=20.0):
+    def evaluate(self, tau=20.0):
         for perform_step in range(self.max_length):
             # re-initialize
             self.state = [random.randint(0, 1) for _ in range(self.N)]
@@ -93,14 +92,6 @@ class Agent:
 
     def binary_list_to_int(self, state):
         return int(''.join(map(str, state)), 2)
-
-    def get_informed(self):
-        informed = 0
-        for row in range(2 ** self.N):
-            if sum(self.Q_table[row]) > 0:
-                informed += 1
-        self.informed_percentage = informed / (2 ** self.N)
-        # print(self.informed_percentage)
 
     def generate_state_with_hamming_distance(self, orientation_state, hamming_distance):
         """
@@ -157,7 +148,7 @@ if __name__ == '__main__':
         print("Informed: ", q_agent.informed_percentage)
         # if index % 25 == 0:
         #     q_agent.visualize()
-    q_agent.perform(tau=20)
+    q_agent.evaluate(tau=20)
     print(q_agent.performance, q_agent.steps)
 
 

@@ -20,7 +20,7 @@ def func(distance=None, learning_length=None, loop=None, return_dict=None, sema=
     q_agent.state = q_agent.generate_state_with_hamming_distance(orientation_state=local_peak_state, hamming_distance=distance)
     for _ in range(learning_length):
         q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
-    q_agent.perform(tau=20)
+    q_agent.evaluate(tau=20)
     return_dict[loop] = [q_agent.performance, q_agent.informed_percentage]
     sema.release()
 
@@ -29,8 +29,8 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     repetition = 50
-    hyper_repetition = 20
-    learning_length = 300
+    hyper_repetition = 40
+    learning_length = 50
     distance_list = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     percentage_high_across_distance, percentage_low_across_distance, informed_across_distance = [], [], []
     for distance in distance_list:
@@ -52,20 +52,20 @@ if __name__ == '__main__':
             informed_list += [result[1] for result in results]
 
         percentage_high = sum([1 if reward == 50 else 0 for reward in performance_list]) / len(performance_list)
-        percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / len(performance_list)
+        # percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / len(performance_list)
 
         percentage_high_across_distance.append(percentage_high)
-        percentage_low_across_distance.append(percentage_low)
+        # percentage_low_across_distance.append(percentage_low)
         informed_across_distance.append(sum(informed_list) / len(informed_list))
 
-    with open("highs_across_distance", 'wb') as out_file_1:
+    with open("performance_across_distance", 'wb') as out_file_1:
         pickle.dump(percentage_high_across_distance, out_file_1)
-    with open("lows_across_distance", 'wb') as out_file_2:
-        pickle.dump(percentage_low_across_distance, out_file_2)
+    # with open("lows_across_distance", 'wb') as out_file_2:
+    #     pickle.dump(percentage_low_across_distance, out_file_2)
     with open("informed_across_distance", 'wb') as out_file_3:
         pickle.dump(informed_across_distance, out_file_3)
 
     t1 = time.time()
     print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
-    print("Learning Rate:", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
+    print("Distance:", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
 

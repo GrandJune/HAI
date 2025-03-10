@@ -16,7 +16,7 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
     for _ in range(learning_length):
         q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
-    q_agent.perform(tau=0.1)
+    q_agent.evaluate(tau=0.1)
     return_dict[loop] = [q_agent.performance, q_agent.steps, q_agent.informed_percentage]
     sema.release()
 
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     repetition = 50
-    hyper_repetition = 20
+    hyper_repetition = 40
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     (percentage_high_across_learning_length, percentage_low_across_learning_length,
      steps_across_learning_length, informed_across_learning_length) = [], [], [], []
@@ -49,23 +49,23 @@ if __name__ == '__main__':
             informed_percentage_list += [result[2] for result in results]
 
         percentage_high = sum([1 if reward == 50 else 0 for reward in performance_list]) / len(performance_list)
-        percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / len(performance_list)
+        # percentage_low = sum([1 if reward == 10 else 0 for reward in performance_list]) / len(performance_list)
 
         percentage_high_across_learning_length.append(percentage_high)
-        percentage_low_across_learning_length.append(percentage_low)
+        # percentage_low_across_learning_length.append(percentage_low)
         steps_across_learning_length.append(sum(steps_list) / len(steps_list))
         informed_across_learning_length.append(sum(informed_percentage_list) / len(informed_percentage_list))
 
-    with open("high_max_across_learning_length", 'wb') as out_file_1:
+    with open("max_performance_across_learning", 'wb') as out_file_1:
         pickle.dump(percentage_high_across_learning_length, out_file_1)
-    with open("lows_max_across_learning_length", 'wb') as out_file_2:
-        pickle.dump(percentage_low_across_learning_length, out_file_2)
-    with open("steps_max_across_learning_length", 'wb') as out_file_3:
+    # with open("lows_max_across_learning_length", 'wb') as out_file_2:
+    #     pickle.dump(percentage_low_across_learning_length, out_file_2)
+    with open("max_steps_across_learning", 'wb') as out_file_3:
         pickle.dump(steps_across_learning_length, out_file_3)
-    with open("informed_max_across_learning_length", 'wb') as out_file_4:
+    with open("max_informed_across_learning", 'wb') as out_file_4:
         pickle.dump(informed_across_learning_length, out_file_4)
 
     t1 = time.time()
     print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
-    print("Learning Rate:", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
+    print("Max:", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
 
