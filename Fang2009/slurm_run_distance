@@ -7,4 +7,4 @@
 #SBATCH --partition=long
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
-python run_with_distance_2_low.py
+python run_distance.py

@@ -88,8 +88,8 @@ class Agent:
                 self.steps = perform_step
                 break
 
-    # def int_to_binary_list(self, state):
-    #     return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
+    def int_to_binary_list(self, state):
+        return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
 
     def binary_list_to_int(self, state):
         return int(''.join(map(str, state)), 2)
