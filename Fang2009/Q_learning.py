@@ -72,8 +72,9 @@ class Agent:
             self.state = [random.randint(0, 1) for _ in range(self.N)]
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
-            exp_prob_row = [np.exp(each / tau) for each in q_row]
-            prob_row = [each / sum(exp_prob_row) for each in exp_prob_row]
+            q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
+            exp_prob_row = np.exp(q_row / tau)
+            prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N + 1), p=prob_row)
 
             next_state = self.state.copy()
@@ -87,8 +88,8 @@ class Agent:
                 self.steps = perform_step
                 break
 
-    def int_to_binary_list(self, state):
-        return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
+    # def int_to_binary_list(self, state):
+    #     return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
 
     def binary_list_to_int(self, state):
         return int(''.join(map(str, state)), 2)
@@ -148,7 +149,7 @@ if __name__ == '__main__':
         print("Informed: ", q_agent.informed_percentage)
         # if index % 25 == 0:
         #     q_agent.visualize()
-    q_agent.evaluate(tau=20)
+    q_agent.evaluate(tau=0.1)
     print(q_agent.performance, q_agent.steps)
 
 
