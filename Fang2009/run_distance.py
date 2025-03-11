@@ -19,7 +19,7 @@ def func(distance=None, learning_length=None, loop=None, return_dict=None, sema=
     # re-located into certain distance from local peak
     q_agent.state = q_agent.generate_state_with_hamming_distance(orientation_state=local_peak_state, hamming_distance=distance)
     for _ in range(learning_length):
-        q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
+        q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
     q_agent.evaluate(tau=20)
     return_dict[loop] = [q_agent.performance, q_agent.informed_percentage]
     sema.release()

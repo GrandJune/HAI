@@ -15,7 +15,7 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
     for _ in range(learning_length):
-        q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
+        q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
     q_agent.evaluate(tau=0.1)
     return_dict[loop] = [q_agent.performance, q_agent.steps, q_agent.informed_percentage]
     sema.release()

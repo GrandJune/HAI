@@ -32,14 +32,14 @@ class Agent:
         self.steps = 0
 
 
-    def learn(self, tau=20.0, alpha=0.8, gamma=0.9):
+    def learn(self, tau=20.0, alpha=0.2, gamma=0.9):
         """
         One episode concludes with local or global peaks and update its antecedent Q(s, a).
         Larger Tau: exploration (at 30, random walk);  Smaller Tau: exploitation
         :param tau: temperature regulates how sensitive the probability of choosing a given action is to the estimated Q
         :param state: current state, int
         :param alpha: learning rate (cf. Denrell 2004)
-        :param gamma: emphasis on positional value (cf. Denrell 2004)
+        :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
         :return:
         """
         # for each episode, randomly initialize
@@ -53,7 +53,6 @@ class Agent:
             prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N + 1), p=prob_row)
             # print(self.state, cur_state_index, action)
-
             # taking an appropriate action from next state; based on current beliefs
             next_state = self.state.copy()
             if action < self.N:
@@ -61,7 +60,6 @@ class Agent:
             next_state_index = int(''.join(map(str, next_state)), 2)
             reward = self.reality[next_state_index]
             next_state_quality = np.max(self.Q_table[next_state_index])
-            # Standard Q-learning update
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
                                                      alpha * (reward + gamma * next_state_quality))
             self.state = next_state  # within one episode, it is sequential search
@@ -151,10 +149,10 @@ if __name__ == '__main__':
     for index in range(50):
         q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
         print("Informed: ", q_agent.informed_percentage)
-        # if index % 25 == 0:
-        #     q_agent.visualize()
-    q_agent.evaluate(tau=0.1)
-    print(q_agent.performance, q_agent.steps)
+        if index % 25 == 0:
+            q_agent.visualize()
+    # q_agent.evaluate(tau=0.1)
+    # print(q_agent.performance, q_agent.steps)
 
 
     # print(q_agent.reality)
