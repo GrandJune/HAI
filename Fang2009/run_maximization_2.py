@@ -16,7 +16,7 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
     for _ in range(learning_length):
         q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
-    q_agent.evaluate(tau=0.1)
+    q_agent.evaluate_max()
     return_dict[loop] = [q_agent.performance, q_agent.steps, q_agent.informed_percentage]
     sema.release()
 
@@ -53,12 +53,12 @@ if __name__ == '__main__':
         steps_across_learning_length.append(sum(steps_list) / len(steps_list))
         informed_across_learning_length.append(sum(informed_percentage_list) / len(informed_percentage_list))
 
-    with open("max_performance_across_learning", 'wb') as out_file_1:
+    with open("max_performance_across_learning_2", 'wb') as out_file_1:
         pickle.dump(percentage_high_across_learning_length, out_file_1)
-    with open("max_steps_across_learning", 'wb') as out_file_3:
-        pickle.dump(steps_across_learning_length, out_file_3)
-    with open("max_informed_across_learning", 'wb') as out_file_4:
-        pickle.dump(informed_across_learning_length, out_file_4)
+    with open("max_steps_across_learning_2", 'wb') as out_file_2:
+        pickle.dump(steps_across_learning_length, out_file_2)
+    with open("max_informed_across_learning_2", 'wb') as out_file_3:
+        pickle.dump(informed_across_learning_length, out_file_3)
 
     t1 = time.time()
     print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration

@@ -66,29 +66,9 @@ class Agent:
                 break
         self.informed_percentage = np.count_nonzero(np.any(self.Q_table > 0, axis=1)) / (2 ** self.N)
 
-    def learn_max(self, alpha=0.2, gamma=0.9):
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
-        for _ in range(self.max_length):
-            cur_state_index = self.binary_list_to_int(self.state)
-            q_row = self.Q_table[cur_state_index]
-            action = np.argmax(q_row)
-            next_state = self.state.copy()
-            if action < self.N:
-                next_state[action] = 1 - self.state[action]
-            next_state_index = int(''.join(map(str, next_state)), 2)
-            reward = self.reality[next_state_index]
-            next_state_quality = np.max(self.Q_table[next_state_index])
-            self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
-                                                     alpha * (reward + gamma * next_state_quality))
-            self.state = next_state  # within one episode, it is sequential search
-            if reward:  # If we reach a rewarded state, stop learning; but we still incorporate the future position quality into Q updating
-                break
-        self.informed_percentage = np.count_nonzero(np.any(self.Q_table > 0, axis=1)) / (2 ** self.N)
-
     def evaluate(self, tau=20.0):
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
         for perform_step in range(self.max_length):
-            # re-initialize
-            self.state = [random.randint(0, 1) for _ in range(self.N)]
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior; will bias the informed measure
@@ -108,9 +88,8 @@ class Agent:
                 break
 
     def evaluate_max(self):
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
         for perform_step in range(self.max_length):
-            # re-initialize
-            self.state = [random.randint(0, 1) for _ in range(self.N)]
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             action = np.argmax(q_row)
