@@ -30,6 +30,7 @@ class Agent:
         self.informed_percentage = 0  # the percentage of states that are informed
         self.performance = 0
         self.steps = 0
+        self.search_trajectory = []
 
 
     def learn(self, tau=20.0, alpha=0.2, gamma=0.9):
@@ -44,13 +45,15 @@ class Agent:
         """
         # Initialize one learning episode
         self.state = [random.randint(0, 1) for _ in range(self.N)]
+        self.search_trajectory = []
         for _ in range(self.max_length):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
-            # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior; will bias the informed measure
+            # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
             exp_prob_row = np.exp(q_row / tau)
             prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N + 1), p=prob_row)
+            self.search_trajectory.append([cur_state_index, action])
             # print(self.state, cur_state_index, action)
             # taking an appropriate action from next state; based on current beliefs
             next_state = self.state.copy()
@@ -64,18 +67,19 @@ class Agent:
             self.state = next_state  # within one episode, it is sequential search
             if reward:  # If we reach a rewarded state, stop learning; but we still incorporate the future position quality into Q updating
                 break
-        self.informed_percentage = np.count_nonzero(np.any(self.Q_table > 0, axis=1)) / (2 ** self.N)
+        self.informed_percentage = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
     def evaluate(self, tau=20.0):
         self.state = [random.randint(0, 1) for _ in range(self.N)]
+        self.search_trajectory = []
         for perform_step in range(self.max_length):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
-            # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior; will bias the informed measure
+            # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
             exp_prob_row = np.exp(q_row / tau)
             prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N + 1), p=prob_row)
-
+            self.search_trajectory.append([cur_state_index, action])
             next_state = self.state.copy()
             if action < self.N:
                 next_state[action] = 1 - self.state[action]
@@ -87,22 +91,22 @@ class Agent:
                 self.steps = perform_step
                 break
 
-    def evaluate_max(self):
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
-        for perform_step in range(self.max_length):
-            cur_state_index = self.binary_list_to_int(self.state)
-            q_row = self.Q_table[cur_state_index]
-            action = np.argmax(q_row)
-            next_state = self.state.copy()
-            if action < self.N:
-                next_state[action] = 1 - self.state[action]
-            next_state_index = int(''.join(map(str, next_state)), 2)
-            reward = self.reality[next_state_index]
-            self.state = next_state
-            if reward:
-                self.performance = reward
-                self.steps = perform_step
-                break
+    # def evaluate_max(self):
+    #     self.state = [random.randint(0, 1) for _ in range(self.N)]
+    #     for perform_step in range(self.max_length):
+    #         cur_state_index = self.binary_list_to_int(self.state)
+    #         q_row = self.Q_table[cur_state_index]
+    #         action = np.argmax(q_row)
+    #         next_state = self.state.copy()
+    #         if action < self.N:
+    #             next_state[action] = 1 - self.state[action]
+    #         next_state_index = int(''.join(map(str, next_state)), 2)
+    #         reward = self.reality[next_state_index]
+    #         self.state = next_state
+    #         if reward:
+    #             self.performance = reward
+    #             self.steps = perform_step
+    #             break
 
     def int_to_binary_list(self, state):
         return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
@@ -125,7 +129,7 @@ class Agent:
             new_state[idx] = 1 - new_state[idx]
         return new_state
 
-    def visualize(self):
+    def visualize_1(self):
         # Custom colormap: Light gray for zero, then blue → red for positive values
         colors = [(0.9, 0.9, 0.9), "blue", "red"]
         cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", colors, N=100)
@@ -139,6 +143,38 @@ class Agent:
         plt.xlabel("Actions")
         plt.ylabel("States")
         plt.title("Heatmap of Q-table (Zero-dominant)")
+        plt.show()
+
+    def visualize(self, search_trajectory=None):
+        # Custom colormap: Light gray for zero, then blue → red for positive values
+        colors = [(0.9, 0.9, 0.9), "blue", "red"]
+        cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", colors, N=100)
+
+        # Use a logarithmic scale to enhance contrast if needed
+        norm = mcolors.SymLogNorm(linthresh=1, linscale=0.5, vmin=0, vmax=np.max(self.Q_table))
+
+        plt.figure(figsize=(8, 6))
+        plt.imshow(self.Q_table, cmap=cmap, aspect='auto', norm=norm)
+        plt.colorbar(label="Q-value")
+        plt.xlabel("Actions")
+        plt.ylabel("States")
+        plt.title("Heatmap of Q-table (Zero-dominant)")
+
+        if search_trajectory:
+            states, actions = zip(*search_trajectory)  # Extract state and action sequences
+
+            # Scatter plot to highlight visited (state, action) pairs
+            plt.scatter(actions, states, color='yellow', edgecolors='black', s=50, label="Search Trajectory")
+
+            # Draw arrows to show transitions
+            for i in range(len(search_trajectory) - 1):
+                s1, a1 = search_trajectory[i]  # Start point (current step)
+                s2, a2 = search_trajectory[i + 1]  # End point (next step)
+
+                plt.quiver(a1, s1, a2 - a1, s2 - s1, angles='xy', scale_units='xy', scale=1,
+                           color='black', alpha=0.8, width=0.005, headlength=4, headwidth=3)
+
+        plt.legend(loc="upper right")
         plt.show()
 
         # Apply logarithmic scaling for better contrast of large values
@@ -159,14 +195,21 @@ class Agent:
 if __name__ == '__main__':
     # 2 ^ 5 = 32 states
     # random.seed(0)
+    # search_trajectory = [[3, 1], [4, 2], [5, 0], [6, 3]]  # Example trajectory
     reward_list, step_list = [], []
     q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
-    for index in range(300):
-        q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
+    for index in range(50):
+        q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
         # print("Informed: ", q_agent.informed_percentage)
-        # if index % 25 == 0:
-        #     q_agent.visualize()
+        # if index % 50 == 0:
+        #     print(index)
+        #     q_agent.visualize_1()
+    q_agent.visualize_1()
     q_agent.evaluate(tau=0.1)
+    q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+    # print("before evaluate: ", q_agent.state)
+    # q_agent.evaluate(tau=0.1)
+    # print("after evaluate: ", q_agent.state)
     print(q_agent.performance, q_agent.steps)
 
 
