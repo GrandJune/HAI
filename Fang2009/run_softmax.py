@@ -13,7 +13,7 @@ import pickle
 
 def func(learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
-    q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
+    q_agent = Agent(N=10, high_peak=50, low_peak=10)
     for _ in range(learning_length):
         q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
     q_agent.evaluate(tau=20)

@@ -10,7 +10,7 @@ import matplotlib.colors as mcolors
 import random
 
 class Agent:
-    def __init__(self, N, global_peak, local_peaks):
+    def __init__(self, N, high_peak, low_peak):
         self.N = N
         self.max_value = 2 ** self.N - 1  # Maximum possible state index
         self.bit_length = len(bin(self.max_value)[2:])  # Determine required bit length
@@ -18,20 +18,18 @@ class Agent:
         # each row: one of the 2^N state;
         # each column: reward to flip the N-th element; the (N+1) column is status quo
         self.reality = [0] * 2 ** self.N  # all states are initialized as zeros
-        self.peak_indices = random.sample(range(2 ** self.N), len(local_peaks) + 1)
-        # the first one is the global peak, while the rest is local peaks
-        self.reality[self.peak_indices[0]] = global_peak
-        self.global_peak = global_peak
-        self.local_peaks = local_peaks
-        for i in range(len(local_peaks)):
-            self.reality[self.peak_indices[i + 1]] = local_peaks[i]
+        self.high_peak_index = 2 ** self.N - 1  # 111111
+        self.low_peak_index = 0   # 00000
+        self.high_peak = high_peak
+        self.low_peak = low_peak
+        self.reality[self.high_peak_index] = high_peak
+        self.reality[self.low_peak_index] = low_peak
         self.state = [random.randint(0, 1) for _ in range(self.N)]
         self.max_length = 100000  # make sure an episode can end with peaks
         self.informed_percentage = 0  # the percentage of states that are informed
         self.performance = 0
         self.steps = 0
         self.search_trajectory = []
-
 
     def learn(self, tau=20.0, alpha=0.2, gamma=0.9):
         """
@@ -60,8 +58,12 @@ class Agent:
             if action < self.N:
                 next_state[action] = 1 - self.state[action]
             next_state_index = int(''.join(map(str, next_state)), 2)
+            next_q_row = self.Q_table[next_state_index]
+            next_exp_prob_row = np.exp(next_q_row / tau)
+            next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+            next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
             reward = self.reality[next_state_index]
-            next_state_quality = np.max(self.Q_table[next_state_index])
+            next_state_quality = self.Q_table[next_state_index][next_action]
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
                                                      alpha * (reward + gamma * next_state_quality))
             self.state = next_state  # within one episode, it is sequential search
@@ -197,7 +199,7 @@ if __name__ == '__main__':
     # random.seed(0)
     # search_trajectory = [[3, 1], [4, 2], [5, 0], [6, 3]]  # Example trajectory
     reward_list, step_list = [], []
-    q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
+    q_agent = Agent(N=10, high_peak=50, low_peak=10)
     for index in range(50):
         q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
         # print("Informed: ", q_agent.informed_percentage)

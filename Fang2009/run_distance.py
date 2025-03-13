@@ -13,11 +13,10 @@ import pickle
 
 def func(distance=None, learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
-    q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
-    local_peak_index = q_agent.peak_indices[1]
-    local_peak_state = q_agent.int_to_binary_list(local_peak_index)
+    q_agent = Agent(N=10, high_peak=50, low_peak=10)
+    low_peak_state = [0] * 10
     # re-located into certain distance from local peak
-    q_agent.state = q_agent.generate_state_with_hamming_distance(orientation_state=local_peak_state, hamming_distance=distance)
+    q_agent.state = q_agent.generate_state_with_hamming_distance(orientation_state=low_peak_state, hamming_distance=distance)
     for _ in range(learning_length):
         q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
     q_agent.evaluate(tau=20)
