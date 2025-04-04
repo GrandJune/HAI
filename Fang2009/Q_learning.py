@@ -25,7 +25,7 @@ class Agent:
         self.reality[self.high_peak_index] = high_peak
         self.reality[self.low_peak_index] = low_peak
         self.state = [random.randint(0, 1) for _ in range(self.N)]
-        self.max_length = 10000  # make sure an episode can end with peaks
+        self.max_length = 100000  # make sure an episode can end with peaks
         self.informed_percentage = 0  # the percentage of states that are informed
         self.performance = 0
         self.steps = 0
@@ -59,12 +59,16 @@ class Agent:
             if action < self.N:
                 next_state[action] = 1 - self.state[action]
             next_state_index = int(''.join(map(str, next_state)), 2)
-            next_q_row = self.Q_table[next_state_index]
-            next_exp_prob_row = np.exp(next_q_row / tau)
-            next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-            next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
-            reward = self.reality[next_state_index]
-            next_state_quality = self.Q_table[next_state_index][next_action]
+            # Choose a proper next action (I) softmax
+            # next_q_row = self.Q_table[next_state_index]
+            # next_exp_prob_row = np.exp(next_q_row / tau)
+            # next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+            # next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
+            # next_state_quality = self.Q_table[next_state_index][next_action]
+
+            # Choose a proper next action (II) best
+            next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
+            reward = self.reality[next_state_index]  # equal to non-zero when next state is peaks
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
                                                      alpha * (reward + gamma * next_state_quality))
             self.state = next_state.copy()  # within one episode, it is sequential search

@@ -23,10 +23,11 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
 
 if __name__ == '__main__':
     t0 = time.time()
-    concurrency = 20
+    concurrency = 50
     repetition = 50
-    hyper_repetition = 40
+    hyper_repetition = 80
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
+    # learning_length_list = [50, 100, 150]
     percentage_high_across_learning_length, steps_across_learning_length, informed_across_learning_length = [], [], []
     for learning_length in learning_length_list:
         performance_list, steps_list, informed_percentage_list = [], [], []
