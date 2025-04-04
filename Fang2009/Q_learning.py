@@ -25,7 +25,7 @@ class Agent:
         self.reality[self.high_peak_index] = high_peak
         self.reality[self.low_peak_index] = low_peak
         self.state = [random.randint(0, 1) for _ in range(self.N)]
-        self.max_length = 100000  # make sure an episode can end with peaks
+        self.max_length = 10000  # make sure an episode can end with peaks
         self.informed_percentage = 0  # the percentage of states that are informed
         self.performance = 0
         self.steps = 0
@@ -42,7 +42,8 @@ class Agent:
         :return:
         """
         # Initialize one learning episode
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
+        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2)) # cannot be the peaks!!
+        self.state = self.int_to_binary_list(state_index = cur_state_index)
         self.search_trajectory = []
         for _ in range(self.max_length):
             cur_state_index = self.binary_list_to_int(self.state)
@@ -66,13 +67,15 @@ class Agent:
             next_state_quality = self.Q_table[next_state_index][next_action]
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
                                                      alpha * (reward + gamma * next_state_quality))
-            self.state = next_state  # within one episode, it is sequential search
-            if reward:  # If we reach a rewarded state, stop learning; but we still incorporate the future position quality into Q updating
-                break
+            self.state = next_state.copy()  # within one episode, it is sequential search
+            if reward:  # If we reach a rewarded state, stop learning
+                break  # this break means that the Q_table for the next_state will not be updated.
         self.informed_percentage = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
     def evaluate(self, tau=20.0):
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
+        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2)) # cannot be the peaks!!
+        self.state = self.int_to_binary_list(state_index = cur_state_index)
+        # print("cur_state_index: ", cur_state_index, self.state)
         self.search_trajectory = []
         for perform_step in range(self.max_length):
             cur_state_index = self.binary_list_to_int(self.state)
@@ -87,10 +90,10 @@ class Agent:
                 next_state[action] = 1 - self.state[action]
             next_state_index = int(''.join(map(str, next_state)), 2)
             reward = self.reality[next_state_index]
-            self.state = next_state
+            self.state = next_state.copy()
             if reward:
                 self.performance = reward
-                self.steps = perform_step
+                self.steps = perform_step + 1
                 break
 
     # def evaluate_max(self):
@@ -110,8 +113,8 @@ class Agent:
     #             self.steps = perform_step
     #             break
 
-    def int_to_binary_list(self, state):
-        return [int(bit) for bit in format(state, f'0{self.bit_length}b')]
+    def int_to_binary_list(self, state_index):
+        return [int(bit) for bit in format(state_index, f'0{self.bit_length}b')]
 
     def binary_list_to_int(self, state):
         return int(''.join(map(str, state)), 2)
@@ -202,17 +205,25 @@ if __name__ == '__main__':
     q_agent = Agent(N=10, high_peak=50, low_peak=10)
     for index in range(50):
         q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
+        # print(q_agent.Q_table)
+        # break
         # print("Informed: ", q_agent.informed_percentage)
         # if index % 50 == 0:
         #     print(index)
         #     q_agent.visualize_1()
+    print(q_agent.Q_table[-1], q_agent.Q_table[0])
     q_agent.visualize_1()
-    q_agent.evaluate(tau=0.1)
+    q_agent.evaluate(tau=20)  # exploration
+    q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+    print("Exploration: ", q_agent.performance, len(q_agent.search_trajectory), q_agent.steps)
+
+    # q_agent.state = [random.randint(0, 1) for _ in range(5)]
+    q_agent.evaluate(tau=0.1)  # exploitation
     q_agent.visualize(search_trajectory=q_agent.search_trajectory)
     # print("before evaluate: ", q_agent.state)
     # q_agent.evaluate(tau=0.1)
     # print("after evaluate: ", q_agent.state)
-    print(q_agent.performance, q_agent.steps)
+    print("Exploitation: ", q_agent.performance, len(q_agent.search_trajectory), q_agent.steps)
 
 
     # print(q_agent.reality)
