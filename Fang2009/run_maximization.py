@@ -25,7 +25,7 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     repetition = 50
-    hyper_repetition = 80
+    hyper_repetition = 40
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     # learning_length_list = [50, 100, 150]
     percentage_high_across_learning_length, steps_across_learning_length, informed_across_learning_length = [], [], []
@@ -64,4 +64,3 @@ if __name__ == '__main__':
     t1 = time.time()
     print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
     print("Max:", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
-

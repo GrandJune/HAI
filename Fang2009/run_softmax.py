@@ -25,7 +25,7 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     repetition = 50
-    hyper_repetition = 80
+    hyper_repetition = 40
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     # learning_length_list = [50, 100, 150]
     (percentage_high_across_learning_length, percentage_low_across_learning_length,
