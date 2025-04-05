@@ -30,16 +30,13 @@ class Agent:
 
     def learn(self, alpha=0.2, gamma=0.9):
         """
-        One episode concludes with local or global peaks and update its antecedent Q(s, a).
-        Larger Tau: exploration (at 30, random walk);  Smaller Tau: exploitation
-        :param tau: temperature regulates how sensitive the probability of choosing a given action is to the estimated Q
         :param state: current state, int
         :param alpha: learning rate (cf. Denrell 2004)
         :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
         :return:
         """
         # Initialize one learning episode
-        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2)) # cannot be the peaks!!
+        cur_state_index = np.random.choice(range(0, 2 ** self.N)) # cannot be the peaks!!
         self.state = self.int_to_binary_list(state_index = cur_state_index)
         for steps in range(self.max_length):
             cur_state_index = self.binary_list_to_int(self.state)
