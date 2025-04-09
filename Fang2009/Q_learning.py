@@ -12,8 +12,6 @@ import random
 class Agent:
     def __init__(self, N, high_peak, low_peak):
         self.N = N
-        self.max_value = 2 ** self.N - 1  # Maximum possible state index
-        self.bit_length = len(bin(self.max_value)[2:])  # Determine required bit length
         self.Q_table = np.zeros((2 ** self.N, self.N + 1))
         # each row: one of the 2^N state;
         # each column: reward to flip the N-th element; the (N+1) column is status quo
@@ -25,7 +23,7 @@ class Agent:
         self.reality[self.high_peak_index] = high_peak
         self.reality[self.low_peak_index] = low_peak
         self.state = [random.randint(0, 1) for _ in range(self.N)]
-        self.max_length = 100000  # make sure an episode can end with peaks
+        self.max_step = 100000  # make sure an episode can end with peaks
         self.informed_percentage = 0  # the percentage of states that are informed
         self.performance = 0
         self.steps = 0
@@ -41,12 +39,8 @@ class Agent:
         :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
         :return:
         """
-        np.random.seed(None)
-        # Initialize one learning episode
-        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2)) # cannot be the peaks!!
-        self.state = self.int_to_binary_list(state_index = cur_state_index)
         self.search_trajectory = []
-        for _ in range(self.max_length):
+        for _ in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
@@ -60,30 +54,33 @@ class Agent:
             if action < self.N:
                 next_state[action] = 1 - self.state[action]
             next_state_index = int(''.join(map(str, next_state)), 2)
+            # ===================
             # Choose a proper next action (I) softmax
-            # next_q_row = self.Q_table[next_state_index]
-            # next_exp_prob_row = np.exp(next_q_row / tau)
-            # next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-            # next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
-            # next_state_quality = self.Q_table[next_state_index][next_action]
+            next_q_row = self.Q_table[next_state_index]
+            next_exp_prob_row = np.exp(next_q_row / tau)
+            next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+            next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
+            next_state_quality = self.Q_table[next_state_index][next_action]
 
             # Choose a proper next action (II) best
-            next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
+            # next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
+            # ===================
             reward = self.reality[next_state_index]  # equal to non-zero when next state is peaks
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
                                                      alpha * (reward + gamma * next_state_quality))
-            self.state = next_state.copy()  # within one episode, it is sequential search
+            # Sequential search
+            self.state = next_state.copy()
             if reward:  # If we reach a rewarded state, stop learning
                 break  # this break means that the Q_table for the next_state will not be updated.
+
+        # Re-initialize
+        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2)) # cannot be the peaks!!
+        self.state = self.int_to_binary_list(state_index = cur_state_index)
         self.informed_percentage = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
     def evaluate(self, tau=20.0):
-        np.random.seed(None)
-        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2)) # cannot be the peaks!!
-        self.state = self.int_to_binary_list(state_index = cur_state_index)
-        # print("cur_state_index: ", cur_state_index, self.state)
         self.search_trajectory = []
-        for perform_step in range(self.max_length):
+        for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
@@ -102,10 +99,13 @@ class Agent:
                 self.performance = reward
                 self.steps = perform_step + 1
                 break
+        # Re-initialize
+        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2))  # cannot be the peaks!!
+        self.state = self.int_to_binary_list(state_index=cur_state_index)
 
     # def evaluate_max(self):
     #     self.state = [random.randint(0, 1) for _ in range(self.N)]
-    #     for perform_step in range(self.max_length):
+    #     for perform_step in range(self.max_step):
     #         cur_state_index = self.binary_list_to_int(self.state)
     #         q_row = self.Q_table[cur_state_index]
     #         action = np.argmax(q_row)
@@ -121,7 +121,7 @@ class Agent:
     #             break
 
     def int_to_binary_list(self, state_index):
-        return [int(bit) for bit in format(state_index, f'0{self.bit_length}b')]
+        return [int(bit) for bit in format(state_index, f'0{self.N}b')]
 
     def binary_list_to_int(self, state):
         return int(''.join(map(str, state)), 2)
@@ -130,8 +130,8 @@ class Agent:
         """
         Generate a new state that is at a specific Hamming distance from the original state.
 
-        :param original_state: The original state (e.g., global peak).
-        :param hamming_distance: The number of bit flips to make.
+        :param orientation_state: the original state (e.g., global peak).
+        :param hamming_distance: the number of bit flips to make.
         :return: A new state with the specified Hamming distance.
         """
         random.seed(None)
