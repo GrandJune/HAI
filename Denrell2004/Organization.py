@@ -8,25 +8,27 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import random
+from Agent import Agent
 
-class Agent:
-    def __init__(self, N, peak):
+class Organization:
+    def __init__(self, N, peak, agent_num):
         self.N = N
-        self.max_value = 2 ** self.N - 1  # Maximum possible state index
-        self.bit_length = len(bin(self.max_value)[2:])  # Determine required bit length
-        self.Q_table = np.zeros((2 ** self.N, self.N + 1))
-        # each row: one of the 2^N state;
-        # each column: reward to flip the N-th element; the (N+1) column is status quo
+        self.agent_num = agent_num
+        self.agent_list = []
         self.reality = [0] * 2 ** self.N  # all states are initialized as zeros
         self.peak_index = 2 ** self.N - 1  # 111111
         self.peak = peak
+        for _ in range(agent_num):
+            agent = Agent(N, reality=self.reality)
+            self.agent_list.append(agent)
+        self.Q_table = np.zeros((2 ** self.N, self.N + 1))  # akin to organization-level code in March's (1991) paper
+        # each row: one of the 2^N state;
+        # each column: reward to flip the N-th element; the (N+1) column is status quo
+
         self.reality[self.peak_index] = peak
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
-        self.max_length = 100000  # make sure an episode can end with peaks
         self.informed_percentage = 0  # the percentage of states that are informed
         self.ave_max_q = 0
-        self.steps = 0
-        self.search_trajectory = []
+        self.steps_list = []
 
     def learn(self, alpha=0.2, gamma=0.9):
         """
@@ -35,29 +37,54 @@ class Agent:
         :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
         :return:
         """
-        # Initialize one learning episode
-        cur_state_index = np.random.choice(range(0, 2 ** self.N - 1)) # cannot be the peaks!!
-        self.state = self.int_to_binary_list(state_index = cur_state_index)
-        for steps in range(self.max_length):
-            cur_state_index = self.binary_list_to_int(self.state)
-            max_index_list = np.where(self.Q_table[cur_state_index] == np.max(self.Q_table[cur_state_index]))[0]
-            action = np.random.choice(max_index_list)
-            next_state = self.state.copy()
-            if action < self.N:
-                next_state[action] = 1 - self.state[action]
-            next_state_index = int(''.join(map(str, next_state)), 2)
-            # Choose a proper next action (II) best
-            next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
-            reward = self.reality[next_state_index]  # equal to non-zero when next state is peaks
-            self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
-                                                     alpha * (reward + gamma * next_state_quality))
-            self.state = next_state.copy()  # within one episode, it is sequential search
-            if self.Q_table[cur_state_index][action]:
-                print(self.Q_table[cur_state_index][action], alpha, reward, gamma, next_state_quality)
-            if reward:  # If we reach a rewarded state, stop learning
-                self.steps = steps + 1
-                break  # this break means that the Q_table for the next_state will not be updated.
-        self.informed_percentage = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+        steps_across_agents = []
+        for agent in self.agent_list:
+            agent.learn(alpha=alpha, gamma=gamma, Q_table=self.Q_table)
+            steps_across_agents.append(agent.steps)
+            self.Q_table = agent.Q_table  # update the Q table into organizational knowledge
+        self.steps_list.append(sum(steps_across_agents) / len(steps_across_agents))
+
+    # def learn_with_lambda(self, alpha=0.2, gamma=0.9, lambda_=5):
+    #     """
+    #     :param state: current state, int
+    #     :param alpha: learning rate (cf. Denrell 2004)
+    #     :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
+    #     :return:
+    #     """
+    #     # Initialize one learning episode
+    #     cur_state_index = np.random.choice(range(0, 2 ** self.N - 1)) # cannot be the peaks!!
+    #     self.state = self.int_to_binary_list(state_index = cur_state_index)
+    #     for steps in range(self.max_length):
+    #         cur_state_index = self.binary_list_to_int(self.state)
+    #         max_index_list = np.where(self.Q_table[cur_state_index] == np.max(self.Q_table[cur_state_index]))[0]
+    #         action = np.random.choice(max_index_list)
+    #         self.search_trajectory.append([cur_state_index, action])
+    #         next_state = self.state.copy()
+    #         if action < self.N:
+    #             next_state[action] = 1 - self.state[action]
+    #         next_state_index = int(''.join(map(str, next_state)), 2)
+    #         # Choose a proper next action (II) best
+    #         next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
+    #         reward = self.reality[next_state_index]  # equal to non-zero when next state is peaks
+    #         # update the current state action pair
+    #         # self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
+    #         #                                          alpha * (reward + gamma * next_state_quality))
+    #         # update preceding state action pair
+    #         if lambda_ > 1:
+    #             preceding_state_action_pair = self.search_trajectory[-lambda_:]
+    #             while len(preceding_state_action_pair):
+    #                 preceding_state, preceding_action = preceding_state_action_pair.pop()
+    #                 self.Q_table[preceding_state][preceding_action] = ((1 - alpha) * self.Q_table[preceding_state][preceding_action] +
+    #                                                          alpha * (reward + gamma * next_state_quality))
+    #                 next_state_quality = max(self.Q_table[preceding_state]) # re-locate the quality to this updated preceding
+    #
+    #         self.state = next_state.copy()  # within one episode, it is sequential search
+    #         # if self.Q_table[cur_state_index][action]:
+    #             # print(self.Q_table[cur_state_index][action], alpha, reward, gamma, next_state_quality)
+    #         if reward:  # If we reach a rewarded state, stop learning
+    #             self.steps = steps + 1
+    #             break  # this break means that the Q_table for the next_state will not be updated.
+    #     self.informed_percentage = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
     # def evaluate_max(self):
     #     self.state = [random.randint(0, 1) for _ in range(self.N)]
@@ -77,7 +104,7 @@ class Agent:
     #             break
 
     def int_to_binary_list(self, state_index):
-        return [int(bit) for bit in format(state_index, f'0{self.bit_length}b')]
+        return [int(bit) for bit in format(state_index, f'0{self.N}b')]
 
     def binary_list_to_int(self, state):
         return int(''.join(map(str, state)), 2)
@@ -162,16 +189,18 @@ class Agent:
 
 
 if __name__ == '__main__':
-    # 2 ^ 5 = 32 states
-    # random.seed(0)
-    # search_trajectory = [[3, 1], [4, 2], [5, 0], [6, 3]]  # Example trajectory
-    reward_list, step_list = [], []
-    q_agent = Agent(N=10, peak=1)
-    for index in range(200):
-        q_agent.learn(alpha=0.2, gamma=0)
-    q_agent.visualize(search_trajectory=q_agent.search_trajectory)
-    print(np.max(q_agent.Q_table))
-    print("Ave Max Q: ", q_agent.ave_max_q, q_agent.steps)
+    N = 10
+    peak = 1
+    agent_num = 100
+    learning_episodes  = 100
+    firm = Organization(N=N, peak=peak, agent_num=agent_num)
+    for episode in range(learning_episodes):
+        firm.learn(alpha=0.2, gamma=0.9)
+        if episode % 20 == 0:
+            firm.visualize_1()
+            # print(firm.Q_table[-1])
+    print(firm.steps_list)
+
 
 
     # print(q_agent.reality)
@@ -216,3 +245,38 @@ if __name__ == '__main__':
     # plt.show()
 
 
+    # Learning with lambda
+    # Time to Solution as Organizational Performance
+    # add lambda, the length of updated preceding state-action pairs
+    # lambda_ = 5
+    # steps_lambda_5 = []
+    # steps_across_episode_agent = []
+    # for _ in range(100):
+    #     np.random.seed(None)
+    #     q_agent = Agent(N=10, peak=1)
+    #     steps_across_episode = []
+    #     for index in range(100):
+    #         q_agent.learn_with_lambda(alpha=0.2, gamma=0, lambda_=lambda_)
+    #         steps_across_episode.append(q_agent.steps)
+    #     steps_across_episode_agent.append(steps_across_episode)
+    # steps_lambda_5 = np.mean(steps_across_episode_agent, axis=0)
+    #
+    # # Figure 4: Steps across Episode
+    # x = range(1, 101)
+    # # x = [50, 100, 150]
+    # fig, ax = plt.subplots()
+    # ax.spines["left"].set_linewidth(1.5)
+    # ax.spines["right"].set_linewidth(1.5)
+    # ax.spines["top"].set_linewidth(1.5)
+    # ax.spines["bottom"].set_linewidth(1.5)
+    # plt.plot(x, steps_lambda_5, "k--", label="$\lambda={0}$".format(5))
+    # # plt.plot(x, max_performance, "k-v", label="Max")
+    # plt.xlabel("Episode", fontweight='bold', fontsize=12)
+    # plt.ylabel('Steps', fontweight='bold', fontsize=12)
+    # # plt.xticks(x)
+    # # ax.set_ylim(0, 0.7)
+    # plt.legend(frameon=False, ncol=1, fontsize=12)
+    # plt.savefig(r"Steps_across_episode_lambda.png", transparent=True, dpi=300)
+    # plt.show()
+    # plt.clf()
+    # print("Lambda=5: ", steps_lambda_5)
