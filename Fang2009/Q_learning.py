@@ -207,31 +207,61 @@ class Agent:
 
 if __name__ == '__main__':
     # 2 ^ 5 = 32 states
-    # random.seed(0)
+    random.seed(None)
     # search_trajectory = [[3, 1], [4, 2], [5, 0], [6, 3]]  # Example trajectory
     reward_list, step_list = [], []
     q_agent = Agent(N=10, high_peak=50, low_peak=10)
-    for index in range(350):
+    for index in range(50):
         q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
-        # print(q_agent.Q_table)
-        # break
-        # print("Informed: ", q_agent.informed_percentage)
-        # if index % 50 == 0:
-        #     print(index)
-        #     q_agent.visualize_1()
-    print(q_agent.Q_table[-1], q_agent.Q_table[0])
     q_agent.visualize_1()
-    q_agent.evaluate(tau=20)  # exploration
-    q_agent.visualize(search_trajectory=q_agent.search_trajectory)
-    print("Exploration: ", q_agent.performance, len(q_agent.search_trajectory), q_agent.steps)
+    performance_1, performance_2 = 0, 0
+    step_list_1, step_list_2 = [], []
+    for _ in range(100):
+        align_state = [random.randint(0, 1) for _ in range(10)]
+        q_agent.state = align_state
+        q_agent.evaluate(tau=20)
+        # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+        # print("Exploitation: ", q_agent.performance, q_agent.steps)
+        if q_agent.performance == 50:
+            performance_1 += 1
+        step_list_1.append(q_agent.steps)
 
-    # q_agent.state = [random.randint(0, 1) for _ in range(5)]
-    q_agent.evaluate(tau=0.1)  # exploitation
-    q_agent.visualize(search_trajectory=q_agent.search_trajectory)
-    # print("before evaluate: ", q_agent.state)
-    # q_agent.evaluate(tau=0.1)
-    # print("after evaluate: ", q_agent.state)
-    print("Exploitation: ", q_agent.performance, len(q_agent.search_trajectory), q_agent.steps)
+        q_agent.state = align_state
+        q_agent.performance = 0
+        q_agent.search_trajectory = []
+        q_agent.evaluate(tau=0.1)
+        # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+        # print("Exploration: ", q_agent.performance, q_agent.steps)
+        if q_agent.performance == 50:
+            performance_2 += 1
+        step_list_2.append(q_agent.steps)
+    print("Performance Exploration: ", performance_1 / 100, "Exploitation: ", performance_2 / 100)
+    print("Steps Exploration: ", sum(step_list_1) / len(step_list_1), "Exploitation: ", sum(step_list_2) / len(step_list_2))
+
+    # aggregation test
+    # q_agent = Agent(N=10, high_peak=50, low_peak=10)
+    # for index in range(350):
+    #     q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
+    # q_agent.visualize_1()
+    # exploration_performance_list, exploration_step_list = [], []
+    # for _ in range(200):
+    #     q_agent.evaluate(tau=20)  # exploration
+    #     exploration_performance_list.append(q_agent.performance)
+    #     exploration_step_list.append(q_agent.steps)
+    #     # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+    # exploration_performance = sum([1 if reward == 50 else 0 for reward in exploration_performance_list]) / len(exploration_performance_list)
+    # exploration_step = sum(exploration_step_list) / len(exploration_step_list)
+    # print("Exploration: ", exploration_performance, exploration_step)
+    #
+    # exploitation_performance_list, exploitation_step_list = [], []
+    # for _ in range(200):
+    #     q_agent.evaluate(tau=0.1)  # exploitation
+    #     exploitation_performance_list.append(q_agent.performance)
+    #     exploitation_step_list.append(q_agent.steps)
+    #     # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+    # exploitation_performance = sum([1 if reward == 50 else 0 for reward in exploitation_performance_list]) / len(exploitation_performance_list)
+    # exploitation_step = sum(exploitation_step_list) / len(exploitation_step_list)
+    # print("Exploitation: ", exploitation_performance, exploitation_step)
 
 
     # print(q_agent.reality)
