@@ -39,7 +39,7 @@ class Organization:
         """
         steps_across_agents = []
         for agent in self.agent_list:
-            agent.learn(alpha=alpha, gamma=gamma, Q_table=self.Q_table)
+            agent.learn(alpha=alpha, gamma=gamma, Q_table=self.Q_table)  # individuals rely on the organizational knowledge
             steps_across_agents.append(agent.steps)
             self.Q_table = agent.Q_table  # update the Q table into organizational knowledge
         self.steps_list.append(sum(steps_across_agents) / len(steps_across_agents))
@@ -131,8 +131,8 @@ class Organization:
         cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", colors, N=100)
 
         # Use a logarithmic scale to enhance contrast if needed
-        norm = mcolors.SymLogNorm(linthresh=1, linscale=0.5, vmin=0, vmax=np.max(self.Q_table))
-
+        # norm = mcolors.SymLogNorm(linthresh=1, linscale=0.5, vmin=0, vmax=np.max(self.Q_table))
+        norm = mcolors.SymLogNorm(linthresh=1, linscale=0.5, vmin=0, vmax=1)
         plt.figure(figsize=(8, 6))
         plt.imshow(self.Q_table, cmap=cmap, aspect='auto', norm=norm)
         plt.colorbar(label="Q-value")
@@ -198,7 +198,7 @@ if __name__ == '__main__':
         firm.learn(alpha=0.2, gamma=0.9)
         if episode % 20 == 0:
             firm.visualize_1()
-            # print(firm.Q_table[-1])
+            print(np.max(firm.Q_table[-2]))
     print(firm.steps_list)
 
 
