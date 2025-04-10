@@ -40,7 +40,7 @@ class Agent:
         :return:
         """
         self.search_trajectory = []
-        for _ in range(self.max_step):
+        for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
@@ -71,6 +71,8 @@ class Agent:
             # Sequential search
             self.state = next_state.copy()
             if reward:  # If we reach a rewarded state, stop learning
+                self.performance = reward
+                self.steps = perform_step + 1
                 break  # this break means that the Q_table for the next_state will not be updated.
 
         # Re-initialize
