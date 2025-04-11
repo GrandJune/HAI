@@ -56,14 +56,14 @@ class Agent:
             next_state_index = int(''.join(map(str, next_state)), 2)
             # ===================
             # Choose a proper next action (I) softmax
-            next_q_row = self.Q_table[next_state_index]
-            next_exp_prob_row = np.exp(next_q_row / tau)
-            next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-            next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
-            next_state_quality = self.Q_table[next_state_index][next_action]
+            # next_q_row = self.Q_table[next_state_index]
+            # next_exp_prob_row = np.exp(next_q_row / tau)
+            # next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+            # next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
+            # next_state_quality = self.Q_table[next_state_index][next_action]
 
             # Choose a proper next action (II) best
-            # next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
+            next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
             # ===================
             reward = self.reality[next_state_index]  # equal to non-zero when next state is peaks
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
