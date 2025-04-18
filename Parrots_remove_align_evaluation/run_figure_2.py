@@ -17,20 +17,14 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
     for _ in range(learning_length):
         agent.learn(tau=20, alpha=0.8, gamma=0.9)
     knowledge = agent.informed_percentage
-    aligned_state_index = np.random.choice(range(1, 2 ** 10 - 2))  # cannot be the peaks!!
-    # Max
-    agent.state = agent.int_to_binary_list(state_index=aligned_state_index)
-    agent.learn(tau=0.1, alpha=0.8, gamma=0.9)
-    max_performance = agent.performance
-    max_steps = agent.steps
     # Softmax
-    # aligned_state_index = np.random.choice(range(1, 2 ** 10 - 2))  # cannot be the peaks!!
-    # agent.state = agent.int_to_binary_list(state_index=aligned_state_index)
-    # agent.learn(tau=20, alpha=0.8, gamma=0.9)
-    # softmax_performance = agent.performance
-    # softmax_steps = agent.steps
+    aligned_state_index = np.random.choice(range(1, 2 ** 10 - 2))  # cannot be the peaks!!
+    agent.state = agent.int_to_binary_list(state_index=aligned_state_index)
+    agent.evaluate(tau=20)
+    softmax_performance = agent.performance
+    softmax_steps = agent.steps
 
-    return_dict[loop] = [max_performance, max_steps, knowledge]
+    return_dict[loop] = [softmax_performance, softmax_steps, knowledge]
     sema.release()
 
 
@@ -59,30 +53,30 @@ if __name__ == '__main__':
             for proc in jobs:
                 proc.join()
             results = return_dict.values()  # Don't need dict index, since it is repetition.
-            max_performance_list += [result[0] for result in results]
-            max_steps_list += [result[1] for result in results]
-            # softmax_performance_list += [result[2] for result in results]
-            # softmax_steps_list += [result[3] for result in results]
+            # max_performance_list += [result[0] for result in results]
+            # max_steps_list += [result[1] for result in results]
+            softmax_performance_list += [result[0] for result in results]
+            softmax_steps_list += [result[1] for result in results]
             knowledge_list += [result[2] for result in results]
 
-        max_performance = sum([1 if reward == 50 else 0 for reward in max_performance_list]) / len(max_performance_list)
-        # softmax_performance = sum([1 if reward == 50 else 0 for reward in softmax_performance_list]) / len(softmax_performance_list)
+        # max_performance = sum([1 if reward == 50 else 0 for reward in max_performance_list]) / len(max_performance_list)
+        softmax_performance = sum([1 if reward == 50 else 0 for reward in softmax_performance_list]) / len(softmax_performance_list)
 
-        max_performance_across_episodes.append(max_performance)
-        # softmax_performance_across_episodes.append(softmax_performance)
-        max_steps_across_episodes.append(sum(max_steps_list) / len(max_steps_list))
-        # softmax_steps_across_episodes.append(sum(softmax_steps_list) / len(softmax_steps_list))
+        # max_performance_across_episodes.append(max_performance)
+        softmax_performance_across_episodes.append(softmax_performance)
+        # max_steps_across_episodes.append(sum(max_steps_list) / len(max_steps_list))
+        softmax_steps_across_episodes.append(sum(softmax_steps_list) / len(softmax_steps_list))
         knowledge_across_episodes.append(sum(knowledge_list) / len(knowledge_list))
 
-    with open("max_performance_across_episodes", 'wb') as out_file:
-        pickle.dump(max_performance_across_episodes, out_file)
-    # with open("softmax_performance_across_episodes", 'wb') as out_file:
-    #     pickle.dump(softmax_performance_across_episodes, out_file)
-    with open("max_steps_across_episodes", 'wb') as out_file:
-        pickle.dump(max_steps_across_episodes, out_file)
-    # with open("softmax_steps_across_episodes", 'wb') as out_file:
-    #     pickle.dump(softmax_steps_across_episodes, out_file)
-    with open("max_knowledge_across_episodes", 'wb') as out_file:
+    # with open("max_performance_across_episodes", 'wb') as out_file:
+    #     pickle.dump(max_performance_across_episodes, out_file)
+    with open("softmax_performance_across_episodes", 'wb') as out_file:
+        pickle.dump(softmax_performance_across_episodes, out_file)
+    # with open("max_steps_across_episodes", 'wb') as out_file:
+    #     pickle.dump(max_steps_across_episodes, out_file)
+    with open("softmax_steps_across_episodes", 'wb') as out_file:
+        pickle.dump(softmax_steps_across_episodes, out_file)
+    with open("softmax_knowledge_across_episodes", 'wb') as out_file:
         pickle.dump(knowledge_across_episodes, out_file)
 
     t1 = time.time()

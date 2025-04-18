@@ -20,7 +20,7 @@ def func(learning_length=None, loop=None, return_dict=None, sema=None):
     aligned_state_index = np.random.choice(range(1, 2 ** 10 - 2))  # cannot be the peaks!!
     # Max
     agent.state = agent.int_to_binary_list(state_index=aligned_state_index)
-    agent.learn(tau=0.1, alpha=0.8, gamma=0.9)
+    agent.evaluate(tau=0.1)
     max_performance = agent.performance
     max_steps = agent.steps
     # Softmax

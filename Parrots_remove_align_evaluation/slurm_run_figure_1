@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH --time=03:00:00
+#SBATCH --job-name=Max
+#SBATCH --mail-type=FAIL
+#SBATCH --mem=100gb
+#SBATCH --partition=normal
+#SBATCH --cpus-per-task=50
+#SBATCH --ntasks=1
+#SBATCH --nodelist=xcnf20
+python run_figure_1.py
