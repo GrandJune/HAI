@@ -106,12 +106,11 @@ class Agent:
             next_state = self.state.copy()
             if action < self.N:
                 next_state[action] = 1 - self.state[action]
-            # print(action, self.Q_table[cur_state_index])
             next_state_index = int(''.join(map(str, next_state)), 2)
             reward = self.reality[next_state_index]
+            # Sequential search
             self.state = next_state.copy()
-            self.next_action = next_state
-            if reward:
+            if reward:  # If we reach a rewarded state, stop learning
                 self.performance = reward
                 self.steps = perform_step + 1
                 # Re-initialize
@@ -121,7 +120,9 @@ class Agent:
                 eligible_list.remove(self.low_peak_index)
                 cur_state_index = np.random.choice(eligible_list)  # cannot be the peaks!!
                 self.state = self.int_to_binary_list(state_index=cur_state_index)
-                break
+                break  # this break means that the Q_table for the next_state will not be updated.
+
+        self.informed_percentage = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
 
     # def evaluate_max(self):

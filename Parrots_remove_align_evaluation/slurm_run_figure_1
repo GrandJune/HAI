@@ -6,5 +6,5 @@
 #SBATCH --partition=normal
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
-#SBATCH --nodelist=xcnf20
+#SBATCH --nodelist=xcnf16
 python run_figure_1.py

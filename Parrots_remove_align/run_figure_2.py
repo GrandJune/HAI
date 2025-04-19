@@ -10,9 +10,12 @@ import multiprocessing as mp
 import time
 from multiprocessing import Semaphore
 import pickle
+import random
+
 
 def func(learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
+    random.seed(None)
     agent = Agent(N=10, high_peak=50, low_peak=10)
     for _ in range(learning_length):
         agent.learn(tau=20, alpha=0.8, gamma=0.9)
@@ -32,7 +35,7 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     repetition = 50
-    hyper_repetition = 40
+    hyper_repetition = 80
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     # learning_length_list = [50, 100, 150]
     max_performance_across_episodes, softmax_performance_across_episodes = [], []
