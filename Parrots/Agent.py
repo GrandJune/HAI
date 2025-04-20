@@ -8,27 +8,19 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import random
+from Reality import Reality
 
 class Agent:
-    def __init__(self, N, high_peak, low_peak):
+    def __init__(self, N, global_peak=None, local_peaks=None):
+        if local_peaks is None:
+            local_peaks = [10, 10, 10]
         self.N = N
-        self.Q_table = np.zeros((2 ** self.N, self.N + 1))
-        # each row: one of the 2^N state;
-        # each column: reward to flip the N-th element; the (N+1) column is status quo
-        self.reality = [0] * 2 ** self.N  # all states are initialized as zeros
-        self.high_peak_index, self.low_peak_index = 2 ** self.N - 1, 0
-        self.high_peak = high_peak
-        self.low_peak = low_peak
-        self.reality[self.high_peak_index] = high_peak
-        self.reality[self.low_peak_index] = low_peak
-        eligible_list = list(range(0, 2 ** self.N))
-        eligible_list.remove(self.high_peak_index)
-        eligible_list.remove(self.low_peak_index)
-        cur_state_index = np.random.choice(eligible_list) # cannot be the peaks!!
-        self.state = self.int_to_binary_list(state_index = cur_state_index)
+        self.Q_table = np.zeros((2 ** self.N, self.N))
+        self.reality = Reality(N=N, global_peak = global_peak, local_peaks = local_peaks)
+        self.state = [0] * self.N
         self.next_action = None
         self.max_step = 100000  # make sure an episode can end with peaks
-        self.informed_percentage = 0  # the percentage of states that are informed
+        self.knowledge = 0  # the percentage of states that are informed
         self.performance = 0
         self.steps = 0
         self.search_trajectory = []
@@ -47,92 +39,36 @@ class Agent:
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
-            # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
             if self.next_action:
                 action = self.next_action
             else:
                 exp_prob_row = np.exp(q_row / tau)
                 prob_row = exp_prob_row / np.sum(exp_prob_row)
-                action = np.random.choice(range(self.N + 1), p=prob_row)
+                action = np.random.choice(range(self.N), p=prob_row)
             self.search_trajectory.append([cur_state_index, action])
-            # print(self.state, cur_state_index, action)
-            # taking an appropriate action from next state; based on current beliefs
             next_state = self.state.copy()
             if action < self.N:
                 next_state[action] = 1 - self.state[action]
             next_state_index = int(''.join(map(str, next_state)), 2)
-            # ===================
-            # Choose a proper next action (I) softmax
             next_q_row = self.Q_table[next_state_index]
             next_exp_prob_row = np.exp(next_q_row / tau)
             next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-            next_action = np.random.choice(range(self.N + 1), p=next_prob_row)
+            next_action = np.random.choice(range(self.N), p=next_prob_row)
             self.next_action = next_action  # need to record this next action and use it sequentially
             next_state_quality = self.Q_table[next_state_index][next_action]
-
-            # Choose a proper next action (II) best
-            # next_state_quality = max(self.Q_table[next_state_index])  # equal to zero when next state is peaks
-            # ===================
-            reward = self.reality[next_state_index]  # equal to non-zero when next state is peaks
+            reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
             self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
                                                      alpha * (reward + gamma * next_state_quality))
-            # Sequential search
+            # Sequential search (i.e., no peak)
             self.state = next_state.copy()
             if reward:  # If we reach a rewarded state, stop learning
                 self.performance = reward
                 self.steps = perform_step + 1
                 # Re-initialize
                 self.next_action = None
-                eligible_list = list(range(0, 2 ** self.N))
-                eligible_list.remove(self.high_peak_index)
-                eligible_list.remove(self.low_peak_index)
-                cur_state_index = np.random.choice(eligible_list)  # cannot be the peaks!!
-                self.state = self.int_to_binary_list(state_index=cur_state_index)
-                break  # this break means that the Q_table for the next_state will not be updated.
-
-        self.informed_percentage = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
-
-    def evaluate(self, tau=20.0):
-        self.search_trajectory = []
-        for perform_step in range(self.max_step):
-            cur_state_index = self.binary_list_to_int(self.state)
-            q_row = self.Q_table[cur_state_index]
-            # q_row -= np.max(q_row)  # prevent numerical overflow and preserve softmax behavior
-            exp_prob_row = np.exp(q_row / tau)
-            prob_row = exp_prob_row / np.sum(exp_prob_row)
-            action = np.random.choice(range(self.N + 1), p=prob_row)
-            self.search_trajectory.append([cur_state_index, action])
-            next_state = self.state.copy()
-            if action < self.N:
-                next_state[action] = 1 - self.state[action]
-            # print(action, self.Q_table[cur_state_index])
-            next_state_index = int(''.join(map(str, next_state)), 2)
-            reward = self.reality[next_state_index]
-            self.state = next_state.copy()
-            if reward:
-                self.performance = reward
-                self.steps = perform_step + 1
-                break
-        # Re-initialize
-        cur_state_index = np.random.choice(range(1, 2 ** self.N - 2))  # cannot be the peaks!!
-        self.state = self.int_to_binary_list(state_index=cur_state_index)
-
-    # def evaluate_max(self):
-    #     self.state = [random.randint(0, 1) for _ in range(self.N)]
-    #     for perform_step in range(self.max_step):
-    #         cur_state_index = self.binary_list_to_int(self.state)
-    #         q_row = self.Q_table[cur_state_index]
-    #         action = np.argmax(q_row)
-    #         next_state = self.state.copy()
-    #         if action < self.N:
-    #             next_state[action] = 1 - self.state[action]
-    #         next_state_index = int(''.join(map(str, next_state)), 2)
-    #         reward = self.reality[next_state_index]
-    #         self.state = next_state
-    #         if reward:
-    #             self.performance = reward
-    #             self.steps = perform_step
-    #             break
+                self.state = [0] * self.N
+                break  # this break means that the Q_table for the next_state (i.e., peak) will not be updated.
+        self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
     def int_to_binary_list(self, state_index):
         return [int(bit) for bit in format(state_index, f'0{self.N}b')]
@@ -143,7 +79,6 @@ class Agent:
     def generate_state_with_hamming_distance(self, orientation_state, hamming_distance):
         """
         Generate a new state that is at a specific Hamming distance from the original state.
-
         :param orientation_state: the original state (e.g., global peak).
         :param hamming_distance: the number of bit flips to make.
         :return: A new state with the specified Hamming distance.
@@ -222,64 +157,54 @@ class Agent:
 if __name__ == '__main__':
     # 2 ^ 5 = 32 states
     random.seed(None)
-    # search_trajectory = [[3, 1], [4, 2], [5, 0], [6, 3]]  # Example trajectory
+    repeat = 100
     reward_list, step_list = [], []
-    q_agent = Agent(N=10, high_peak=50, low_peak=10)
-    for index in range(300):
-        q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
-    q_agent.visualize_1()
-    performance_1, performance_2 = 0, 0
-    step_list_1, step_list_2 = [], []
-    for _ in range(100):
+    agent = Agent(N=10, global_peak=50, local_peaks=[10, 10])
+    for index in range(100):
+        agent.learn(tau=20, alpha=0.2, gamma=0.9)
+    agent.visualize_1()
+    global_indicator, local_indicator = 0, 0
+    step_list = []
+    for _ in range(repeat):
         align_state = [random.randint(0, 1) for _ in range(10)]
-        q_agent.state = align_state
-        q_agent.evaluate(tau=20)
-        # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
-        # print("Exploitation: ", q_agent.performance, q_agent.steps)
-        if q_agent.performance == 50:
-            performance_1 += 1
-        step_list_1.append(q_agent.steps)
-
-        q_agent.state = align_state
-        q_agent.performance = 0
-        q_agent.search_trajectory = []
-        q_agent.evaluate(tau=0.1)
-        # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
-        # print("Exploration: ", q_agent.performance, q_agent.steps)
-        if q_agent.performance == 50:
-            performance_2 += 1
-        step_list_2.append(q_agent.steps)
-    print(q_agent.Q_table[0], q_agent.Q_table[-1])
-    print("Performance Exploration: ", performance_1 / 100, "Exploitation: ", performance_2 / 100)
-    print("Steps Exploration: ", sum(step_list_1) / len(step_list_1), "Exploitation: ", sum(step_list_2) / len(step_list_2))
+        agent.state = align_state
+        agent.learn(tau=20, alpha=0.8, gamma=0.9)
+        if agent.performance == 50:
+            global_indicator += 1
+        elif agent.performance == 10:
+            local_indicator += 1
+        step_list.append(agent.steps)
+    print(agent.Q_table[agent.reality.local_peak_indices[0]], agent.Q_table[agent.reality.local_peak_indices[1]], agent.Q_table[-1])
+    print("Global: ", global_indicator / repeat, "Local: ", local_indicator / repeat)
+    print("Steps: ", sum(step_list) / len(step_list) )
 
     # aggregation test
-    # q_agent = Agent(N=10, high_peak=50, low_peak=10)
+    # agent = Agent(N=10, high_peak=50, low_peak=10)
     # for index in range(350):
-    #     q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
-    # q_agent.visualize_1()
+    #     agent.learn(tau=20, alpha=0.2, gamma=0.9)
+    # agent.visualize_1()
     # exploration_performance_list, exploration_step_list = [], []
     # for _ in range(200):
-    #     q_agent.evaluate(tau=20)  # exploration
-    #     exploration_performance_list.append(q_agent.performance)
-    #     exploration_step_list.append(q_agent.steps)
-    #     # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+    #     agent.evaluate(tau=20)  # exploration
+    #     exploration_performance_list.append(agent.performance)
+    #     exploration_step_list.append(agent.steps)
+    #     # agent.visualize(search_trajectory=agent.search_trajectory)
     # exploration_performance = sum([1 if reward == 50 else 0 for reward in exploration_performance_list]) / len(exploration_performance_list)
     # exploration_step = sum(exploration_step_list) / len(exploration_step_list)
     # print("Exploration: ", exploration_performance, exploration_step)
     #
     # exploitation_performance_list, exploitation_step_list = [], []
     # for _ in range(200):
-    #     q_agent.evaluate(tau=0.1)  # exploitation
-    #     exploitation_performance_list.append(q_agent.performance)
-    #     exploitation_step_list.append(q_agent.steps)
-    #     # q_agent.visualize(search_trajectory=q_agent.search_trajectory)
+    #     agent.evaluate(tau=0.1)  # exploitation
+    #     exploitation_performance_list.append(agent.performance)
+    #     exploitation_step_list.append(agent.steps)
+    #     # agent.visualize(search_trajectory=agent.search_trajectory)
     # exploitation_performance = sum([1 if reward == 50 else 0 for reward in exploitation_performance_list]) / len(exploitation_performance_list)
     # exploitation_step = sum(exploitation_step_list) / len(exploitation_step_list)
     # print("Exploitation: ", exploitation_performance, exploitation_step)
 
 
-    # print(q_agent.reality)
+    # print(agent.reality)
     # percentage_high_across_learning_length, percentage_low_across_learning_length = [], []
     # step_across_length = []
     # [50, 100, 150, 200, 250, 300, 350]
@@ -290,10 +215,10 @@ if __name__ == '__main__':
     #     step_across_agents = []
     #     for _ in range(agent_num):
     #         np.random.seed(None)
-    #         q_agent = Agent(N=10, global_peak=50, local_peaks=[10])
+    #         agent = Agent(N=10, global_peak=50, local_peaks=[10])
     #         for _ in range(learning_length):
-    #             q_agent.learn(tau=20, alpha=0.8, gamma=0.9)
-    #         reward, step = q_agent.perform(tau=20)
+    #             agent.learn(tau=20, alpha=0.8, gamma=0.9)
+    #         reward, step = agent.perform(tau=20)
     #         reward_across_agents.append(reward)
     #         step_across_agents.append(step)
     #
