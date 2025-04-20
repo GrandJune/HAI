@@ -5,18 +5,32 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-from Q_learning import Agent
+from Agent import Agent
+from Parrot import Parrot
+from Reality import Reality
 import multiprocessing as mp
 import time
 from multiprocessing import Semaphore
 import pickle
 
-def func(learning_length=None, loop=None, return_dict=None, sema=None):
+def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
-    agent = Agent(N=10, high_peak=50, low_peak=10)
-    for _ in range(learning_length):
-        agent.learn(tau=20, alpha=0.8, gamma=0.9)
-    knowledge = agent.informed_percentage
+    parrot = Parrot()
+    knowledge_list = []
+    for episode in range(learning_length):
+        Q_table_list = []
+        for _ in range(agent_num):
+            agent = Agent(N=10, global_peak=50, local_peaks=[10, 10, 10])
+            agent.learn(tau=20, alpha=0.8, gamma=0.9)
+            Q_table_list.append(agent.Q_table)
+        parrot.aggregate_from_data(Q_table_list=Q_table_list)
+        for _ in range(agent_num):
+            pair_agent = Agent(N=10, global_peak=50, local_peaks=[10, 10, 10])
+            pair_agent.learn_with_parrot(tau=20, alpha=0.8, gamma=0.9, parrot=parrot)
+            if episode == learning_length - 1:
+                knowledge_list.append(pair_agent)
+
+    knowledge = pair_agent.informed_percentage
     aligned_state_index = np.random.choice(range(1, 2 ** 10 - 2))  # cannot be the peaks!!
     # Max
     agent.state = agent.int_to_binary_list(state_index=aligned_state_index)

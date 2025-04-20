@@ -1,4 +1,25 @@
 import numpy as np
+from Parrot import Parrot
+from Reality import Reality
+from Agent import Agent
+
+def func(agent_num, learning_episode):
+    parrot = Parrot(N=10)
+    Q_table_list = []
+    for _ in range(agent_num):
+        agent = Agent(N=10, global_peak=50, local_peaks=10)
+        pair_agent = Agent(N=10, global_peak=50, local_peaks=10)
+        pair_agent.state = agent.state.copy()
+        for _ in range(learning_episode):
+            agent.learn(tau=20, alpha=0.8, gamma=0.9)
+            Q_table_list.append(agent.Q_table)
+            parrot.aggregate_from_data(Q_table_list=Q_table_list)
+            pair_agent.learn_with_parrot(tau=20, alpha=0.8, gamma=0.9, parrot=parrot)
+            Q_table_list.append(pair_agent.Q_table)
+
+
+
+
 
 # Example: Define N
 N = 5  # Example value

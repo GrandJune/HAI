@@ -54,20 +54,74 @@ class Agent:
             next_exp_prob_row = np.exp(next_q_row / tau)
             next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
             next_action = np.random.choice(range(self.N), p=next_prob_row)
-            self.next_action = next_action  # need to record this next action and use it sequentially
             next_state_quality = self.Q_table[next_state_index][next_action]
             reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
-            self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
-                                                     alpha * (reward + gamma * next_state_quality))
-            # Sequential search (i.e., no peak)
-            self.state = next_state.copy()
-            if reward:  # If we reach a rewarded state, stop learning
+            # self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
+            #                                          alpha * (reward + gamma * next_state_quality))
+            if reward:  # peak
                 self.performance = reward
                 self.steps = perform_step + 1
+                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
                 self.next_action = None
                 self.state = [0] * self.N
                 break  # this break means that the Q_table for the next_state (i.e., peak) will not be updated.
+            else:  # non-peak
+                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
+                # Sequential search
+                self.state = next_state.copy()
+                self.next_action = next_action
+
+        self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+
+    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, parrot=None):
+        """
+        One episode concludes with local or global peaks and update its antecedent Q(s, a).
+        Larger Tau: exploration (at 30, random walk);  Smaller Tau: exploitation
+        :param tau: temperature regulates how sensitive the probability of choosing a given action is to the estimated Q
+        :param state: current state, int
+        :param alpha: learning rate (cf. Denrell 2004)
+        :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
+        :return:
+        """
+        self.search_trajectory = []
+        temp_Q_table = np.add(self.Q_table, parrot.Q_table)
+        for perform_step in range(self.max_step):
+            cur_state_index = self.binary_list_to_int(self.state)
+            q_row = temp_Q_table[cur_state_index]
+            if self.next_action:
+                action = self.next_action
+            else:
+                exp_prob_row = np.exp(q_row / tau)
+                prob_row = exp_prob_row / np.sum(exp_prob_row)
+                action = np.random.choice(range(self.N), p=prob_row)
+            self.search_trajectory.append([cur_state_index, action])
+            next_state = self.state.copy()
+            if action < self.N:
+                next_state[action] = 1 - self.state[action]
+            next_state_index = int(''.join(map(str, next_state)), 2)
+            next_q_row = temp_Q_table[next_state_index]
+            next_exp_prob_row = np.exp(next_q_row / tau)
+            next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+            next_action = np.random.choice(range(self.N), p=next_prob_row)
+            next_state_quality = temp_Q_table[next_state_index][next_action]
+            reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
+            # self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
+            #                                          alpha * (reward + gamma * next_state_quality))
+            if reward:  # peak
+                self.performance = reward
+                self.steps = perform_step + 1
+                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
+                # Re-initialize
+                self.state = [0] * self.N
+                self.next_action = None
+                break
+            else:  # non-peak
+                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
+                # Sequential search
+                self.state = next_state.copy()
+                self.next_action = next_action
+
         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
     def int_to_binary_list(self, state_index):
