@@ -7,7 +7,6 @@
 import numpy as np
 from Agent import Agent
 from Parrot import Parrot
-from Reality import Reality
 import multiprocessing as mp
 import time
 from multiprocessing import Semaphore
