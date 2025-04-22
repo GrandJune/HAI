@@ -14,13 +14,13 @@ import pickle
 
 def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
-    N = 10
+    N = 10 # problem dimension
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    global_peak = 50
-    local_peaks = [10]
-    parrot = Parrot()
+    global_peak = 50 # as per (Fang, 2009)
+    local_peaks = [10]  # add more local peaks to increase complexity
+    parrot = Parrot(N=N)
     # varying learning length
     # := varying the data maturity feeded into parrot
     Q_table_list = []

@@ -1,11 +1,10 @@
 #!/bin/bash
-#SBATCH --time=03:00:00
+#SBATCH --time=2-00:00:00
 #SBATCH --job-name=Parrot
 #SBATCH --mail-type=FAIL
-#SBATCH --mail-user=junyili@u.nus.edu
 #SBATCH --mem=150gb
-#SBATCH --partition=normal
+#SBATCH --partition=long
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
-#SBATCH --nodelist=xcnf[0-5,7-8,11-12,14-21]
+#SBATCH --nodes=1
 python run_baseline.py

@@ -11,7 +11,7 @@ import random
 from Reality import Reality
 
 class Parrot:
-    def __init__(self, N=None):
+    def __init__(self, N=10):
         self.N = N
         self.Q_table = np.zeros((2 ** self.N, self.N))
 
