@@ -14,15 +14,21 @@ import pickle
 
 def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
+    N = 10
+    tau = 20  # temperature parameter
+    alpha = 0.8  # learning rate
+    gamma = 0.9 # discount factor
+    global_peak = 50
+    local_peaks = [10]
     parrot = Parrot()
     # varying learning length
     # := varying the data maturity feeded into parrot
     Q_table_list = []
     organic_performance_list, organic_knowledge_list, organic_steps_list = [], [], []
     for _ in range(agent_num):
-        agent = Agent(N=10, global_peak=50, local_peaks=[10])
+        agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
         for episode in range(learning_length + 1):
-            agent.learn(tau=20, alpha=0.8, gamma=0.9)
+            agent.learn(tau=tau, alpha=alpha, gamma=gamma)
         Q_table_list.append(agent.Q_table)
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
@@ -34,11 +40,11 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     parrot.aggregate_from_data(Q_table_list=Q_table_list)
     pair_performance_list, pair_knowledge_list, pair_steps_list = [], [], []
     for _ in range(agent_num):
-        pair_agent = Agent(N=10, global_peak=50, local_peaks=[10, 10, 10])
+        pair_agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
         for episode in range(learning_length + 1):
-            pair_agent.learn_with_parrot(tau=20, alpha=0.8, gamma=0.9, parrot=parrot)
+            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot)
         pair_performance_list.append(pair_agent.performance)
-        pair_knowledge_list.append(pair_agent)
+        pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
     pair_performance = sum(pair_performance_list) / agent_num
     pair_knowledge = sum(pair_knowledge_list) / agent_num
@@ -57,25 +63,28 @@ if __name__ == '__main__':
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes = [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes = [], [], []
     for learning_length in learning_length_list:
-        manager = mp.Manager()
-        jobs = []
-        return_dict = manager.dict()
-        sema = Semaphore(concurrency)
-        for loop in range(repetition):
-            sema.acquire()
-            p = mp.Process(target=func, args=(agent_num, learning_length, loop, return_dict, sema))
-            jobs.append(p)
-            p.start()
-        for proc in jobs:
-            proc.join()
-        results = return_dict.values()  # Don't need dict index, since it is repetition.
-        organic_performance =  sum([result[0] for result in results]) / repetition # each result is a list
-        organic_knowledge = sum([result[1] for result in results]) / repetition
-        organic_steps = sum([result[2] for result in results]) / repetition
+        with mp.Manager() as manager:  # immediate memory cleanup
+            jobs = []
+            return_dict = manager.dict()
+            sema = Semaphore(concurrency)
 
-        pair_performance = sum([result[3] for result in results]) / repetition
-        pair_knowledge = sum([result[4] for result in results]) / repetition
-        pair_steps = sum([result[5] for result in results]) / repetition
+            for loop in range(repetition):
+                sema.acquire()
+                p = mp.Process(target=func, args=(agent_num, learning_length, loop, return_dict, sema))
+                jobs.append(p)
+                p.start()
+
+            for proc in jobs:
+                proc.join()
+
+            results = return_dict.values()
+            organic_performance = sum([result[0] for result in results]) / repetition
+            organic_knowledge = sum([result[1] for result in results]) / repetition
+            organic_steps = sum([result[2] for result in results]) / repetition
+
+            pair_performance = sum([result[3] for result in results]) / repetition
+            pair_knowledge = sum([result[4] for result in results]) / repetition
+            pair_steps = sum([result[5] for result in results]) / repetition
 
         organic_performance_across_episodes.append(organic_performance)
         organic_knowledge_across_episodes.append(organic_knowledge)
