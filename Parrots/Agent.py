@@ -13,11 +13,11 @@ from Reality import Reality
 class Agent:
     def __init__(self, N, global_peak=None, local_peaks=None):
         if local_peaks is None:
-            local_peaks = [10, 10, 10]
+            local_peaks = [10] # adjust the complexity level
         self.N = N
         self.Q_table = np.zeros((2 ** self.N, self.N))
         self.reality = Reality(N=N, global_peak = global_peak, local_peaks = local_peaks)
-        self.state = [0] * self.N
+        self.state = [0] * self.N  # always start with all zeros toward all ones; maximize the use of problem space
         self.next_action = None
         self.max_step = 100000  # make sure an episode can end with peaks
         self.knowledge = 0  # the percentage of states that are informed
@@ -97,8 +97,7 @@ class Agent:
                 action = np.random.choice(range(self.N), p=prob_row)
             self.search_trajectory.append([cur_state_index, action])
             next_state = self.state.copy()
-            if action < self.N:
-                next_state[action] = 1 - self.state[action]
+            next_state[action] = 1 - self.state[action]  # flipping
             next_state_index = int(''.join(map(str, next_state)), 2)
             next_q_row = temp_Q_table[next_state_index]
             next_exp_prob_row = np.exp(next_q_row / tau)
@@ -106,8 +105,6 @@ class Agent:
             next_action = np.random.choice(range(self.N), p=next_prob_row)
             next_state_quality = temp_Q_table[next_state_index][next_action]
             reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
-            # self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
-            #                                          alpha * (reward + gamma * next_state_quality))
             if reward:  # peak
                 self.performance = reward
                 self.steps = perform_step + 1

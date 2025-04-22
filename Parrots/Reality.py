@@ -20,7 +20,7 @@ class Reality:
             size=len(local_peaks), 
             replace=False  # This ensures no index is chosen twice
         )
-        for i, peak in enumerate(local_peaks):
-            self.payoff_map[available_indices[i]] = peak
+        for l, local_peak in enumerate(local_peaks):
+            self.payoff_map[available_indices[l]] = local_peak
         self.local_peak_indices = available_indices
         self.global_peak_index = 2 ** self.N - 1
