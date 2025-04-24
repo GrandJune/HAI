@@ -19,7 +19,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak = 50 # as per (Fang, 2009)
-    local_peaks = [10]  # add more local peaks to increase complexity
+    local_peaks = [10, 10, 10]  # add more local peaks to increase complexity
     parrot = Parrot(N=N)
     # varying learning length
     # := varying the data maturity feeded into parrot
@@ -58,9 +58,9 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
 
 if __name__ == '__main__':
     t0 = time.time()
-    concurrency = 100
+    concurrency = 50
     agent_num = 400
-    repetition = 100
+    repetition = 50
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes = [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes = [], [], []
