@@ -33,6 +33,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
         organic_steps_list.append(agent.steps)
+    organic_performance_list = [1 if each == 50 else 0 for each in organic_performance_list]  # the likelihood of finding global peak
     organic_performance = sum(organic_performance_list) / agent_num
     organic_knowledge = sum(organic_knowledge_list) / agent_num
     organic_steps = sum(organic_steps_list) / agent_num
@@ -46,6 +47,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
+    pair_performance_list = [1 if each == 50 else 0 for each in pair_performance_list] # the likelihood of finding global peak
     pair_performance = sum(pair_performance_list) / agent_num
     pair_knowledge = sum(pair_knowledge_list) / agent_num
     pair_steps = sum(pair_steps_list) / agent_num
@@ -56,9 +58,9 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
 
 if __name__ == '__main__':
     t0 = time.time()
-    concurrency = 50
-    agent_num = 2000
-    repetition = 50
+    concurrency = 100
+    agent_num = 400
+    repetition = 100
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes = [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes = [], [], []
