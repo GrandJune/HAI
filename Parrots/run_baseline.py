@@ -38,7 +38,9 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     organic_knowledge = sum(organic_knowledge_list) / agent_num
     organic_steps = sum(organic_steps_list) / agent_num
 
-    parrot.aggregate_from_data(Q_table_list=Q_table_list)
+    # Thompson sampling weights based on binary performance outcomes
+    success_prob = [1.0 if p == 50 else 0.2 for p in organic_performance_list]
+    weights = [np.random.beta(s * 10 + 1, (1 - s) * 10 + 1) for s in success_prob]
     pair_performance_list, pair_knowledge_list, pair_steps_list = [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
