@@ -85,36 +85,50 @@ class Agent:
         :return:
         """
         self.search_trajectory = []
-        temp_Q_table = np.add(self.Q_table, parrot.Q_table)
+        # temp_Q_table = np.add(self.Q_table, parrot.Q_table)
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
-            q_row = temp_Q_table[cur_state_index]
+            q_row = self.Q_table[cur_state_index]
+            # organic action
             if self.next_action:
-                action = self.next_action
+                organic_action = self.next_action
             else:
                 exp_prob_row = np.exp(q_row / tau)
                 prob_row = exp_prob_row / np.sum(exp_prob_row)
-                action = np.random.choice(range(self.N), p=prob_row)
-            self.search_trajectory.append([cur_state_index, action])
+                organic_action = np.random.choice(range(self.N), p=prob_row)
+            # suggested action
+            parrot_action = np.argmax(parrot.Q_table[cur_state_index])
+
+            if self.Q_table[cur_state_index][organic_action] > 0:  # initially only consider the knowledge/confidence of the organic action
+            # if the user has the knowledge to rule out the suggestion
+            # based on its knowledge, it would choose the organic one.
+            # should we include the parrot's knowledge in the decision? should we include user's knowledge in the suggestion?
+                final_action = organic_action
+            else:
+            # if the user has no knowledge to reject the suggestion
+                final_action = parrot_action
+
+            self.search_trajectory.append([cur_state_index, final_action])
             next_state = self.state.copy()
-            next_state[action] = 1 - self.state[action]  # flipping
+            # suggestion may also lead to unexpected positional value; lead to unforeseen considerations
+            next_state[final_action] = 1 - self.state[final_action]  # flipping
             next_state_index = int(''.join(map(str, next_state)), 2)
-            next_q_row = temp_Q_table[next_state_index]
+            next_q_row = self.Q_table[next_state_index]
             next_exp_prob_row = np.exp(next_q_row / tau)
             next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
             next_action = np.random.choice(range(self.N), p=next_prob_row)
-            next_state_quality = temp_Q_table[next_state_index][next_action]
+            next_state_quality = self.Q_table[next_state_index][next_action]
             reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
             if reward:  # peak
                 self.performance = reward
                 self.steps = perform_step + 1
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
+                self.Q_table[cur_state_index][final_action] = (1 - alpha) * self.Q_table[cur_state_index][final_action] + alpha * reward
                 # Re-initialize
                 self.state = [0] * self.N
                 self.next_action = None
                 break
             else:  # non-peak
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
+                self.Q_table[cur_state_index][final_action] = (1 - alpha) * self.Q_table[cur_state_index][final_action] + alpha * gamma * next_state_quality
                 # Sequential search
                 self.state = next_state.copy()
                 self.next_action = next_action

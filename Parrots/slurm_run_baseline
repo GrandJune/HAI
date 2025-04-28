@@ -7,4 +7,5 @@
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
+#SBATCH --nodelist=xcnf27
 python run_baseline.py
