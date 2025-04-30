@@ -19,7 +19,7 @@ class Agent:
         self.reality = Reality(N=N, global_peak = global_peak, local_peaks = local_peaks)
         self.state = [0] * self.N  # always start with all zeros toward all ones; maximize the use of problem space
         self.next_action = None
-        self.max_step = 100000  # make sure an episode can end with peaks
+        self.max_step = 10000  # make sure an episode can end with peaks
         self.knowledge = 0  # the percentage of states that are informed
         self.performance = 0
         self.steps = 0

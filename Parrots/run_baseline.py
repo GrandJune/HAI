@@ -19,7 +19,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak = 50 # as per (Fang, 2009)
-    local_peaks = [10]  # add more local peaks to increase complexity
+    local_peaks = [10, 10, 10]  # add more local peaks to increase complexity
     parrot = Parrot(N=N)
     # varying learning length
     # := varying the data maturity feeded into parrot
@@ -38,9 +38,6 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     organic_knowledge = sum(organic_knowledge_list) / agent_num
     organic_steps = sum(organic_steps_list) / agent_num
 
-    # Thompson sampling weights based on binary performance outcomes
-    success_prob = [1.0 if p == 50 else 0.2 for p in organic_performance_list]
-    weights = [np.random.beta(s * 10 + 1, (1 - s) * 10 + 1) for s in success_prob]
     pair_performance_list, pair_knowledge_list, pair_steps_list = [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
@@ -61,7 +58,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    agent_num = 1000
+    agent_num = 500
     repetition = 50
     learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes = [], [], []
