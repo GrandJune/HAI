@@ -12,12 +12,10 @@ from Reality import Reality
 
 class Agent:
     def __init__(self, N, global_peak=None, local_peaks=None):
-        if local_peaks is None:
-            local_peaks = [10] # adjust the complexity level
         self.N = N
         self.Q_table = np.zeros((2 ** self.N, self.N))
         self.reality = Reality(N=N, global_peak = global_peak, local_peaks = local_peaks)
-        self.state = [0] * self.N  # always start with all zeros toward all ones; maximize the use of problem space
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
         self.next_action = None
         self.max_step = 10000  # make sure an episode can end with peaks
         self.knowledge = 0  # the percentage of states that are informed
@@ -64,7 +62,7 @@ class Agent:
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
                 self.next_action = None
-                self.state = [0] * self.N
+                self.state = [random.randint(0, 1) for _ in range(self.N)]
                 break  # this break means that the Q_table for the next_state (i.e., peak) will not be updated.
             else:  # non-peak
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
