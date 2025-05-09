@@ -12,10 +12,12 @@ from Reality import Reality
 
 class Agent:
     def __init__(self, N, global_peak=None, local_peaks=None):
+        if local_peaks is None:
+            local_peaks = [10] # adjust the complexity level
         self.N = N
         self.Q_table = np.zeros((2 ** self.N, self.N))
         self.reality = Reality(N=N, global_peak = global_peak, local_peaks = local_peaks)
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
+        self.state = [0] * self.N  # always start with all zeros toward all ones; maximize the use of problem space
         self.next_action = None
         self.max_step = 10000  # make sure an episode can end with peaks
         self.knowledge = 0  # the percentage of states that are informed
@@ -62,7 +64,7 @@ class Agent:
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
                 self.next_action = None
-                self.state = [random.randint(0, 1) for _ in range(self.N)]
+                self.state = [0] * self.N
                 break  # this break means that the Q_table for the next_state (i.e., peak) will not be updated.
             else:  # non-peak
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
@@ -219,56 +221,93 @@ class Agent:
 
 if __name__ == '__main__':
     # 2 ^ 5 = 32 states
-    from Parrot import Parrot
-    import time
-    t0 = time.time()
     random.seed(None)
-    N = 10  # problem dimension
-    tau = 20  # temperature parameter
-    alpha = 0.8  # learning rate
-    gamma = 0.9  # discount factor
-    global_peak = 50  # as per (Fang, 2009)
-    local_peaks = [10, 10, 10]  # add more local peaks to increase complexity
-    agent_num = 50
-    learning_length = 50
-    parrot = Parrot(N=N)
-    # varying learning length
-    # := varying the data maturity feeded into parrot
-    Q_table_list = []
-    organic_performance_list, organic_knowledge_list, organic_steps_list = [], [], []
-    for _ in range(agent_num):
-        agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
-        for episode in range(learning_length + 1):
-            agent.learn(tau=tau, alpha=alpha, gamma=gamma)
-        Q_table_list.append(agent.Q_table)
-        organic_performance_list.append(agent.performance)
-        organic_knowledge_list.append(agent.knowledge)
-        organic_steps_list.append(agent.steps)
-    organic_performance_list = [1 if each == 50 else 0 for each in
-                                organic_performance_list]  # the likelihood of finding global peak
-    organic_performance = sum(organic_performance_list) / agent_num
-    organic_knowledge = sum(organic_knowledge_list) / agent_num
-    organic_steps = sum(organic_steps_list) / agent_num
+    repeat = 100
+    reward_list, step_list = [], []
+    agent = Agent(N=10, global_peak=50, local_peaks=[10, 10])
+    for index in range(100):
+        agent.learn(tau=20, alpha=0.2, gamma=0.9)
+    agent.visualize_1()
+    global_indicator, local_indicator = 0, 0
+    step_list = []
+    for _ in range(repeat):
+        align_state = [random.randint(0, 1) for _ in range(10)]
+        agent.state = align_state
+        agent.learn(tau=20, alpha=0.8, gamma=0.9)
+        if agent.performance == 50:
+            global_indicator += 1
+        elif agent.performance == 10:
+            local_indicator += 1
+        step_list.append(agent.steps)
+    print(agent.Q_table[agent.reality.local_peak_indices[0]], agent.Q_table[agent.reality.local_peak_indices[1]], agent.Q_table[-1])
+    print("Global: ", global_indicator / repeat, "Local: ", local_indicator / repeat)
+    print("Steps: ", sum(step_list) / len(step_list) )
 
-    parrot.aggregate_from_data(Q_table_list=Q_table_list)
-    parrot.visualize_1()
-    pair_performance_list, pair_knowledge_list, pair_steps_list = [], [], []
-    for _ in range(1):
-        pair_agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
-        for episode in range(learning_length + 1):
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot)
-            if episode == learning_length:
-                pair_agent.visualize(pair_agent.search_trajectory)
-        pair_performance_list.append(pair_agent.performance)
-        pair_knowledge_list.append(pair_agent.knowledge)
-        pair_steps_list.append(pair_agent.steps)
-    pair_performance_list = [1 if each == 50 else 0 for each in
-                             pair_performance_list]  # the likelihood of finding global peak
-    pair_performance = sum(pair_performance_list) / len(pair_performance_list)
-    pair_knowledge = sum(pair_knowledge_list) / len(pair_knowledge_list)
-    pair_steps = sum(pair_steps_list) / agent_num
-    print(pair_knowledge_list)
-    print(organic_knowledge, pair_knowledge, parrot.knowledge)
-    t1 = time.time()
-    print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
+    # aggregation test
+    # agent = Agent(N=10, high_peak=50, low_peak=10)
+    # for index in range(350):
+    #     agent.learn(tau=20, alpha=0.2, gamma=0.9)
+    # agent.visualize_1()
+    # exploration_performance_list, exploration_step_list = [], []
+    # for _ in range(200):
+    #     agent.evaluate(tau=20)  # exploration
+    #     exploration_performance_list.append(agent.performance)
+    #     exploration_step_list.append(agent.steps)
+    #     # agent.visualize(search_trajectory=agent.search_trajectory)
+    # exploration_performance = sum([1 if reward == 50 else 0 for reward in exploration_performance_list]) / len(exploration_performance_list)
+    # exploration_step = sum(exploration_step_list) / len(exploration_step_list)
+    # print("Exploration: ", exploration_performance, exploration_step)
+    #
+    # exploitation_performance_list, exploitation_step_list = [], []
+    # for _ in range(200):
+    #     agent.evaluate(tau=0.1)  # exploitation
+    #     exploitation_performance_list.append(agent.performance)
+    #     exploitation_step_list.append(agent.steps)
+    #     # agent.visualize(search_trajectory=agent.search_trajectory)
+    # exploitation_performance = sum([1 if reward == 50 else 0 for reward in exploitation_performance_list]) / len(exploitation_performance_list)
+    # exploitation_step = sum(exploitation_step_list) / len(exploitation_step_list)
+    # print("Exploitation: ", exploitation_performance, exploitation_step)
+
+
+    # print(agent.reality)
+    # percentage_high_across_learning_length, percentage_low_across_learning_length = [], []
+    # step_across_length = []
+    # [50, 100, 150, 200, 250, 300, 350]
+    # learning_length_list = [100, 200, 300]
+    # agent_num = 50
+    # for learning_length in learning_length_list:
+    #     reward_across_agents = []
+    #     step_across_agents = []
+    #     for _ in range(agent_num):
+    #         np.random.seed(None)
+    #         agent = Agent(N=10, global_peak=50, local_peaks=[10])
+    #         for _ in range(learning_length):
+    #             agent.learn(tau=20, alpha=0.8, gamma=0.9)
+    #         reward, step = agent.perform(tau=20)
+    #         reward_across_agents.append(reward)
+    #         step_across_agents.append(step)
+    #
+    #     percentage_high = sum([1 if reward == 50 else 0 for reward in reward_across_agents]) / agent_num
+    #     percentage_low = sum([1 if reward == 10 else 0 for reward in reward_across_agents]) / agent_num
+    #     ave_step = sum(step_across_agents) / len(step_across_agents)
+    #
+    #     percentage_high_across_learning_length.append(percentage_high)
+    #     percentage_low_across_learning_length.append(percentage_low)
+    #     step_across_length.append(ave_step)
+    #
+    # plt.plot(learning_length_list, percentage_high_across_learning_length, "-", color='k', linewidth=2, label="High Peak")
+    # plt.plot(learning_length_list, percentage_low_across_learning_length, "--", color='k', linewidth=2, label="Low Peak")
+    # plt.plot(learning_length_list, step_across_length, "-", color='grey', linewidth=2, label="Low Peak")
+    # # Add labels and title
+    # plt.xlabel('Performance')
+    # plt.ylabel('Learning Length')
+    # plt.title('Performance Implications of Maximization vs. Softmax Strategies')
+    #
+    # # Add grid and legend
+    # plt.grid(True)
+    # plt.legend()
+    #
+    # # Show the plot
+    # plt.show()
+
 
