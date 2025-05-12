@@ -17,7 +17,7 @@ class Agent:
         self.N = N
         self.Q_table = np.zeros((2 ** self.N, self.N))
         self.reality = Reality(N=N, global_peak = global_peak, local_peaks = local_peaks)
-        self.state = [0] * self.N  # always start with all zeros toward all ones; maximize the use of problem space
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
         self.next_action = None
         self.max_step = 10000  # make sure an episode can end with peaks
         self.knowledge = 0  # the percentage of states that are informed
@@ -74,28 +74,39 @@ class Agent:
 
         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
-    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, parrot=None):
+    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9):
         """
-        One episode concludes with local or global peaks and update its antecedent Q(s, a).
-        Larger Tau: exploration (at 30, random walk);  Smaller Tau: exploitation
-        :param tau: temperature regulates how sensitive the probability of choosing a given action is to the estimated Q
-        :param state: current state, int
-        :param alpha: learning rate (cf. Denrell 2004)
-        :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
-        :return:
+        Learn with guidance from a parrot (AI assistant) that can suggest accurate actions.
+        An episode concludes when reaching a peak (local or global). Q-values are updated for
+        antecedent state-action pairs.
+
+        Args:
+            tau (float, optional): Temperature parameter that controls exploration vs exploitation. 
+                Higher values (e.g. 30) lead to more random exploration, lower values favor exploitation.
+                Defaults to 20.0.
+            alpha (float, optional): Learning rate that controls how much new information updates existing Q-values.
+                Defaults to 0.8.
+            gamma (float, optional): Discount factor that determines importance of future rewards.
+                A value of 0.9 was found optimal in Denrell (2004). Defaults to 0.9.
+
+        Each step:
+        1. Agent considers both its own preferred action and parrot's suggested action
+        2. If agent has knowledge (non-zero Q-value) for its preferred action, uses that
+        3. Otherwise defers to parrot's suggestion
+        4. Updates Q-values based on rewards and future state values
+        5. Episode ends upon reaching any peak
         """
+
         self.search_trajectory = []
-        # temp_Q_table = np.add(self.Q_table, parrot.Q_table)
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             # organic action
             if self.next_action:
                 organic_action = self.next_action
+            # AI assistant
             else:
-                exp_prob_row = np.exp(q_row / tau)
-                prob_row = exp_prob_row / np.sum(exp_prob_row)
-                organic_action = np.random.choice(range(self.N), p=prob_row)
+                differing_bits = [i for i in range(len(self.state)) if self.state[i] != self.reality.global_peak[i]]
             # suggested action
             parrot_action = np.argmax(parrot.Q_table[cur_state_index])
 

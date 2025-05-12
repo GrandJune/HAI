@@ -5,39 +5,46 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.colors as mcolors
-import random
 from Reality import Reality
 
 class Parrot:
-    def __init__(self, N=10):
+    def __init__(self, N=10, capability=1.0, reality=None):
+        if not 0 <= capability <= 1:
+            raise ValueError("Capability must be between 0 and 1")
         self.N = N
+        self.capability = capability
         self.Q_table = np.zeros((2 ** self.N, self.N))
-        self.knowledge = 0
-
-    def aggregate_from_data(self, Q_table_list=None):
-        # Stack all Q_tables and take mean along axis 0 (across tables)
-        self.Q_table = np.mean(np.stack(Q_table_list), axis=0)
-        self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
-
-    def visualize_1(self):
-        # Custom colormap: Light gray for zero, then blue → red for positive values
-        colors = [(0.9, 0.9, 0.9), "blue", "red"]
-        cmap = mcolors.LinearSegmentedColormap.from_list("custom_cmap", colors, N=100)
-
-        # Use a logarithmic scale to enhance contrast if needed
-        norm = mcolors.SymLogNorm(linthresh=1, linscale=0.5, vmin=0, vmax=np.max(self.Q_table))
-
-        plt.figure(figsize=(8, 6))
-        plt.imshow(self.Q_table, cmap=cmap, aspect='auto', norm=norm)
-        plt.colorbar(label="Q-value")
-        plt.xlabel("Actions")
-        plt.ylabel("States")
-        plt.title("Heatmap of Q-table (Zero-dominant)")
-        plt.show()
+        if capability == 1:
+            self.Q_table.fill(1)
+        else:
+            # Randomly set capability% of Q_table elements to 1
+            num_elements = self.Q_table.size
+            num_ones = int(num_elements * capability)
+            indices = np.random.choice(num_elements, num_ones, replace=False)
+            self.Q_table.flat[indices] = 1
 
 
 
+    def suggest(self, state=None):
+        """
+        For those Q_table(s, a) = 1, randomly suggest an accurate action that leads closer to the global peak.
+        :param state: Current state (binary string) to get suggestion for
+        :return: Suggested action index based on Q-table values, or None if no suggestion available
+        """
+        if state is None:
+            return None
+
+        state_idx = int(state, 2)
+        # Get actions with high Q-values (close to 1) for current state
+        valid_actions = np.where(self.Q_table[state_idx] > 0.9)[0]
+
+        if len(valid_actions) > 0:
+            # Randomly select one of the valid actions
+            return np.random.choice(valid_actions)
+        else:
+            return None
 
 
+if __name__ == '__main__':
+    parrot = Parrot(N=10, capability=1)
+    print(parrot.Q_table)
