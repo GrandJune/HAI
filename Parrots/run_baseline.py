@@ -12,6 +12,9 @@ import time
 from multiprocessing import Semaphore
 import pickle
 
+from Reality import Reality
+
+
 def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
     N = 10 # problem dimension
@@ -19,15 +22,15 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak = 50 # as per (Fang, 2009)
-    # local_peaks = [10, 10, 10]  # add more local peaks to increase complexity
-    local_peaks = None
-    parrot = Parrot(N=N)
+    local_peaks = [10, 10, 10]  # add more local peaks to increase complexity
+    reality = Reality(N, global_peak, local_peaks)
+    parrot = Parrot(N=N, reality=reality, capability=1.0)
     # varying learning length
     # := varying the data maturity feeded into parrot
     Q_table_list = []
     organic_performance_list, organic_knowledge_list, organic_steps_list = [], [], []
     for _ in range(agent_num):
-        agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
+        agent = Agent(N=N, reality=reality)
         for episode in range(learning_length + 1):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
         Q_table_list.append(agent.Q_table)
@@ -41,9 +44,9 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
 
     pair_performance_list, pair_knowledge_list, pair_steps_list = [], [], []
     for _ in range(agent_num):
-        pair_agent = Agent(N=N, global_peak=global_peak, local_peaks=local_peaks)
+        pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length + 1):
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot)
+            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, trust=1.0, valence=50)
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
