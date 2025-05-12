@@ -37,7 +37,7 @@ class Parrot:
             return None  # No valid action available
 
         # Actions that would bring the current state closer to the global peak
-        correct_actions = [i for i in range(self.N) if current_state[i] != self.reality.global_peak[i]]
+        correct_actions = [i for i in range(self.N) if current_state[i] != self.reality.global_peak_state[i]]
         final_actions = list(set(candidate_actions) & set(correct_actions))
         inaccurate_actions = list(set(candidate_actions) - set(final_actions))
         # If no intersection

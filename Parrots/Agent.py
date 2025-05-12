@@ -8,15 +8,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import random
+
+from Parrot import Parrot
 from Reality import Reality
 
 class Agent:
-    def __init__(self, N, global_peak=None, local_peaks=None):
-        if local_peaks is None:
-            local_peaks = [10] # adjust the complexity level
+    def __init__(self, N, reality=None):
         self.N = N
         self.Q_table = np.zeros((2 ** self.N, self.N))
-        self.reality = Reality(N=N, global_peak = global_peak, local_peaks = local_peaks)
+        self.reality = reality
         self.state = [random.randint(0, 1) for _ in range(self.N)]
         self.next_action = None
         self.max_step = 10000  # make sure an episode can end with peaks
@@ -74,7 +74,7 @@ class Agent:
 
         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
-    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9):
+    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, trust=1.0, valence=1, parrot=None):
         """
         Learn with guidance from a parrot (AI assistant) that can suggest accurate actions.
         An episode concludes when reaching a peak (local or global). Q-values are updated for
@@ -101,48 +101,48 @@ class Agent:
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
-            # organic action
-            if self.next_action:
-                organic_action = self.next_action
-            # AI assistant
+            # first examine whether AI advice is available
+            suggested_action = parrot.suggest(self.state)
+            if suggested_action:
+                action = suggested_action
             else:
-                differing_bits = [i for i in range(len(self.state)) if self.state[i] != self.reality.global_peak[i]]
-            # suggested action
-            parrot_action = np.argmax(parrot.Q_table[cur_state_index])
-
-            if self.Q_table[cur_state_index][organic_action] > 0:  # initially only consider the knowledge/confidence of the organic action
-            # if the user has the knowledge to rule out the suggestion
-            # based on its knowledge, it would choose the organic one.
-            # should we include the parrot's knowledge in the decision? should we include user's knowledge in the suggestion?
-                final_action = organic_action
-            else:
-            # if the user has no knowledge to reject the suggestion
-                final_action = parrot_action
-
-            self.search_trajectory.append([cur_state_index, final_action])
+                if self.next_action:
+                    action = self.next_action
+                else:
+                    exp_prob_row = np.exp(q_row / tau)
+                    prob_row = exp_prob_row / np.sum(exp_prob_row)
+                    action = np.random.choice(range(self.N), p=prob_row)
+            self.search_trajectory.append([cur_state_index, action])
             next_state = self.state.copy()
-            # suggestion may also lead to unexpected positional value; lead to unforeseen considerations
-            next_state[final_action] = 1 - self.state[final_action]  # flipping
+            next_state[action] = 1 - self.state[action]  # flipping
             next_state_index = int(''.join(map(str, next_state)), 2)
-            next_q_row = self.Q_table[next_state_index]
-            next_exp_prob_row = np.exp(next_q_row / tau)
-            next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-            next_action = np.random.choice(range(self.N), p=next_prob_row)
-            next_state_quality = self.Q_table[next_state_index][next_action]
+
+            suggested_next_action = parrot.suggest(next_state)
+            if suggested_next_action:
+                self.next_action = suggested_next_action
+                # next state quality becomes the valence
+            else:
+                next_q_row = self.Q_table[next_state_index]
+                next_exp_prob_row = np.exp(next_q_row / tau)
+                next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+                self.next_action = np.random.choice(range(self.N), p=next_prob_row)
+
+            next_state_quality = self.Q_table[next_state_index][self.next_action]
             reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
             if reward:  # peak
                 self.performance = reward
                 self.steps = perform_step + 1
-                self.Q_table[cur_state_index][final_action] = (1 - alpha) * self.Q_table[cur_state_index][final_action] + alpha * reward
+                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
                 self.state = [0] * self.N
                 self.next_action = None
                 break
-            else:  # non-peak
-                self.Q_table[cur_state_index][final_action] = (1 - alpha) * self.Q_table[cur_state_index][final_action] + alpha * gamma * next_state_quality
+            elif suggested_next_action:  # with clue from parrot
+                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * valence
                 # Sequential search
                 self.state = next_state.copy()
-                self.next_action = next_action
+            else:  # without clue from parrot
+                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
 
         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
 
@@ -231,20 +231,19 @@ class Agent:
 
 
 if __name__ == '__main__':
-    # 2 ^ 5 = 32 states
     random.seed(None)
-    repeat = 100
+    from Reality import Reality
+    from Parrot import Parrot
+    repeat = 10
     reward_list, step_list = [], []
-    agent = Agent(N=10, global_peak=50, local_peaks=[10, 10])
-    for index in range(100):
-        agent.learn(tau=20, alpha=0.2, gamma=0.9)
-    agent.visualize_1()
+    reality = Reality(N=10, global_peak=50, local_peaks=[10, 10])
+    parrot = Parrot(N=10, reality=reality, capability=1.0)
+
     global_indicator, local_indicator = 0, 0
     step_list = []
     for _ in range(repeat):
-        align_state = [random.randint(0, 1) for _ in range(10)]
-        agent.state = align_state
-        agent.learn(tau=20, alpha=0.8, gamma=0.9)
+        agent = Agent(N=10, reality=reality)
+        agent.learn_with_parrot(tau=20, alpha=0.8, gamma=0.9, trust=1.0, valence=50, parrot=parrot)
         if agent.performance == 50:
             global_indicator += 1
         elif agent.performance == 10:
