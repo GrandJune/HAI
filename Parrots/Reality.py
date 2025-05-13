@@ -11,6 +11,7 @@ class Reality:
     def __init__(self, N=None, global_peak=None, local_peaks=None):
         self.N = N
         self.global_peak = global_peak
+        self.global_peak_state = [1] * self.N
         self.payoff_map = np.zeros(2 ** self.N)
         self.payoff_map[-1] = global_peak
         if local_peaks is not None:

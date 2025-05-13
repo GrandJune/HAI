@@ -13,6 +13,7 @@ class Parrot:
             raise ValueError("Capability must be between 0 and 1")
         self.N = N
         self.capability = capability
+        self.reality = reality
         self.Q_table = np.zeros((2 ** self.N, self.N))
         if capability == 1:
             self.Q_table.fill(1)
@@ -23,27 +24,36 @@ class Parrot:
             indices = np.random.choice(num_elements, num_ones, replace=False)
             self.Q_table.flat[indices] = 1
 
+    def suggest(self, current_state=None, accuracy=1.0):
+        if current_state is None:
+            raise ValueError("State must be provided")
+        if not (0.0 <= accuracy <= 1.0):
+            raise ValueError("Accuracy must be between 0 and 1")
 
+        cur_state_index = self.binary_list_to_int(current_state)
+        row = self.Q_table[cur_state_index]
+        candidate_actions = [i for i, q in enumerate(row) if q == 1]
+        if not candidate_actions:
+            return None  # No valid action available
 
-    def suggest(self, state=None):
-        """
-        For those Q_table(s, a) = 1, randomly suggest an accurate action that leads closer to the global peak.
-        :param state: Current state (binary string) to get suggestion for
-        :return: Suggested action index based on Q-table values, or None if no suggestion available
-        """
-        if state is None:
+        # Actions that would bring the current state closer to the global peak
+        correct_actions = [i for i in range(self.N) if current_state[i] != self.reality.global_peak_state[i]]
+        final_actions = list(set(candidate_actions) & set(correct_actions))
+        inaccurate_actions = list(set(candidate_actions) - set(final_actions))
+        # If no intersection
+        if not final_actions:
             return None
-
-        state_idx = int(state, 2)
-        # Get actions with high Q-values (close to 1) for current state
-        valid_actions = np.where(self.Q_table[state_idx] > 0.9)[0]
-
-        if len(valid_actions) > 0:
-            # Randomly select one of the valid actions
-            return np.random.choice(valid_actions)
+        # Accurate
+        if np.random.rand() < accuracy:
+            return np.random.choice(final_actions)
         else:
-            return None
+            return np.random.choice(inaccurate_actions)
 
+    def int_to_binary_list(self, state_index):
+        return [int(bit) for bit in format(state_index, f'0{self.N}b')]
+
+    def binary_list_to_int(self, state):
+        return int(''.join(map(str, state)), 2)
 
 if __name__ == '__main__':
     parrot = Parrot(N=10, capability=1)
