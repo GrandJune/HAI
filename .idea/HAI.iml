@@ -5,9 +5,12 @@
       <sourceFolder url="file://$MODULE_DIR$/Denrell2004" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Fang2009" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Parrots" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Parrots_remove_align" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/Parrots_remove_align_evaluation" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.8 (base) (2)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="/opt/anaconda3" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
