@@ -22,7 +22,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak = 50 # as per (Fang, 2009)
-    local_peaks = [10, 10, 10]  # add more local peaks to increase complexity
+    local_peaks = [10]  # add more local peaks to increase complexity
     reality = Reality(N, global_peak, local_peaks)
     parrot = Parrot(N=N, reality=reality, capability=1.0)
     # varying learning length

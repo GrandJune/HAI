@@ -1,8 +1,13 @@
-# Default ignored files
-/shelf/
-/workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
-/dataSources/
-/dataSources.local.xml
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/usage.statistics.xml
+.idea/other.xml
+.idea/assetWizardSettings.xml
+.idea/dataSources/
+.idea/httpRequests/
+
+# Ignore virtual environments
+venv/
+.env/
