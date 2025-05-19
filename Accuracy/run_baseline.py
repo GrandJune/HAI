@@ -15,7 +15,7 @@ import pickle
 from Reality import Reality
 
 
-def func(agent_num=None, learning_length=None, coverage=None, loop=None, return_dict=None, sema=None):
+def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
     N = 10 # problem dimension
     tau = 20  # temperature parameter
@@ -24,7 +24,7 @@ def func(agent_num=None, learning_length=None, coverage=None, loop=None, return_
     global_peak = 50 # as per (Fang, 2009)
     local_peaks = [10]  # add more local peaks to increase complexity
     reality = Reality(N, global_peak, local_peaks)
-    parrot = Parrot(N=N, reality=reality, coverage=coverage, accuracy=1.0)
+    parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=accuracy)
     # varying learning length
     # := varying the data maturity feeded into parrot
     Q_table_list = []
@@ -72,10 +72,10 @@ if __name__ == '__main__':
     agent_num = 200
     repetition = 50
     learning_length = 100
-    coverage_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    accuracy_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
-    for coverage in coverage_list:
+    for accuracy in accuracy_list:
         with mp.Manager() as manager:  # immediate memory cleanup
             jobs = []
             return_dict = manager.dict()
@@ -83,7 +83,7 @@ if __name__ == '__main__':
 
             for loop in range(repetition):
                 sema.acquire()
-                p = mp.Process(target=func, args=(agent_num, learning_length, coverage, loop, return_dict, sema))
+                p = mp.Process(target=func, args=(agent_num, learning_length, accuracy, loop, return_dict, sema))
                 jobs.append(p)
                 p.start()
 
