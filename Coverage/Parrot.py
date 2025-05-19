@@ -55,5 +55,5 @@ class Parrot:
         return int(''.join(map(str, state)), 2)
 
 if __name__ == '__main__':
-    parrot = Parrot(N=10, capability=1)
+    parrot = Parrot(N=10, accuracy=1, coverage=1.0)
     print(parrot.Q_table)

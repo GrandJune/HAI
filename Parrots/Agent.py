@@ -21,6 +21,7 @@ class Agent:
         self.next_action = None
         self.max_step = 10000  # make sure an episode can end with peaks
         self.knowledge = 0  # the percentage of states that are informed
+        self.knowledge_quality = 0 # the percentage of accurate actions that are informed; informed accurate actions / accurate actions
         self.performance = 0
         self.steps = 0
         self.search_trajectory = []
@@ -167,6 +168,36 @@ class Agent:
             new_state[idx] = 1 - new_state[idx]
         return new_state
 
+    def get_Q_table_quality(self):
+        """
+        Summarize the Q-table's quality by calculating the average proportion of positive Q-values
+        among accurate actions (actions that flip bits differing from the global peak), across all states.
+        """
+        global_peak = [1] * self.N
+        proportions = []
+
+        for state_index in range(2 ** self.N):
+            state = self.int_to_binary_list(state_index)
+
+            # skip if already at the global peak
+            if state == global_peak:
+                continue
+
+            # accurate actions = dimensions where the state differs from the global peak
+            accurate_actions = [i for i in range(self.N) if state[i] != global_peak[i]]
+            if not accurate_actions:
+                continue
+
+            q_row = self.Q_table[state_index]
+            positive_q_count = sum(q_row[a] > 0 for a in accurate_actions)
+            proportion = positive_q_count / len(accurate_actions)
+            proportions.append(proportion)
+
+        overall_quality = np.mean(proportions) if proportions else 0.0
+        self.knowledge_quality = overall_quality
+        # print(f"Overall Q-table accuracy coverage: {overall_quality:.3f}")
+        # return overall_quality
+
     def visualize_1(self):
         # Custom colormap: Light gray for zero, then blue → red for positive values
         colors = [(0.9, 0.9, 0.9), "blue", "red"]
@@ -234,24 +265,30 @@ if __name__ == '__main__':
     random.seed(None)
     from Reality import Reality
     from Parrot import Parrot
-    repeat = 10
+    repeat = 1
     reward_list, step_list = [], []
     reality = Reality(N=10, global_peak=50, local_peaks=[10, 10])
-    parrot = Parrot(N=10, reality=reality, capability=1.0)
+    parrot = Parrot(N=10, reality=reality, coverage=1.0, accuracy=1.0)
 
-    global_indicator, local_indicator = 0, 0
-    step_list = []
-    for _ in range(repeat):
-        agent = Agent(N=10, reality=reality)
+    agent = Agent(N=10, reality=reality)
+    for _ in range(300):
         agent.learn_with_parrot(tau=20, alpha=0.8, gamma=0.9, trust=1.0, valence=50, parrot=parrot)
-        if agent.performance == 50:
-            global_indicator += 1
-        elif agent.performance == 10:
-            local_indicator += 1
-        step_list.append(agent.steps)
-    print(agent.Q_table[agent.reality.local_peak_indices[0]], agent.Q_table[agent.reality.local_peak_indices[1]], agent.Q_table[-1])
-    print("Global: ", global_indicator / repeat, "Local: ", local_indicator / repeat)
-    print("Steps: ", sum(step_list) / len(step_list) )
+    agent.get_Q_table_quality()
+
+    agent_2 = Agent(N=10, reality=reality)
+    for _ in range(300):
+        agent_2.learn(tau=20, alpha=0.8, gamma=0.9)
+    agent_2.get_Q_table_quality()
+
+
+    # if agent.performance == 50:
+    #     global_indicator += 1
+    # elif agent.performance == 10:
+    #     local_indicator += 1
+    # step_list.append(agent.steps)
+    # print(agent.Q_table[agent.reality.local_peak_indices[0]], agent.Q_table[agent.reality.local_peak_indices[1]], agent.Q_table[-1])
+    # print("Global: ", global_indicator / repeat, "Local: ", local_indicator / repeat)
+    # print("Steps: ", sum(step_list) / len(step_list) )
 
     # aggregation test
     # agent = Agent(N=10, high_peak=50, low_peak=10)

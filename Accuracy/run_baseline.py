@@ -25,16 +25,12 @@ def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_
     local_peaks = [10]  # add more local peaks to increase complexity
     reality = Reality(N, global_peak, local_peaks)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=accuracy)
-    # varying learning length
-    # := varying the data maturity feeded into parrot
-    Q_table_list = []
     organic_performance_list, organic_knowledge_list, organic_steps_list, organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length + 1):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
         agent.get_Q_table_quality()
-        Q_table_list.append(agent.Q_table)
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
         organic_steps_list.append(agent.steps)
@@ -48,7 +44,7 @@ def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length + 1):
+        for episode in range(learning_length):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, trust=1.0, valence=50)
         pair_agent.get_Q_table_quality()
         pair_performance_list.append(pair_agent.performance)
@@ -111,22 +107,22 @@ if __name__ == '__main__':
         pair_steps_across_episodes.append(pair_steps)
         pair_knowledge_quality_across_episodes.append(pair_knowledge_quality)
 
-    with open("organic_performance_across_coverage", 'wb') as out_file:
+    with open("organic_performance_across_accuracy", 'wb') as out_file:
         pickle.dump(organic_performance_across_episodes, out_file)
-    with open("organic_knowledge_across_coverage", 'wb') as out_file:
+    with open("organic_knowledge_across_accuracy", 'wb') as out_file:
         pickle.dump(organic_knowledge_across_episodes, out_file)
-    with open("organic_steps_across_coverage", 'wb') as out_file:
+    with open("organic_steps_across_accuracy", 'wb') as out_file:
         pickle.dump(organic_steps_across_episodes, out_file)
-    with open("organic_knowledge_quality_across_coverage", 'wb') as out_file:
+    with open("organic_knowledge_quality_across_accuracy", 'wb') as out_file:
         pickle.dump(organic_knowledge_quality_across_episodes, out_file)
 
-    with open("pair_performance_across_coverage", 'wb') as out_file:
+    with open("pair_performance_across_accuracy", 'wb') as out_file:
         pickle.dump(pair_performance_across_episodes, out_file)
-    with open("pair_knowledge_across_coverage", 'wb') as out_file:
+    with open("pair_knowledge_across_accuracy", 'wb') as out_file:
         pickle.dump(pair_knowledge_across_episodes, out_file)
-    with open("pair_steps_across_coverage", 'wb') as out_file:
+    with open("pair_steps_across_accuracy", 'wb') as out_file:
         pickle.dump(pair_steps_across_episodes, out_file)
-    with open("pair_knowledge_across_coverage", 'wb') as out_file:
+    with open("pair_knowledge_quality_across_accuracy", 'wb') as out_file:
         pickle.dump(pair_knowledge_quality_across_episodes, out_file)
 
     t1 = time.time()

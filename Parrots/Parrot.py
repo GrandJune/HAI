@@ -8,27 +8,26 @@ import numpy as np
 from Reality import Reality
 
 class Parrot:
-    def __init__(self, N=10, capability=1.0, reality=None):
-        if not 0 <= capability <= 1:
-            raise ValueError("Capability must be between 0 and 1")
+    def __init__(self, N=10, coverage=1.0, accuracy=1.0, reality=None):
+        if not 0 <= coverage <= 1:
+            raise ValueError("Coverage must be between 0 and 1")
         self.N = N
-        self.capability = capability
+        self.coverage = coverage
         self.reality = reality
         self.Q_table = np.zeros((2 ** self.N, self.N))
-        if capability == 1:
+        self.accuracy = accuracy
+        if coverage == 1:
             self.Q_table.fill(1)
         else:
             # Randomly set capability% of Q_table elements to 1
             num_elements = self.Q_table.size
-            num_ones = int(num_elements * capability)
+            num_ones = int(num_elements * coverage)
             indices = np.random.choice(num_elements, num_ones, replace=False)
             self.Q_table.flat[indices] = 1
 
-    def suggest(self, current_state=None, accuracy=1.0):
+    def suggest(self, current_state=None):
         if current_state is None:
             raise ValueError("State must be provided")
-        if not (0.0 <= accuracy <= 1.0):
-            raise ValueError("Accuracy must be between 0 and 1")
 
         cur_state_index = self.binary_list_to_int(current_state)
         row = self.Q_table[cur_state_index]
@@ -43,8 +42,8 @@ class Parrot:
         # If no intersection
         if not final_actions:
             return None
-        # Accurate
-        if np.random.rand() < accuracy:
+        # Accuracy
+        if np.random.rand() < self.accuracy:
             return np.random.choice(final_actions)
         else:
             return np.random.choice(inaccurate_actions)
@@ -56,5 +55,5 @@ class Parrot:
         return int(''.join(map(str, state)), 2)
 
 if __name__ == '__main__':
-    parrot = Parrot(N=10, capability=1)
+    parrot = Parrot(N=10, accuracy=1, coverage=1.0)
     print(parrot.Q_table)
