@@ -11,7 +11,6 @@ import multiprocessing as mp
 import time
 from multiprocessing import Semaphore
 import pickle
-
 from Reality import Reality
 
 
@@ -54,7 +53,6 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
     pair_knowledge = sum(pair_knowledge_list) / agent_num
     pair_steps = sum(pair_steps_list) / agent_num
     pair_knowledge_quality = sum(pair_knowledge_quality_list) / agent_num
-
     return_dict[loop] = [organic_performance, organic_knowledge, organic_steps, organic_knowledge_quality,
                          pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality]
     sema.release()

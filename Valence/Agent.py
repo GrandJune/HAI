@@ -196,9 +196,7 @@ class Agent:
             proportions.append(proportion)
 
         overall_quality = np.mean(proportions) if proportions else 0.0
-        self.knowledge_quality = overall_quality
-        # print(f"Overall Q-table accuracy coverage: {overall_quality:.3f}")
-        # return overall_quality
+        return overall_quality
 
     def visualize_1(self):
         # Custom colormap: Light gray for zero, then blue → red for positive values
