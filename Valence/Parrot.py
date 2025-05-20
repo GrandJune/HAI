@@ -39,18 +39,14 @@ class Parrot:
         correct_actions = [i for i in range(self.N) if current_state[i] != self.reality.global_peak_state[i]]
         incorrect_actions = [i for i in range(self.N) if current_state[i] == self.reality.global_peak_state[i]]
         available_correct_actions = list(set(candidate_actions) & set(correct_actions))
-        available_incorrect_actions = list(set(candidate_actions) - set(incorrect_actions))
-        # If no intersection
-        if not available_correct_actions:
-            return None
+        available_incorrect_actions = list(set(candidate_actions) & set(incorrect_actions))
         # Accuracy
-        if np.random.rand() < self.accuracy:
+        if np.random.rand() < self.accuracy and available_correct_actions:
             return np.random.choice(available_correct_actions)
+        elif available_incorrect_actions:
+            return np.random.choice(available_incorrect_actions)
         else:
-            if len(available_incorrect_actions) != 0:
-                return np.random.choice(available_incorrect_actions)
-            else:
-                return None
+            return None
 
     def int_to_binary_list(self, state_index):
         return [int(bit) for bit in format(state_index, f'0{self.N}b')]

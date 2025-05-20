@@ -36,6 +36,7 @@ class Agent:
         :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
         :return:
         """
+        self.next_action = None
         self.search_trajectory = []
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
@@ -50,7 +51,7 @@ class Agent:
             next_state = self.state.copy()
             if action < self.N:
                 next_state[action] = 1 - self.state[action]
-            next_state_index = int(''.join(map(str, next_state)), 2)
+            next_state_index = self.binary_list_to_int(next_state)
             next_q_row = self.Q_table[next_state_index]
             next_exp_prob_row = np.exp(next_q_row / tau)
             next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
@@ -76,7 +77,7 @@ class Agent:
         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
         self.knowledge_quality = self.get_Q_table_quality()
 
-    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, trust=1.0, valence=50, parrot=None):
+    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, valence=50, parrot=None):
         """
         Learn with guidance from a parrot (AI assistant) that can suggest accurate actions.
         An episode concludes when reaching a peak (local or global). Q-values are updated for
@@ -98,7 +99,7 @@ class Agent:
         4. Updates Q-values based on rewards and future state values
         5. Episode ends upon reaching any peak
         """
-
+        self.next_action = None
         self.search_trajectory = []
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
@@ -117,7 +118,7 @@ class Agent:
             self.search_trajectory.append([cur_state_index, action])
             next_state = self.state.copy()
             next_state[action] = 1 - self.state[action]  # flipping
-            next_state_index = int(''.join(map(str, next_state)), 2)
+            next_state_index = self.binary_list_to_int(next_state)
 
             suggested_next_action = parrot.suggest(next_state)
             if suggested_next_action:

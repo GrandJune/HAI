@@ -30,7 +30,6 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length + 1):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
-        agent.get_Q_table_quality()
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
         organic_steps_list.append(agent.steps)
@@ -46,7 +45,6 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, trust=1.0, valence=valence)
-        pair_agent.get_Q_table_quality()
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
