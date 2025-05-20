@@ -21,9 +21,9 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    global_peak = 50 # as per (Fang, 2009)
-    local_peaks = [10]  # add more local peaks to increase complexity
-    reality = Reality(N, global_peak, local_peaks)
+    global_peak_value = 50 # as per (Fang, 2009)
+    local_peak_values = [10]  # add more local peaks to increase complexity
+    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
     organic_performance_list, organic_knowledge_list, organic_steps_list, organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
@@ -44,7 +44,7 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, trust=1.0, valence=valence)
+            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=valence)
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
@@ -63,8 +63,8 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    agent_num = 200
-    repetition = 50
+    agent_num = 100
+    repetition = 200
     learning_length = 100
     valence_list = [0.25, 0.5, 0.75, 1.0]
     valence_list = [each * 50 for each in valence_list]

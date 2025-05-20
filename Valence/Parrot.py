@@ -56,6 +56,6 @@ class Parrot:
 
 if __name__ == '__main__':
     from Reality import Reality
-    reality = Reality(N=10, global_peak=1, local_peaks=[10])
+    reality = Reality(N=10, global_peak_value=1, local_peak_values=[10])
     parrot = Parrot(N=10, accuracy=1, coverage=1.0, reality=reality)
     print(parrot.Q_table)
