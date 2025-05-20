@@ -74,6 +74,7 @@ class Agent:
                 self.next_action = next_action
 
         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+        self.knowledge_quality = self.get_Q_table_quality()
 
     def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, trust=1.0, valence=50, parrot=None):
         """
@@ -127,8 +128,7 @@ class Agent:
                 next_exp_prob_row = np.exp(next_q_row / tau)
                 next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
                 self.next_action = np.random.choice(range(self.N), p=next_prob_row)
-
-            next_state_quality = self.Q_table[next_state_index][self.next_action]
+                next_state_quality = self.Q_table[next_state_index][self.next_action]
             reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
             if reward:  # peak
                 self.performance = reward
@@ -146,6 +146,7 @@ class Agent:
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
 
         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+        self.knowledge_quality = self.get_Q_table_quality()
 
     def int_to_binary_list(self, state_index):
         return [int(bit) for bit in format(state_index, f'0{self.N}b')]

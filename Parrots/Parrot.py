@@ -37,16 +37,20 @@ class Parrot:
 
         # Actions that would bring the current state closer to the global peak
         correct_actions = [i for i in range(self.N) if current_state[i] != self.reality.global_peak_state[i]]
-        final_actions = list(set(candidate_actions) & set(correct_actions))
-        inaccurate_actions = list(set(candidate_actions) - set(final_actions))
+        incorrect_actions = [i for i in range(self.N) if current_state[i] == self.reality.global_peak_state[i]]
+        available_correct_actions = list(set(candidate_actions) & set(correct_actions))
+        available_incorrect_actions = list(set(candidate_actions) - set(incorrect_actions))
         # If no intersection
-        if not final_actions:
+        if not available_correct_actions:
             return None
         # Accuracy
         if np.random.rand() < self.accuracy:
-            return np.random.choice(final_actions)
+            return np.random.choice(available_correct_actions)
         else:
-            return np.random.choice(inaccurate_actions)
+            if len(available_incorrect_actions) != 0:
+                return np.random.choice(available_incorrect_actions)
+            else:
+                return None
 
     def int_to_binary_list(self, state_index):
         return [int(bit) for bit in format(state_index, f'0{self.N}b')]
@@ -55,5 +59,7 @@ class Parrot:
         return int(''.join(map(str, state)), 2)
 
 if __name__ == '__main__':
-    parrot = Parrot(N=10, accuracy=1, coverage=1.0)
+    from Reality import Reality
+    reality = Reality(N=10, global_peak=1, local_peaks=[10])
+    parrot = Parrot(N=10, accuracy=1, coverage=1.0, reality=reality)
     print(parrot.Q_table)

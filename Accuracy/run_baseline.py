@@ -30,7 +30,6 @@ def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length + 1):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
-        agent.get_Q_table_quality()
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
         organic_steps_list.append(agent.steps)
