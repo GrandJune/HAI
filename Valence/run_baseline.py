@@ -21,7 +21,7 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
-    local_peak_values = [10]  # add more local peaks to increase complexity
+    local_peak_values = [10, 10, 10] # add more local peaks to increase complexity
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
