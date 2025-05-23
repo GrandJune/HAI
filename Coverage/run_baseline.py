@@ -25,21 +25,6 @@ def func(agent_num=None, learning_length=None, coverage=None, loop=None, return_
     local_peak_values = [10]  # add more local peaks to increase complexity
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
     parrot = Parrot(N=N, reality=reality, coverage=coverage, accuracy=1.0)
-    organic_performance_list, organic_knowledge_list, organic_steps_list, organic_knowledge_quality_list = [], [], [], []
-    for _ in range(agent_num):
-        agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length + 1):
-            agent.learn(tau=tau, alpha=alpha, gamma=gamma)
-        organic_performance_list.append(agent.performance)
-        organic_knowledge_list.append(agent.knowledge)
-        organic_steps_list.append(agent.steps)
-        organic_knowledge_quality_list.append(agent.knowledge_quality)
-    organic_performance_list = [1 if each == 50 else 0 for each in organic_performance_list]  # the likelihood of finding global peak
-    organic_performance = sum(organic_performance_list) / agent_num
-    organic_knowledge = sum(organic_knowledge_list) / agent_num
-    organic_steps = sum(organic_steps_list) / agent_num
-    organic_knowledge_quality = sum(organic_knowledge_quality_list) / agent_num
-
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
@@ -55,8 +40,7 @@ def func(agent_num=None, learning_length=None, coverage=None, loop=None, return_
     pair_steps = sum(pair_steps_list) / agent_num
     pair_knowledge_quality = sum(pair_knowledge_quality_list) / agent_num
 
-    return_dict[loop] = [organic_performance, organic_knowledge, organic_steps, organic_knowledge_quality,
-                         pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality]
+    return_dict[loop] = [pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality]
     sema.release()
 
 
@@ -64,10 +48,9 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     agent_num = 100
-    repetition = 200
+    repetition = 100
     learning_length = 100
     coverage_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
-    organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     for coverage in coverage_list:
         with mp.Manager() as manager:  # immediate memory cleanup
@@ -85,34 +68,15 @@ if __name__ == '__main__':
                 proc.join()
 
             results = return_dict.values()
-            organic_performance = sum([result[0] for result in results]) / repetition
-            organic_knowledge = sum([result[1] for result in results]) / repetition
-            organic_steps = sum([result[2] for result in results]) / repetition
-            organic_knowledge_quality = sum([result[3] for result in results]) / repetition
-
-            pair_performance = sum([result[4] for result in results]) / repetition
-            pair_knowledge = sum([result[5] for result in results]) / repetition
-            pair_steps = sum([result[6] for result in results]) / repetition
-            pair_knowledge_quality = sum([result[7] for result in results]) / repetition
-
-        organic_performance_across_episodes.append(organic_performance)
-        organic_knowledge_across_episodes.append(organic_knowledge)
-        organic_steps_across_episodes.append(organic_steps)
-        organic_knowledge_quality_across_episodes.append(organic_knowledge_quality)
+            pair_performance = sum([result[0] for result in results]) / repetition
+            pair_knowledge = sum([result[1] for result in results]) / repetition
+            pair_steps = sum([result[2] for result in results]) / repetition
+            pair_knowledge_quality = sum([result[3] for result in results]) / repetition
 
         pair_performance_across_episodes.append(pair_performance)
         pair_knowledge_across_episodes.append(pair_knowledge)
         pair_steps_across_episodes.append(pair_steps)
         pair_knowledge_quality_across_episodes.append(pair_knowledge_quality)
-
-    with open("organic_performance_across_coverage", 'wb') as out_file:
-        pickle.dump(organic_performance_across_episodes, out_file)
-    with open("organic_knowledge_across_coverage", 'wb') as out_file:
-        pickle.dump(organic_knowledge_across_episodes, out_file)
-    with open("organic_steps_across_coverage", 'wb') as out_file:
-        pickle.dump(organic_steps_across_episodes, out_file)
-    with open("organic_knowledge_quality_across_coverage", 'wb') as out_file:
-        pickle.dump(organic_knowledge_quality_across_episodes, out_file)
 
     with open("pair_performance_across_coverage", 'wb') as out_file:
         pickle.dump(pair_performance_across_episodes, out_file)
