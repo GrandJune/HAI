@@ -30,6 +30,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
+        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
         organic_steps_list.append(agent.steps)
@@ -45,6 +46,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
+        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)

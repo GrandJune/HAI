@@ -26,7 +26,7 @@ class Agent:
         self.steps = 0
         self.search_trajectory = []
 
-    def learn(self, tau=20.0, alpha=0.8, gamma=0.9):
+    def learn(self, tau=20.0, alpha=0.8, gamma=0.9, evaluation=False):
         """
         One episode concludes with local or global peaks and update its antecedent Q(s, a).
         Larger Tau: exploration (at 30, random walk);  Smaller Tau: exploitation
@@ -66,7 +66,7 @@ class Agent:
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
                 self.next_action = None
-                self.state = [0] * self.N
+                self.state = [random.randint(0, 1) for _ in range(self.N)]
                 break  # this break means that the Q_table for the next_state (i.e., peak) will not be updated.
             else:  # non-peak
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
@@ -74,10 +74,11 @@ class Agent:
                 self.state = next_state.copy()
                 self.next_action = next_action
 
-        self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
-        self.knowledge_quality = self.get_Q_table_quality()
+        if evaluation:
+            self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+            self.knowledge_quality = self.get_Q_table_quality()
 
-    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, valence=50, parrot=None):
+    def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, valence=50, parrot=None, evaluation=False):
         """
         Learn with guidance from a parrot (AI assistant) that can suggest accurate actions.
         An episode concludes when reaching a peak (local or global). Q-values are updated for
@@ -121,7 +122,7 @@ class Agent:
             next_state_index = self.binary_list_to_int(next_state)
 
             suggested_next_action = parrot.suggest(next_state)
-            if suggested_next_action:
+            if suggested_next_action is not None:
                 self.next_action = suggested_next_action
                 # next state quality becomes the valence
             else:
@@ -136,18 +137,22 @@ class Agent:
                 self.steps = perform_step + 1
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
-                self.state = [0] * self.N
+                self.state = [random.randint(0, 1) for _ in range(self.N)]
                 self.next_action = None
                 break
-            elif suggested_next_action:  # with clue from parrot
+            elif suggested_next_action is not None:  # with clue from parrot
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * valence
                 # Sequential search
                 self.state = next_state.copy()
+                # next_action already recorded
             else:  # without clue from parrot
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
+                self.state = next_state.copy()
+                # next_action already recorded
 
-        self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
-        self.knowledge_quality = self.get_Q_table_quality()
+        if evaluation:
+            self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+            self.knowledge_quality = self.get_Q_table_quality()
 
     def int_to_binary_list(self, state_index):
         return [int(bit) for bit in format(state_index, f'0{self.N}b')]

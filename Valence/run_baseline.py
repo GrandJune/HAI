@@ -29,6 +29,7 @@ def func(agent_num=None, learning_length=None, valence=None, loop=None, return_d
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=valence)
+        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=valence, evaluation=True)
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
