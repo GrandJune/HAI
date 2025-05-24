@@ -47,7 +47,7 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     agent_num = 100
-    repetition = 50
+    repetition = 100
     learning_length = 100
     valence_list = [0.25, 0.5, 0.75, 1.0]
     valence_list = [each * 50 for each in valence_list]
