@@ -65,9 +65,7 @@ class Agent:
             next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
             next_action = np.random.choice(range(self.N), p=next_prob_row)
             next_state_quality = self.Q_table[next_state_index][next_action]
-            reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
-            # self.Q_table[cur_state_index][action] = ((1 - alpha) * self.Q_table[cur_state_index][action] +
-            #                                          alpha * (reward + gamma * next_state_quality))
+            reward = self.reality.payoff_map[next_state_index]
             if reward:  # peak
                 self.performance = reward
                 self.steps = perform_step + 1
@@ -107,8 +105,7 @@ class Agent:
         4. Updates Q-values based on rewards and future state values
         5. Episode ends upon reaching any peak
         """
-        self.next_action = None
-        self.search_trajectory = []
+        self.initialize()
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
@@ -144,8 +141,7 @@ class Agent:
                 self.steps = perform_step + 1
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
-                self.state = [random.randint(0, 1) for _ in range(self.N)]
-                self.next_action = None
+                self.initialize()
                 break
             elif suggested_next_action is not None:  # with clue from parrot
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * valence

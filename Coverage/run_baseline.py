@@ -30,7 +30,7 @@ def func(agent_num=None, learning_length=None, coverage=None, loop=None, return_
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
-        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
+        pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     agent_num = 100
-    repetition = 100
+    repetition = 50
     learning_length = 100
     coverage_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
