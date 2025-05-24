@@ -30,7 +30,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
-        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
+        agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
         organic_steps_list.append(agent.steps)

@@ -17,11 +17,20 @@ class Agent:
         self.N = N
         self.Q_table = np.zeros((2 ** self.N, self.N))
         self.reality = reality
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
         self.next_action = None
+        self.state = None
+        self.initialize()
         self.max_step = 10000  # make sure an episode can end with peaks
         self.knowledge = 0  # the percentage of states that are informed
         self.knowledge_quality = 0 # the percentage of accurate actions that are informed; informed accurate actions / accurate actions
+        self.performance = 0
+        self.steps = 0
+        self.search_trajectory = []
+
+    def initialize(self):
+        self.next_action = None
+        self.state = [0] * self.N
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
         self.performance = 0
         self.steps = 0
         self.search_trajectory = []
@@ -36,8 +45,7 @@ class Agent:
         :param gamma: emphasis on positional value (cf. Denrell 2004); gamma = 0.9 is best in Denrell 2004
         :return:
         """
-        self.next_action = None
-        self.search_trajectory = []
+        self.initialize()
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
@@ -65,8 +73,7 @@ class Agent:
                 self.steps = perform_step + 1
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
                 # Re-initialize
-                self.next_action = None
-                self.state = [random.randint(0, 1) for _ in range(self.N)]
+                self.initialize()
                 break  # this break means that the Q_table for the next_state (i.e., peak) will not be updated.
             else:  # non-peak
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
