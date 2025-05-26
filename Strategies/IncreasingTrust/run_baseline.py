@@ -29,7 +29,7 @@ def func(agent_num=None, decay_rate=None, loop=None, return_dict=None, sema=None
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length - 1):
-            pair_agent.learn_with_fading_valence_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot,
+            pair_agent.learn_with_fading_trust_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot,
                                                         initial_valence=50, decay_rate=decay_rate, valence_floor=10, evaluation=False)
 
         pair_agent.learn_with_fading_valence_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot,

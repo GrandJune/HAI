@@ -6,16 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/run_baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/slurm_run_baseline" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Results.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/run_baseline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/slurm_run_baseline" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/slurm_run_baseline" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +81,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "E:/Python_Workplace/HAI/Turbulence",
+    "last_opened_file_path": "E:/Python_Workplace/HAI/Coverage",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -99,11 +93,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Python_Workplace\HAI\Turbulence" />
-      <recent name="E:\Python_Workplace\HAI\Strategies\IncreasingTrust" />
-      <recent name="E:\Python_Workplace\HAI\Strategies\FadingValence" />
-      <recent name="E:\Python_Workplace\HAI\Valence" />
       <recent name="E:\Python_Workplace\HAI\Coverage" />
+      <recent name="E:\Python_Workplace\HAI\Accuracy" />
+      <recent name="E:\Python_Workplace\HAI\Parrots" />
+      <recent name="E:\Python_Workplace\HAI\Valence" />
+      <recent name="E:\Python_Workplace\HAI\Strategies\FadingValence" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Parrots" />
@@ -297,15 +291,7 @@
       <workItem from="1747484707624" duration="12469000" />
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
-      <workItem from="1748006518865" duration="28932000" />
-    </task>
-    <task id="LOCAL-00030" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744112456580</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1744112456581</updated>
+      <workItem from="1748006518865" duration="31173000" />
     </task>
     <task id="LOCAL-00031" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -691,7 +677,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748254689253</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748263836637</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1748263836637</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

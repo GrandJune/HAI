@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --time=3-00:00:00
-#SBATCH --job-name=FadingValence
+#SBATCH --job-name=FadingTrust
 #SBATCH --mail-type=FAIL
 #SBATCH --mem=150gb
 #SBATCH --partition=long
