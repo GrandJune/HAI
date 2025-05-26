@@ -25,3 +25,32 @@ class Reality:
             for idx, val in zip(available_indices, local_peak_values):
                 self.payoff_map[idx] = val
             self.local_peak_indices = available_indices
+
+    def change(self):
+        """
+        Introduce turbulence by relocating the global and local peaks.
+        """
+        total_states = 2 ** self.N
+
+        # Reset the payoff map
+        self.payoff_map[:] = 0.0
+
+        # Randomly select a new global peak index
+        new_global_index = np.random.choice(total_states)
+        self.global_peak_index = new_global_index
+        self.global_peak_state = list(map(int, bin(new_global_index)[2:].zfill(self.N)))
+        self.payoff_map[new_global_index] = self.global_peak_value
+
+        # Generate available indices excluding the new global peak
+        remaining_indices = list(set(range(total_states)) - {new_global_index})
+
+        # Randomly assign new local peak indices
+        if hasattr(self, 'local_peak_values') and self.local_peak_values is not None:
+            new_local_indices = np.random.choice(
+                remaining_indices,
+                size=len(self.local_peak_values),
+                replace=False
+            )
+            for idx, val in zip(new_local_indices, self.local_peak_values):
+                self.payoff_map[idx] = val
+            self.local_peak_indices = new_local_indices
