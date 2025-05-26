@@ -1,0 +1,47 @@
+Index: .idea/HAI.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"inheritedJdk\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/HAI.iml b/.idea/HAI.iml
+--- a/.idea/HAI.iml	(revision 7dc5110d1fcbf0a4ee4d30ccc8a6a8d3f080e27c)
++++ b/.idea/HAI.iml	(date 1744291992000)
+@@ -1,7 +1,10 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <module type="PYTHON_MODULE" version="4">
+   <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$" />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/Denrell2004" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/Fang2009" isTestSource="false" />
++    </content>
+     <orderEntry type="inheritedJdk" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+Index: Fang2009/run_maximization.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># -*- coding: utf-8 -*-\r\n# @Time     : 2/16/2025 20:08\r\n# @Author   : Junyi\r\n# @FileName: Q_learning.py\r\n# @Software  : PyCharm\r\n# Observing PEP 8 coding style\r\nimport numpy as np\r\nfrom Q_learning import Agent\r\nimport multiprocessing as mp\r\nimport time\r\nfrom multiprocessing import Semaphore\r\nimport pickle\r\n\r\ndef func(learning_length=None, loop=None, return_dict=None, sema=None):\r\n    np.random.seed(None)\r\n    q_agent = Agent(N=10, high_peak=50, low_peak=10)\r\n    for _ in range(learning_length):\r\n        q_agent.learn(tau=20, alpha=0.2, gamma=0.9)\r\n    q_agent.evaluate(tau=0.1)\r\n    return_dict[loop] = [q_agent.performance, q_agent.steps, q_agent.informed_percentage]\r\n    sema.release()\r\n\r\n\r\nif __name__ == '__main__':\r\n    t0 = time.time()\r\n    concurrency = 50\r\n    repetition = 50\r\n    hyper_repetition = 40\r\n    learning_length_list = [50, 100, 150, 200, 250, 300, 350]\r\n    # learning_length_list = [50, 100, 150]\r\n    percentage_high_across_learning_length, steps_across_learning_length, informed_across_learning_length = [], [], []\r\n    for learning_length in learning_length_list:\r\n        performance_list, steps_list, informed_percentage_list = [], [], []\r\n        for hyper_loop in range(hyper_repetition):\r\n            manager = mp.Manager()\r\n            jobs = []\r\n            return_dict = manager.dict()\r\n            sema = Semaphore(concurrency)\r\n            for loop in range(repetition):\r\n                sema.acquire()\r\n                p = mp.Process(target=func, args=(learning_length, loop, return_dict, sema))\r\n                jobs.append(p)\r\n                p.start()\r\n            for proc in jobs:\r\n                proc.join()\r\n            results = return_dict.values()  # Don't need dict index, since it is repetition.\r\n            performance_list += [result[0] for result in results]\r\n            steps_list += [result[1] for result in results]\r\n            informed_percentage_list += [result[2] for result in results]\r\n\r\n        percentage_high = sum([1 if reward == 50 else 0 for reward in performance_list]) / len(performance_list)\r\n\r\n        percentage_high_across_learning_length.append(percentage_high)\r\n        steps_across_learning_length.append(sum(steps_list) / len(steps_list))\r\n        informed_across_learning_length.append(sum(informed_percentage_list) / len(informed_percentage_list))\r\n\r\n    with open(\"max_performance_across_learning\", 'wb') as out_file_1:\r\n        pickle.dump(percentage_high_across_learning_length, out_file_1)\r\n    with open(\"max_steps_across_learning\", 'wb') as out_file_3:\r\n        pickle.dump(steps_across_learning_length, out_file_3)\r\n    with open(\"max_informed_across_learning\", 'wb') as out_file_4:\r\n        pickle.dump(informed_across_learning_length, out_file_4)\r\n\r\n    t1 = time.time()\r\n    print(time.strftime(\"%H:%M:%S\", time.gmtime(t1 - t0)))  # Duration\r\n    print(\"Max:\", time.strftime(\"%Y-%m-%d %H:%M:%S\", time.gmtime(time.time())))  # Complete time\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Fang2009/run_maximization.py b/Fang2009/run_maximization.py
+--- a/Fang2009/run_maximization.py	(revision 7dc5110d1fcbf0a4ee4d30ccc8a6a8d3f080e27c)
++++ b/Fang2009/run_maximization.py	(date 1744293694000)
+@@ -13,10 +13,11 @@
+ 
+ def func(learning_length=None, loop=None, return_dict=None, sema=None):
+     np.random.seed(None)
+-    q_agent = Agent(N=10, high_peak=50, low_peak=10)
++    agent = Agent(N=10, high_peak=50, low_peak=10)
+     for _ in range(learning_length):
+-        q_agent.learn(tau=20, alpha=0.2, gamma=0.9)
+-    q_agent.evaluate(tau=0.1)
++        agent.learn(tau=20, alpha=0.2, gamma=0.9)
++
++    agent.evaluate(tau=0.1)
+     return_dict[loop] = [q_agent.performance, q_agent.steps, q_agent.informed_percentage]
+     sema.release()
+ 
