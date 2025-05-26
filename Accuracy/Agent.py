@@ -29,11 +29,8 @@ class Agent:
 
     def initialize(self):
         self.next_action = None
-        self.state = [0] * self.N
-        self.state = [random.randint(0, 1) for _ in range(self.N)]
-        self.performance = 0
-        self.steps = 0
-        self.search_trajectory = []
+        # self.state = [random.randint(0, 1) for _ in range(self.N)]
+        self.state = [0 for _ in range(self.N)]
 
     def learn(self, tau=20.0, alpha=0.8, gamma=0.9, evaluation=False):
         """
