@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Turbulence/Agent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Parrot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Reality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Results.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/slurm_run_baseline" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,15 +290,7 @@
       <workItem from="1747484707624" duration="12469000" />
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
-      <workItem from="1748006518865" duration="23086000" />
-    </task>
-    <task id="LOCAL-00028" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1743861677305</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1743861677306</updated>
+      <workItem from="1748006518865" duration="24280000" />
     </task>
     <task id="LOCAL-00029" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -689,7 +676,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748247144525</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748249076613</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1748249076613</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
