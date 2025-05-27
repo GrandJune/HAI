@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accuracy/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coverage/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/run_baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/slurm_run_baseline" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +74,7 @@
     "Python.Q_learning (2).executor": "Run",
     "Python.Q_learning (3).executor": "Run",
     "Python.Q_learning.executor": "Run",
+    "Python.Reality.executor": "Run",
     "Python.Test (1).executor": "Run",
     "Python.Test.executor": "Run",
     "Python.run_baseline.executor": "Run",
@@ -103,7 +106,7 @@
       <recent name="E:\Python_Workplace\HAI\Parrots" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Test (1)">
+  <component name="RunManager" selected="Python.Reality">
     <configuration name="Agent (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HAI" />
       <option name="ENV_FILES" value="" />
@@ -150,7 +153,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Parrot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Reality" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HAI" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -159,12 +162,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Parrots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Turbulence" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parrots/Parrot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Turbulence/Reality.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -221,11 +224,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Reality" />
         <item itemvalue="Python.Test (1)" />
         <item itemvalue="Python.run_baseline" />
         <item itemvalue="Python.Parrot (1)" />
         <item itemvalue="Python.Agent (2)" />
-        <item itemvalue="Python.Parrot" />
       </list>
     </recent_temporary>
   </component>
@@ -291,15 +294,7 @@
       <workItem from="1747484707624" duration="12469000" />
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
-      <workItem from="1748006518865" duration="31173000" />
-    </task>
-    <task id="LOCAL-00031" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744188664421</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1744188664421</updated>
+      <workItem from="1748006518865" duration="39404000" />
     </task>
     <task id="LOCAL-00032" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -685,7 +680,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748263836637</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748266603262</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1748266603262</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -703,6 +706,7 @@
     <SUITE FILE_PATH="coverage/HAI$Test__1_.coverage" NAME="Test (1) Coverage Results" MODIFIED="1748263457070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Strategies/FadingValence" />
     <SUITE FILE_PATH="coverage/HAI$Test.coverage" NAME="Test Coverage Results" MODIFIED="1746435705041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Parrot.coverage" NAME="Parrot Coverage Results" MODIFIED="1747035798393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
+    <SUITE FILE_PATH="coverage/HAI$Reality.coverage" NAME="Reality Coverage Results" MODIFIED="1748332660152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Turbulence" />
     <SUITE FILE_PATH="coverage/HAI$Bayesian.coverage" NAME="Bayesian Coverage Results" MODIFIED="1745839983125" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Q_learning__3_.coverage" NAME="Q_learning (3) Coverage Results" MODIFIED="1744115828475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Denrell2004" />
     <SUITE FILE_PATH="coverage/HAI$Q_learning.coverage" NAME="Q_learning Coverage Results" MODIFIED="1744975938350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />

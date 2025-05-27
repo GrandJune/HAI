@@ -106,13 +106,12 @@ class Agent:
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
-            # first examine whether AI advice is available
-            suggested_action = parrot.suggest(self.state)
-            if suggested_action:
-                action = suggested_action
+            if self.next_action:
+                action = self.next_action
             else:
-                if self.next_action:
-                    action = self.next_action
+                suggested_action = parrot.suggest(self.state)
+                if suggested_action is not None:
+                    action = suggested_action
                 else:
                     exp_prob_row = np.exp(q_row / tau)
                     prob_row = exp_prob_row / np.sum(exp_prob_row)
