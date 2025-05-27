@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <change afterPath="$PROJECT_DIR$/Strategies/FadingValence/run_genetic_algorithm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/FadingValence/slurm_run_genetic_algorithm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accuracy/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/Test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +83,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "E:/Python_Workplace/HAI/Coverage",
+    "last_opened_file_path": "E:/Python_Workplace/HAI/Strategies/FadingValence",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -96,17 +95,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Python_Workplace\HAI\Strategies\FadingValence" />
       <recent name="E:\Python_Workplace\HAI\Coverage" />
       <recent name="E:\Python_Workplace\HAI\Accuracy" />
       <recent name="E:\Python_Workplace\HAI\Parrots" />
       <recent name="E:\Python_Workplace\HAI\Valence" />
-      <recent name="E:\Python_Workplace\HAI\Strategies\FadingValence" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Parrots" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Reality">
+  <component name="RunManager" selected="Python.Test (1)">
     <configuration name="Agent (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HAI" />
       <option name="ENV_FILES" value="" />
@@ -224,8 +223,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Reality" />
         <item itemvalue="Python.Test (1)" />
+        <item itemvalue="Python.Reality" />
         <item itemvalue="Python.run_baseline" />
         <item itemvalue="Python.Parrot (1)" />
         <item itemvalue="Python.Agent (2)" />
@@ -294,15 +293,7 @@
       <workItem from="1747484707624" duration="12469000" />
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
-      <workItem from="1748006518865" duration="39404000" />
-    </task>
-    <task id="LOCAL-00032" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744197249901</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1744197249901</updated>
+      <workItem from="1748006518865" duration="42232000" />
     </task>
     <task id="LOCAL-00033" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -688,7 +679,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748266603262</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748345813984</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1748345813984</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -703,7 +702,7 @@
     <SUITE FILE_PATH="coverage/HAI$Agent.coverage" NAME="Agent Coverage Results" MODIFIED="1744194546602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Denrell2004" />
     <SUITE FILE_PATH="coverage/HAI$Organization.coverage" NAME="Organization Coverage Results" MODIFIED="1744198118349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Denrell2004" />
     <SUITE FILE_PATH="coverage/HAI$Q_learning__2_.coverage" NAME="Q_learning (2) Coverage Results" MODIFIED="1745056025106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots_remove_align" />
-    <SUITE FILE_PATH="coverage/HAI$Test__1_.coverage" NAME="Test (1) Coverage Results" MODIFIED="1748263457070" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Strategies/FadingValence" />
+    <SUITE FILE_PATH="coverage/HAI$Test__1_.coverage" NAME="Test (1) Coverage Results" MODIFIED="1748347488747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Strategies/FadingValence" />
     <SUITE FILE_PATH="coverage/HAI$Test.coverage" NAME="Test Coverage Results" MODIFIED="1746435705041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Parrot.coverage" NAME="Parrot Coverage Results" MODIFIED="1747035798393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Reality.coverage" NAME="Reality Coverage Results" MODIFIED="1748332660152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Turbulence" />

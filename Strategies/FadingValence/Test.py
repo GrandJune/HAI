@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 
 # Configuration
 initial_valence = 50
-decay_rate = 0.05
+decay_rate = 0.01
 valence_floor = 5
 max_steps = 100
 

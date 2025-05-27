@@ -22,7 +22,7 @@ def func(agent_num=None, loop=None, return_dict=None, sema=None):
     gamma = 0.9 # discount factor
     learning_length = 500
     turbulence_freq = 100
-    intensity = 10
+    intensity = 5
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_values = [10] # add more local peaks to increase complexity
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
@@ -36,17 +36,14 @@ def func(agent_num=None, loop=None, return_dict=None, sema=None):
         organic_performance_across_time, organic_knowledge_across_time, organic_steps_across_time, organic_knowledge_quality_across_time = [], [], [], []
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            if (episode + 1) % turbulence_freq == 0:
-                # just before turbulence
-                agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=True)
-                organic_performance_across_time.append(agent.performance)
-                organic_performance_across_time = [1 if each == 50 else 0 for each in organic_performance_across_time]
-                organic_knowledge_across_time.append(agent.knowledge)
-                organic_steps_across_time.append(agent.steps)
-                organic_knowledge_quality_across_time.append(agent.knowledge_quality)
             if episode % turbulence_freq == 0:
                 reality.change(intensity=intensity)
-            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)  # updating Q table
+            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=True)
+            organic_performance_across_time.append(agent.performance)
+            organic_performance_across_time = [1 if each == 50 else 0 for each in organic_performance_across_time]
+            organic_knowledge_across_time.append(agent.knowledge)
+            organic_steps_across_time.append(agent.steps)
+            organic_knowledge_quality_across_time.append(agent.knowledge_quality)
 
         all_organic_performance.append(organic_performance_across_time)
         all_organic_knowledge.append(organic_knowledge_across_time)
