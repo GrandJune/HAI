@@ -15,7 +15,7 @@ from Reality import Reality
 class Agent:
     def __init__(self, N, reality=None):
         self.N = N
-        self.index
+        self.index = None
         self.Q_table = np.zeros((2 ** self.N, self.N))
         self.reality = reality
         self.next_action = None

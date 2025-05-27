@@ -31,31 +31,32 @@ def func(agent_num=None, decay_rate=None, loop=None, return_dict=None, sema=None
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
 
+    fitness_scores = []
+    agents_list = []
+    previous_Q = []
+    valence_population = np.random.uniform(valence_bounds[0], valence_bounds[1], population_size)
+    # initialize the agents
+    for index in range(population_size):
+        agent = Agent(N=N, reality=reality)
+        agent.index = index
+        agents_list.append(agent)
+        previous_Q.append(agent.Q_table)  # record the last Q table so that agent can repeatively experience these 10 episodes
 
-    # Begin sequential optimization over episodes
-    for episode in range(1, learning_length):
-        fitness_scores = []
-        agents_list = []
-        previous_Q = []
-        for index in range(population_size):
-            agent = Agent(N=N, reality=reality)
-            agents_list.append(agent)
-            previous_Q.append(agent.Q_table)
-            valence_population = np.random.uniform(valence_bounds[0], valence_bounds[1], population_size)
-
+    for block in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+        # every 10 episodes as an optimization unit
+        # what is the best valence for the first, second, ... and last 10 episodes
         for generation in range(20):  # Optional: evolve valence within each episode
-            new_fitness = []
-            for valence in valence_population:
-                test_agent = Agent(N=N, reality=reality)
-                test_agent.Q_table = copy.deepcopy(previous_Q)
-                test_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, valence=valence, parrot=parrot,
+            fitness_list = []
+            for agent in agents_list:
+                for _ in range(10):
+                    agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, valence=valence_population[agent.index], parrot=parrot,
                                              evaluation=False)
-                steps = test_agent.steps if test_agent.steps > 0 else 10000
+                steps = agent.steps
                 fitness = 1 / steps
-                new_fitness.append(fitness)
+                fitness_list.append(fitness)
 
             # Selection
-            sorted_indices = np.argsort(new_fitness)[::-1]
+            sorted_indices = np.argsort(fitness_list)[::-1]
             survivors = valence_population[sorted_indices[:population_size // 2]]
 
             # Crossover + Mutation
