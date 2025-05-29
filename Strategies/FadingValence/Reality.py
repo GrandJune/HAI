@@ -13,12 +13,15 @@ class Reality:
         self.global_peak_value  = global_peak_value
         self.global_peak_state = [1] * self.N
         self.global_peak_index = 2 ** self.N - 1
+
+        self.local_peak_value = local_peak_value
+        self.local_peak_state = [0] * self.N
+        self.local_peak_index = 0
+
         self.payoff_map = np.zeros(2 ** self.N)
         self.payoff_map[-1] = global_peak_value
-        # fix the local peak at the opposite of the global peak
-        self.local_peak_value = local_peak_value
         self.payoff_map[0] = local_peak_value
-        self.local_peak_index = 0
+
 
     def change(self, likelihood=0.1):
         """

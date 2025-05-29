@@ -6,9 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Agent.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parrots/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/run_baseline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/IncreasingTrust/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Valence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Valence/Agent.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,9 +102,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Accuracy" />
       <recent name="E:\Python_Workplace\HAI\Coverage" />
-      <recent name="E:\Python_Workplace\HAI\Parrots" />
       <recent name="E:\Python_Workplace\HAI\Valence" />
       <recent name="E:\Python_Workplace\HAI\Turbulence" />
+      <recent name="E:\Python_Workplace\HAI\Strategies\IncreasingTrust" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Parrots" />
@@ -292,15 +298,7 @@
       <workItem from="1747484707624" duration="12469000" />
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
-      <workItem from="1748006518865" duration="51987000" />
-    </task>
-    <task id="LOCAL-00037" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744362611370</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1744362611371</updated>
+      <workItem from="1748006518865" duration="52326000" />
     </task>
     <task id="LOCAL-00038" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -686,7 +684,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748510835735</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748519891379</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1748519891379</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

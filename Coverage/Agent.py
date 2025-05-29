@@ -9,9 +9,6 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import random
 
-from Parrot import Parrot
-from Reality import Reality
-
 class Agent:
     def __init__(self, N, reality=None):
         self.N = N
@@ -30,8 +27,8 @@ class Agent:
 
     def initialize(self):
         self.next_action = None
-        # self.state = [random.randint(0, 1) for _ in range(self.N)]
-        self.state = [0 for _ in range(self.N)]
+        self.state = [random.randint(0, 1) for _ in range(self.N)]
+        # self.state = [0 for _ in range(self.N)]
 
     def learn(self, tau=20.0, alpha=0.8, gamma=0.9, evaluation=False):
         """

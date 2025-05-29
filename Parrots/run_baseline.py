@@ -22,8 +22,8 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
-    local_peak_values = [10]  # add more local peaks to increase complexity
-    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
+    local_peak_value = 10
+    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
     organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
