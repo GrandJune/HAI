@@ -23,81 +23,68 @@ def func(agent_num=None, decay_rate=None, loop=None, return_dict=None, sema=None
     gamma = 0.9 # discount factor
     learning_length = 100
     population_size = 100
-    valence_bounds = (10, 100)
+    valence_bounds = (0, 50)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
-    local_peak_values = [10] # add more local peaks to increase complexity
+    local_peak_value = 10 # add more local peaks to increase complexity
+    generation_per_block = 20
+    episodes_per_block = 10
+
     # Initialize reality and parrot; fixed
-    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
+    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
-
-    fitness_scores = []
-    agents_list = []
-    previous_Q = []
+    # Initial population and agents
     valence_population = np.random.uniform(valence_bounds[0], valence_bounds[1], population_size)
-    # initialize the agents
-    for index in range(population_size):
-        agent = Agent(N=N, reality=reality)
-        agent.index = index
-        agents_list.append(agent)
-        previous_Q.append(agent.Q_table)  # record the last Q table so that agent can repeatively experience these 10 episodes
+    agents_list = [Agent(N=N, reality=reality) for _ in range(population_size)]
+    # Storage
+    q_table_snapshots = [copy.deepcopy(agent.Q_table) for agent in agents_list]
+    valence_evolution = []
 
-    for block in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
-        # every 10 episodes as an optimization unit
-        # what is the best valence for the first, second, ... and last 10 episodes
-        for generation in range(20):  # Optional: evolve valence within each episode
+    for block in range(learning_length // episodes_per_block):
+        for generation in range(generation_per_block):
             fitness_list = []
-            for agent in agents_list:
-                for _ in range(10):
-                    agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, valence=valence_population[agent.index], parrot=parrot,
-                                             evaluation=False)
-                steps = agent.steps
-                fitness = 1 / steps
-                fitness_list.append(fitness)
+            # Simulate learning for current valence
+            for i, agent in enumerate(agents_list):
+                agent.Q_table = copy.deepcopy(q_table_snapshots[i])  # Reset Q-table to prior state
+                agent.performance = 0
+                for _ in range(episodes_per_block):
+                    agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma,
+                                            valence=valence_population[i], parrot=parrot, evaluation=False)
+                fitness_list.append(1 / agent.steps if agent.steps > 0 else 1e6)
 
-            # Selection
-            sorted_indices = np.argsort(fitness_list)[::-1]
-            survivors = valence_population[sorted_indices[:population_size // 2]]
+            # GA: selection, crossover, mutation
+            fitness_array = np.array(fitness_list)
+            top_indices = np.argsort(fitness_array)[-population_size // 2:]  # top 50%
+            survivors = valence_population[top_indices]
 
-            # Crossover + Mutation
-            children = []
-            while len(children) < population_size - len(survivors):
-                parents = np.random.choice(survivors, 2, replace=False)
-                child = np.mean(parents)
-                if np.random.rand() < mutation_rate:
-                    child += np.random.uniform(-5, 5)
-                    child = np.clip(child, valence_bounds[0], valence_bounds[1])
-                children.append(child)
+            # Crossover
+            new_population = []
+            while len(new_population) < population_size:
+                parents = np.random.choice(survivors, 2)
+                crossover_point = np.random.rand()
+                child = crossover_point * parents[0] + (1 - crossover_point) * parents[1]
+                new_population.append(child)
 
-            valence_population = np.concatenate([survivors, children])
-            fitness_scores = new_fitness
+            valence_population = np.array(new_population)
 
-        # Choose best valence and update real agent
-        best_index = np.argmax(fitness_scores)
+            # Mutation
+            mutation_mask = np.random.rand(population_size) < mutation_rate
+            valence_population[mutation_mask] += np.random.normal(0, 5, size=np.sum(mutation_mask))
+            valence_population = np.clip(valence_population, valence_bounds[0], valence_bounds[1])
+
+        # Save the best valence of the block
+        best_index = np.argmax(fitness_list)
         best_valence = valence_population[best_index]
-        best_valences.append(best_valence)
+        valence_evolution.append(best_valence)
 
-        agent.Q_table = copy.deepcopy(previous_Q)
-        agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, valence=best_valence, parrot=parrot,
-                                evaluation=False)
-        episode_Q_tables.append(copy.deepcopy(agent.Q_table))
+        # Advance Q-table state for agents with best valence found
+        for i, agent in enumerate(agents_list):
+            agent.Q_table = copy.deepcopy(q_table_snapshots[i])
+            for _ in range(episodes_per_block):
+                agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma,
+                                        valence=best_valence, parrot=parrot, evaluation=False)
+            q_table_snapshots[i] = copy.deepcopy(agent.Q_table)
 
-
-    pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
-    for _ in range(agent_num):
-        pair_agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length - 1):
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot,
-                                                        valence=valence, evaluation=False)
-        pair_performance_list.append(pair_agent.performance)
-        pair_knowledge_list.append(pair_agent.knowledge)
-        pair_steps_list.append(pair_agent.steps)
-        pair_knowledge_quality_list.append(pair_agent.knowledge_quality)
-    pair_performance_list = [1 if each == 50 else 0 for each in pair_performance_list] # the likelihood of finding global peak
-    pair_performance = sum(pair_performance_list) / agent_num
-    pair_knowledge = sum(pair_knowledge_list) / agent_num
-    pair_steps = sum(pair_steps_list) / agent_num
-    pair_knowledge_quality = sum(pair_knowledge_quality_list) / agent_num
     return_dict[loop] = [pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality]
     sema.release()
 

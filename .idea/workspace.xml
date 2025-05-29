@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/run_baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/slurm_run_baseline" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/FadingValence/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/FadingValence/run_genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/slurm_run_baseline" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,15 +292,7 @@
       <workItem from="1747484707624" duration="12469000" />
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
-      <workItem from="1748006518865" duration="54423000" />
-    </task>
-    <task id="LOCAL-00039" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744976178747</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1744976178747</updated>
+      <workItem from="1748006518865" duration="57238000" />
     </task>
     <task id="LOCAL-00040" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -687,7 +678,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748520221599</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748524145028</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1748524145029</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
