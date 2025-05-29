@@ -66,8 +66,8 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     agent_num = 100
-    repetition = 50
-    learning_length_list = [50, 100, 150, 200, 250, 300, 350]
+    repetition = 100
+    learning_length_list = [50, 100, 150, 200, 250, 300, 350, 400, 450]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     for learning_length in learning_length_list:

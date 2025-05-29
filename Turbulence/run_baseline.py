@@ -11,150 +11,122 @@ import multiprocessing as mp
 import time
 from multiprocessing import Semaphore
 import pickle
+
 from Reality import Reality
 
 
-def func(agent_num=None, loop=None, return_dict=None, sema=None):
+def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
     N = 10 # problem dimension
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    learning_length = 500
-    likelihood = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
-    local_peak_values = [10] # add more local peaks to increase complexity
-    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
-    parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
-
-    all_organic_performance = []
-    all_organic_knowledge = []
-    all_organic_steps = []
-    all_organic_knowledge_quality = []
+    local_peak_value = 10
+    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+    organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
-        organic_performance_across_time, organic_knowledge_across_time, organic_steps_across_time, organic_knowledge_quality_across_time = [], [], [], []
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            reality.change(likelihood=likelihood)
-            agent.reality = reality
-            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)
-        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)
-        organic_performance_across_time.append(agent.performance)
-        organic_performance_across_time = [1 if each == 50 else 0 for each in organic_performance_across_time]
-        organic_knowledge_across_time.append(agent.knowledge)
-        organic_steps_across_time.append(agent.steps)
-        organic_knowledge_quality_across_time.append(agent.knowledge_quality)
+            reality.change(likelihood=0.1)  # will also update the reality of agents
+            agent.learn(tau=tau, alpha=alpha, gamma=gamma)
+        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
+        organic_performance_list.append(agent.performance)
+        organic_knowledge_list.append(agent.knowledge)
+        organic_steps_list.append(agent.steps)
+        organic_knowledge_quality_list.append(agent.knowledge_quality)
+    organic_performance_list = [1 if each == 50 else 0 for each in organic_performance_list]  # the likelihood of finding global peak
+    organic_performance = sum(organic_performance_list) / agent_num
+    organic_knowledge = sum(organic_knowledge_list) / agent_num
+    organic_steps = sum(organic_steps_list) / agent_num
+    organic_knowledge_quality = sum(organic_knowledge_quality_list) / agent_num
 
-        all_organic_performance.append(organic_performance_across_time)
-        all_organic_knowledge.append(organic_knowledge_across_time)
-        all_organic_steps.append(organic_steps_across_time)
-        all_organic_knowledge_quality.append(organic_knowledge_quality_across_time)
-    # Convert to NumPy arrays and average across agents (axis=0)
-    organic_performance_list = np.mean(all_organic_performance, axis=0)
-    organic_knowledge_list = np.mean(all_organic_knowledge, axis=0)
-    organic_steps_list = np.mean(all_organic_steps, axis=0)
-    organic_knowledge_quality_list = np.mean(all_organic_knowledge_quality, axis=0)
-
-    all_pair_performance = []
-    all_pair_knowledge = []
-    all_pair_steps = []
-    all_pair_knowledge_quality = []
+    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+    parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
+    pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
-        pair_performance_across_time, pair_knowledge_across_time, pair_steps_across_time, pair_knowledge_quality_across_time = [], [], [], []
-        for episode in range(learning_length):
-            reality.change()
-            agent.reality = reality
-            parrot.reality = reality
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=False)
-        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True)
-        pair_performance_across_time.append(pair_agent.performance)
-        pair_performance_across_time = [1 if each == 50 else 0 for each in pair_knowledge_across_time]
-        pair_steps_across_time.append(pair_agent.steps)
-        pair_knowledge_across_time.append(pair_agent.knowledge)
-        pair_knowledge_quality_across_time.append(pair_agent.knowledge_quality)
+        for episode in range(learning_length - 1):
+            reality.change(likelihood=0.1)  # will also update the reality of parrot and pair_agents
+            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
+        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
+        pair_performance_list.append(pair_agent.performance)
+        pair_knowledge_list.append(pair_agent.knowledge)
+        pair_steps_list.append(pair_agent.steps)
+        pair_knowledge_quality_list.append(pair_agent.knowledge_quality)
+    pair_performance_list = [1 if each == 50 else 0 for each in pair_performance_list] # the likelihood of finding global peak
+    pair_performance = sum(pair_performance_list) / agent_num
+    pair_knowledge = sum(pair_knowledge_list) / agent_num
+    pair_steps = sum(pair_steps_list) / agent_num
+    pair_knowledge_quality = sum(pair_knowledge_quality_list) / agent_num
 
-        all_pair_performance.append(pair_performance_across_time)
-        all_pair_knowledge.append(pair_knowledge_across_time)
-        all_pair_steps.append(pair_steps_across_time)
-        all_pair_knowledge_quality.append(pair_knowledge_quality_across_time)
-    # Convert to NumPy arrays and average across agents (axis=0)
-    pair_performance_list = np.mean(all_pair_performance, axis=0)
-    pair_knowledge_list = np.mean(all_pair_knowledge, axis=0)
-    pair_steps_list = np.mean(all_pair_steps, axis=0)
-    pair_knowledge_quality_list = np.mean(all_pair_knowledge_quality, axis=0)
-
-    return_dict[loop] = [organic_performance_list, organic_knowledge_list, organic_steps_list, organic_knowledge_quality_list,
-                         pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list]
+    return_dict[loop] = [organic_performance, organic_knowledge, organic_steps, organic_knowledge_quality,
+                         pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality]
     sema.release()
 
 
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    agent_num = 200
-    repetition = 50
+    agent_num = 100
+    repetition = 100
+    learning_length_list = [50, 100, 150, 200, 250, 300, 350, 400, 450]
+    organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
-    with mp.Manager() as manager:  # immediate memory cleanup
-        jobs = []
-        return_dict = manager.dict()
-        sema = Semaphore(concurrency)
+    for learning_length in learning_length_list:
+        with mp.Manager() as manager:  # immediate memory cleanup
+            jobs = []
+            return_dict = manager.dict()
+            sema = Semaphore(concurrency)
 
-        for loop in range(repetition):
-            sema.acquire()
-            p = mp.Process(target=func, args=(agent_num, loop, return_dict, sema))
-            jobs.append(p)
-            p.start()
+            for loop in range(repetition):
+                sema.acquire()
+                p = mp.Process(target=func, args=(agent_num, learning_length, loop, return_dict, sema))
+                jobs.append(p)
+                p.start()
 
-        for proc in jobs:
-            proc.join()
+            for proc in jobs:
+                proc.join()
 
-        results = return_dict.values()
+            results = return_dict.values()
+            organic_performance = sum([result[0] for result in results]) / repetition
+            organic_knowledge = sum([result[1] for result in results]) / repetition
+            organic_steps = sum([result[2] for result in results]) / repetition
+            organic_knowledge_quality = sum([result[3] for result in results]) / repetition
 
-        # Organic
-        organic_performance_across_tasks = [result[0] for result in results]
-        organic_performance_across_turbulence = np.mean(organic_performance_across_tasks, axis=0)
+            pair_performance = sum([result[4] for result in results]) / repetition
+            pair_knowledge = sum([result[5] for result in results]) / repetition
+            pair_steps = sum([result[6] for result in results]) / repetition
+            pair_knowledge_quality = sum([result[7] for result in results]) / repetition
 
-        organic_knowledge_across_tasls = [result[1] for result in results]
-        organic_knowledge_across_turbulence = np.mean(organic_knowledge_across_tasls, axis=0)
+        organic_performance_across_episodes.append(organic_performance)
+        organic_knowledge_across_episodes.append(organic_knowledge)
+        organic_steps_across_episodes.append(organic_steps)
+        organic_knowledge_quality_across_episodes.append(organic_knowledge_quality)
 
-        organic_steps_across_tasks = [result[2] for result in results]
-        organic_steps_across_turbulence = np.mean(organic_steps_across_tasks, axis=0)
+        pair_performance_across_episodes.append(pair_performance)
+        pair_knowledge_across_episodes.append(pair_knowledge)
+        pair_steps_across_episodes.append(pair_steps)
+        pair_knowledge_quality_across_episodes.append(pair_knowledge_quality)
 
-        organic_knowledge_quality_across_tasks = [result[3] for result in results]
-        organic_knowledge_quality_across_turbulence = np.mean(organic_knowledge_quality_across_tasks, axis=0)
+    with open("organic_performance_across_episodes", 'wb') as out_file:
+        pickle.dump(organic_performance_across_episodes, out_file)
+    with open("organic_knowledge_across_episodes", 'wb') as out_file:
+        pickle.dump(organic_knowledge_across_episodes, out_file)
+    with open("organic_steps_across_episodes", 'wb') as out_file:
+        pickle.dump(organic_steps_across_episodes, out_file)
+    with open("organic_knowledge_quality_across_episodes", 'wb') as out_file:
+        pickle.dump(organic_knowledge_quality_across_episodes, out_file)
 
-        # Pairing
-        pair_performance_across_tasks = [result[4] for result in results]
-        pair_performance_across_turbulence = np.mean(organic_performance_across_tasks, axis=0)
-
-        pair_knowledge_across_tasls = [result[5] for result in results]
-        pair_knowledge_across_turbulence = np.mean(organic_knowledge_across_tasls, axis=0)
-
-        pair_steps_across_tasks = [result[6] for result in results]
-        pair_steps_across_turbulence = np.mean(organic_steps_across_tasks, axis=0)
-
-        pair_knowledge_quality_across_tasks = [result[7] for result in results]
-        pair_knowledge_quality_across_turbulence = np.mean(organic_knowledge_quality_across_tasks, axis=0)
-
-    with open("organic_performance_across_turbulence", 'wb') as out_file:
-        pickle.dump(organic_performance_across_turbulence, out_file)
-    with open("organic_knowledge_across_turbulence", 'wb') as out_file:
-        pickle.dump(organic_knowledge_across_turbulence, out_file)
-    with open("organic_steps_across_turbulence", 'wb') as out_file:
-        pickle.dump(organic_steps_across_turbulence, out_file)
-    with open("organic_knowledge_quality_across_turbulence", 'wb') as out_file:
-        pickle.dump(organic_knowledge_quality_across_turbulence, out_file)
-
-    with open("pair_performance_across_turbulence", 'wb') as out_file:
-        pickle.dump(pair_performance_across_turbulence, out_file)
-    with open("pair_knowledge_across_turbulence", 'wb') as out_file:
-        pickle.dump(pair_knowledge_across_turbulence, out_file)
-    with open("pair_steps_across_turbulence", 'wb') as out_file:
-        pickle.dump(pair_steps_across_turbulence, out_file)
-    with open("pair_knowledge_quality_across_turbulence", 'wb') as out_file:
-        pickle.dump(pair_knowledge_quality_across_turbulence, out_file)
+    with open("pair_performance_across_episodes", 'wb') as out_file:
+        pickle.dump(pair_performance_across_episodes, out_file)
+    with open("pair_knowledge_across_episodes", 'wb') as out_file:
+        pickle.dump(pair_knowledge_across_episodes, out_file)
+    with open("pair_steps_across_episodes", 'wb') as out_file:
+        pickle.dump(pair_steps_across_episodes, out_file)
+    with open("pair_knowledge_quality_across_episodes", 'wb') as out_file:
+        pickle.dump(pair_knowledge_quality_across_episodes, out_file)
 
     t1 = time.time()
     print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
-    print("Across Valence:", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
+    print("Across Episodes", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
