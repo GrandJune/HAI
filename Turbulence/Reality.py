@@ -26,20 +26,24 @@ class Reality:
                 self.payoff_map[idx] = val
             self.local_peak_indices = available_indices
 
-    def change(self, intensity=10):
+    def change(self, likelihood=0.1):
         """
-        Introduce turbulence by shifting `intensity` number of bits in the global peak state.
-        Also relocate local peaks, ensuring they don't overlap with the new global peak.
-        """
-        assert 0 <= intensity <= self.N, f"Intensity must be between 0 and {self.N}"
+        Introduce turbulence by probabilistically flipping each bit in the global peak state
+        based on the given likelihood. Local peaks are only regenerated if they overlap with
+        the new global peak.
 
-        # Flip `intensity` bits in the current global peak state
+        Parameters:
+        likelihood (float): Probability that each bit in the global peak is flipped (0 to 1).
+        """
+        assert 0 <= likelihood <= 1, "Likelihood must be between 0 and 1"
+
+        # Probabilistically flip bits in the global peak state
         current_state = self.global_peak_state.copy()
-        indices_to_flip = np.random.choice(self.N, size=intensity, replace=False)
-        for idx in indices_to_flip:
-            current_state[idx] = 1 - current_state[idx]  # Flip bit
+        for i in range(self.N):
+            if np.random.rand() < likelihood:
+                current_state[i] = 1 - current_state[i]
 
-        # Update new global peak
+        # Update the new global peak
         new_global_index = int("".join(map(str, current_state)), 2)
         self.global_peak_state = current_state
         self.global_peak_index = new_global_index
@@ -48,18 +52,30 @@ class Reality:
         self.payoff_map[:] = 0.0
         self.payoff_map[new_global_index] = self.global_peak_value
 
-        # Reassign local peaks
-        total_states = 2 ** self.N
-        remaining_indices = list(set(range(total_states)) - {new_global_index})
+        # Reassign local peaks only if there is overlap with the new global peak
         if hasattr(self, 'local_peak_values') and self.local_peak_values is not None:
-            new_local_indices = np.random.choice(
-                remaining_indices,
-                size=len(self.local_peak_values),
-                replace=False
-            )
-            for idx, val in zip(new_local_indices, self.local_peak_values):
-                self.payoff_map[idx] = val
-            self.local_peak_indices = new_local_indices
+            total_states = 2 ** self.N
+            remaining_indices = list(set(range(total_states)) - {new_global_index})
+
+            # Check for overlap
+            if hasattr(self, 'local_peak_indices'):
+                overlapping = any(idx == new_global_index for idx in self.local_peak_indices)
+            else:
+                overlapping = True  # if local peaks not initialized yet, initialize them
+
+            if overlapping:
+                new_local_indices = np.random.choice(
+                    remaining_indices,
+                    size=len(self.local_peak_values),
+                    replace=False
+                )
+                for idx, val in zip(new_local_indices, self.local_peak_values):
+                    self.payoff_map[idx] = val
+                self.local_peak_indices = new_local_indices
+            else:
+                # If no overlap, keep existing local peaks
+                for idx, val in zip(self.local_peak_indices, self.local_peak_values):
+                    self.payoff_map[idx] = val
 
 
 if __name__ == "__main__":

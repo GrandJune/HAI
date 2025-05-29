@@ -22,7 +22,7 @@ def func(agent_num=None, loop=None, return_dict=None, sema=None):
     gamma = 0.9 # discount factor
     learning_length = 500
     turbulence_freq = 100
-    intensity = 5
+    likelihood = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_values = [10] # add more local peaks to increase complexity
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_values=local_peak_values)
@@ -36,14 +36,15 @@ def func(agent_num=None, loop=None, return_dict=None, sema=None):
         organic_performance_across_time, organic_knowledge_across_time, organic_steps_across_time, organic_knowledge_quality_across_time = [], [], [], []
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            if episode % turbulence_freq == 0:
-                reality.change(intensity=intensity)
-            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=True)
-            organic_performance_across_time.append(agent.performance)
-            organic_performance_across_time = [1 if each == 50 else 0 for each in organic_performance_across_time]
-            organic_knowledge_across_time.append(agent.knowledge)
-            organic_steps_across_time.append(agent.steps)
-            organic_knowledge_quality_across_time.append(agent.knowledge_quality)
+            reality.change(likelihood=likelihood)
+            agent.reality = reality
+            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)
+        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)
+        organic_performance_across_time.append(agent.performance)
+        organic_performance_across_time = [1 if each == 50 else 0 for each in organic_performance_across_time]
+        organic_knowledge_across_time.append(agent.knowledge)
+        organic_steps_across_time.append(agent.steps)
+        organic_knowledge_quality_across_time.append(agent.knowledge_quality)
 
         all_organic_performance.append(organic_performance_across_time)
         all_organic_knowledge.append(organic_knowledge_across_time)
@@ -63,18 +64,16 @@ def func(agent_num=None, loop=None, return_dict=None, sema=None):
         pair_agent = Agent(N=N, reality=reality)
         pair_performance_across_time, pair_knowledge_across_time, pair_steps_across_time, pair_knowledge_quality_across_time = [], [], [], []
         for episode in range(learning_length):
-            if (episode + 1) % turbulence_freq == 0:
-                # just before turbulence
-                pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50,
-                                             evaluation=True)
-                pair_performance_across_time.append(pair_agent.performance)
-                pair_performance_across_time = [1 if each == 50 else 0 for each in pair_knowledge_across_time]
-                pair_steps_across_time.append(pair_agent.steps)
-                pair_knowledge_across_time.append(pair_agent.knowledge)
-                pair_knowledge_quality_across_time.append(pair_agent.knowledge_quality)
-            if episode % turbulence_freq == 0:
-                reality.change()
+            reality.change()
+            agent.reality = reality
+            parrot.reality = reality
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=False)
+        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True)
+        pair_performance_across_time.append(pair_agent.performance)
+        pair_performance_across_time = [1 if each == 50 else 0 for each in pair_knowledge_across_time]
+        pair_steps_across_time.append(pair_agent.steps)
+        pair_knowledge_across_time.append(pair_agent.knowledge)
+        pair_knowledge_quality_across_time.append(pair_agent.knowledge_quality)
 
         all_pair_performance.append(pair_performance_across_time)
         all_pair_knowledge.append(pair_knowledge_across_time)
@@ -94,8 +93,8 @@ def func(agent_num=None, loop=None, return_dict=None, sema=None):
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    agent_num = 100
-    repetition = 100
+    agent_num = 200
+    repetition = 50
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     with mp.Manager() as manager:  # immediate memory cleanup
         jobs = []
