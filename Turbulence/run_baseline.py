@@ -21,7 +21,6 @@ def func(agent_num=None, loop=None, return_dict=None, sema=None):
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     learning_length = 500
-    turbulence_freq = 100
     likelihood = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_values = [10] # add more local peaks to increase complexity
