@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --time=3-00:00:00
-#SBATCH --job-name=GA
+#SBATCH --job-name=GA-Valence
 #SBATCH --mail-type=FAIL
 #SBATCH --mem=150gb
 #SBATCH --partition=long

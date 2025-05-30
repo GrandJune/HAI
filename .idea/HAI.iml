@@ -12,8 +12,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Accuracy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Valence" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Strategies/IncreasingTrust" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Turbulence" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveTrust" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveValence" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
