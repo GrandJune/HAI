@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Reality.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_baseline" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/run_baseline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/IncreasingTrust/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/slurm_run_genetic_algorithm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Reality.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +87,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "E:/Python_Workplace/HAI/Strategies/AdaptiveTrust",
+    "last_opened_file_path": "E:/Python_Workplace/HAI/Coverage",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -104,11 +99,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Python_Workplace\HAI\Coverage" />
+      <recent name="E:\Python_Workplace\HAI\Accuracy" />
+      <recent name="E:\Python_Workplace\HAI\Parrots" />
       <recent name="E:\Python_Workplace\HAI\Strategies\AdaptiveTrust" />
-      <recent name="E:\Python_Workplace\HAI\Valence" />
-      <recent name="E:\Python_Workplace\HAI\Turbulence" />
-      <recent name="E:\Python_Workplace\HAI\Strategies\IncreasingTrust" />
-      <recent name="E:\Python_Workplace\HAI\Strategies\FadingValence" />
+      <recent name="E:\Python_Workplace\HAI\Strategies\AdaptiveValence" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Parrots" />
@@ -303,15 +298,7 @@
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
       <workItem from="1748006518865" duration="64666000" />
-      <workItem from="1748606942196" duration="2529000" />
-    </task>
-    <task id="LOCAL-00042" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1745143324379</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1745143324379</updated>
+      <workItem from="1748606942196" duration="2715000" />
     </task>
     <task id="LOCAL-00043" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -697,7 +684,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748608672018</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748611395517</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1748611395517</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

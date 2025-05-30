@@ -22,39 +22,45 @@ class Reality:
         self.payoff_map[-1] = global_peak_value
         self.payoff_map[0] = local_peak_value
 
-
     def change(self, likelihood=0.1):
         """
-        Introduce turbulence by probabilistically flipping each bit in the global peak state
-        based on the given likelihood. The global peak cannot occupy the same state as the fixed local peak (index 0).
+        Introduce turbulence by flipping bits in both global and local peak states.
+        Ensures the two peaks never occupy the same state.
 
         Parameters:
-        likelihood (float): Probability that each bit in the global peak is flipped (0 to 1).
+        likelihood (float): Probability that each bit is flipped (0 to 1).
         """
         assert 0 <= likelihood <= 1, "Likelihood must be between 0 and 1"
 
         while True:
-            # Probabilistically flip bits in the global peak state
-            current_state = self.global_peak_state.copy()
+            # Flip bits in the global peak state
+            new_global_state = self.global_peak_state.copy()
             for i in range(self.N):
                 if np.random.rand() < likelihood:
-                    current_state[i] = 1 - current_state[i]
+                    new_global_state[i] = 1 - new_global_state[i]
+            new_global_index = int("".join(map(str, new_global_state)), 2)
 
-            new_global_index = int("".join(map(str, current_state)), 2)
+            # Flip bits in the local peak state
+            new_local_state = self.local_peak_state.copy()
+            for i in range(self.N):
+                if np.random.rand() < likelihood:
+                    new_local_state[i] = 1 - new_local_state[i]
+            new_local_index = int("".join(map(str, new_local_state)), 2)
 
-            # Ensure the new global peak is not the same as the local peak
-            if new_global_index != 0:
-                break  # Valid new global peak
+            # Ensure they are not the same
+            if new_global_index != new_local_index:
+                break
 
-        # Update global peak state and index
-        self.global_peak_state = current_state
+        # Update states and indices
+        self.global_peak_state = new_global_state
         self.global_peak_index = new_global_index
+        self.local_peak_state = new_local_state
+        self.local_peak_index = new_local_index
 
-        # Reset payoff map
+        # Update payoff map
         self.payoff_map[:] = 0
         self.payoff_map[new_global_index] = self.global_peak_value
-        self.payoff_map[0] = self.local_peak_value  # Fixed local peak
-        self.local_peak_index = 0
+        self.payoff_map[new_local_index] = self.local_peak_value
 
 
 if __name__ == "__main__":

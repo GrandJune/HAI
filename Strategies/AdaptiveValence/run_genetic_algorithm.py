@@ -23,7 +23,7 @@ def func(loop=None, return_dict=None, sema=None):
     gamma = 0.9 # discount factor
     learning_length = 300
     population_size = 200
-    valence_bounds = (0, 50)
+    trust_bounds = (0.0, 1.0)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10 # add more local peaks to increase complexity
@@ -34,11 +34,11 @@ def func(loop=None, return_dict=None, sema=None):
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
     # Initial population and agents
-    valence_population = np.random.uniform(valence_bounds[0], valence_bounds[1], population_size)
+    trust_population = np.random.uniform(trust_bounds[0], trust_bounds[1], population_size)
     agents_list = [Agent(N=N, reality=reality) for _ in range(population_size)]
     # Storage
     q_table_snapshots = [copy.deepcopy(agent.Q_table) for agent in agents_list]
-    valence_evolution = []
+    trust_evolution = []
 
     for block in range(learning_length // episodes_per_block):
         for generation in range(generation_per_block):
@@ -49,7 +49,7 @@ def func(loop=None, return_dict=None, sema=None):
                 agent.performance = 0
                 for _ in range(episodes_per_block):
                     agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma,
-                                            valence=valence_population[i], parrot=parrot, evaluation=False)
+                                            valence=50, parrot=parrot, evaluation=False)
                 fitness_list.append(1 / (agent.steps + 1e-6))
 
             # GA: selection, crossover, mutation

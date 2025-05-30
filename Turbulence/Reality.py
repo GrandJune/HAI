@@ -33,14 +33,14 @@ class Reality:
         assert 0 <= likelihood <= 1, "Likelihood must be between 0 and 1"
 
         while True:
-            # Flip bits in global peak state
+            # Flip bits in the global peak state
             new_global_state = self.global_peak_state.copy()
             for i in range(self.N):
                 if np.random.rand() < likelihood:
                     new_global_state[i] = 1 - new_global_state[i]
             new_global_index = int("".join(map(str, new_global_state)), 2)
 
-            # Flip bits in local peak state
+            # Flip bits in the local peak state
             new_local_state = self.local_peak_state.copy()
             for i in range(self.N):
                 if np.random.rand() < likelihood:

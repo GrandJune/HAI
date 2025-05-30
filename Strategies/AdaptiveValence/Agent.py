@@ -213,7 +213,7 @@ class Agent:
             self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
             self.knowledge_quality = self.get_Q_table_quality()
 
-    def learn_with_fading_trust_parrot(self, tau=20.0, alpha=0.8, gamma=0.9,
+    def learn_with_dynamic_trust_parrot(self, tau=20.0, alpha=0.8, gamma=0.9,
                                        valence=50, parrot=None, evaluation=False,
                                        initial_trust=1.0, trust_decay_rate=0.01, trust_floor=0.1):
         self.initialize()
