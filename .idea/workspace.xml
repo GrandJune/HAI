@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accuracy/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coverage/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Agent.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -298,15 +291,7 @@
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
       <workItem from="1748006518865" duration="64666000" />
-      <workItem from="1748606942196" duration="2715000" />
-    </task>
-    <task id="LOCAL-00043" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1745154271596</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1745154271596</updated>
+      <workItem from="1748606942196" duration="3395000" />
     </task>
     <task id="LOCAL-00044" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -692,7 +677,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748611395517</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748611582916</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1748611582916</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

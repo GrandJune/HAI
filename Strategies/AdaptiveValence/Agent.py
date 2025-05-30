@@ -152,84 +152,83 @@ class Agent:
             self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
             self.knowledge_quality = self.get_Q_table_quality()
 
-    def learn_with_fading_valence_parrot(self, tau=20.0, alpha=0.8, gamma=0.9,
-                                 initial_valence=50, parrot=None,
-                                 evaluation=False, decay_rate=0.05, valence_floor=10):
-        self.initialize()
-        for perform_step in range(self.max_step):
-            # Compute current valence via exponential decay
-            valence = max(initial_valence * np.exp(-decay_rate * perform_step), valence_floor)
-
-            cur_state_index = self.binary_list_to_int(self.state)
-            q_row = self.Q_table[cur_state_index]
-
-            # Step 1: Determine the current action
-            suggested_action = parrot.suggest(self.state)
-            if suggested_action:
-                action = suggested_action
-            else:
-                if self.next_action:
-                    action = self.next_action
-                else:
-                    exp_prob_row = np.exp(q_row / tau)
-                    prob_row = exp_prob_row / np.sum(exp_prob_row)
-                    action = np.random.choice(range(self.N), p=prob_row)
-
-            self.search_trajectory.append([cur_state_index, action])
-            next_state = self.state.copy()
-            next_state[action] = 1 - self.state[action]  # flip bit
-            next_state_index = self.binary_list_to_int(next_state)
-
-            # Step 2: Determine quality of next state
-            suggested_next_action = parrot.suggest(next_state)
-            if suggested_next_action is not None:
-                self.next_action = suggested_next_action
-            else:
-                next_q_row = self.Q_table[next_state_index]
-                next_exp_prob_row = np.exp(next_q_row / tau)
-                next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-                self.next_action = np.random.choice(range(self.N), p=next_prob_row)
-                next_state_quality = self.Q_table[next_state_index][self.next_action]
-
-            # Step 3: Determine the reward and update Q-table
-            reward = self.reality.payoff_map[next_state_index]
-            if reward:
-                self.performance = reward
-                self.steps = perform_step + 1
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
-                    action] + alpha * reward
-                self.initialize()
-                break
-            elif suggested_next_action is not None:
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
-                    action] + alpha * gamma * valence
-                self.state = next_state.copy()
-            else:
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
-                    action] + alpha * gamma * next_state_quality
-                self.state = next_state.copy()
-
-        if evaluation:
-            self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
-            self.knowledge_quality = self.get_Q_table_quality()
+    # def learn_with_fading_valence_parrot(self, tau=20.0, alpha=0.8, gamma=0.9,
+    #                              initial_valence=50, parrot=None,
+    #                              evaluation=False, decay_rate=0.05, valence_floor=10):
+    #     self.initialize()
+    #     for perform_step in range(self.max_step):
+    #         # Compute current valence via exponential decay
+    #         valence = max(initial_valence * np.exp(-decay_rate * perform_step), valence_floor)
+    #
+    #         cur_state_index = self.binary_list_to_int(self.state)
+    #         q_row = self.Q_table[cur_state_index]
+    #
+    #         # Step 1: Determine the current action
+    #         suggested_action = parrot.suggest(self.state)
+    #         if suggested_action:
+    #             action = suggested_action
+    #         else:
+    #             if self.next_action:
+    #                 action = self.next_action
+    #             else:
+    #                 exp_prob_row = np.exp(q_row / tau)
+    #                 prob_row = exp_prob_row / np.sum(exp_prob_row)
+    #                 action = np.random.choice(range(self.N), p=prob_row)
+    #
+    #         self.search_trajectory.append([cur_state_index, action])
+    #         next_state = self.state.copy()
+    #         next_state[action] = 1 - self.state[action]  # flip bit
+    #         next_state_index = self.binary_list_to_int(next_state)
+    #
+    #         # Step 2: Determine quality of next state
+    #         suggested_next_action = parrot.suggest(next_state)
+    #         if suggested_next_action is not None:
+    #             self.next_action = suggested_next_action
+    #         else:
+    #             next_q_row = self.Q_table[next_state_index]
+    #             next_exp_prob_row = np.exp(next_q_row / tau)
+    #             next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+    #             self.next_action = np.random.choice(range(self.N), p=next_prob_row)
+    #             next_state_quality = self.Q_table[next_state_index][self.next_action]
+    #
+    #         # Step 3: Determine the reward and update Q-table
+    #         reward = self.reality.payoff_map[next_state_index]
+    #         if reward:
+    #             self.performance = reward
+    #             self.steps = perform_step + 1
+    #             self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
+    #                 action] + alpha * reward
+    #             self.initialize()
+    #             break
+    #         elif suggested_next_action is not None:
+    #             self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
+    #                 action] + alpha * gamma * valence
+    #             self.state = next_state.copy()
+    #         else:
+    #             self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
+    #                 action] + alpha * gamma * next_state_quality
+    #             self.state = next_state.copy()
+    #
+    #     if evaluation:
+    #         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+    #         self.knowledge_quality = self.get_Q_table_quality()
 
     def learn_with_dynamic_trust_parrot(self, tau=20.0, alpha=0.8, gamma=0.9,
                                        valence=50, parrot=None, evaluation=False,
-                                       initial_trust=1.0, trust_decay_rate=0.01, trust_floor=0.1):
+                                       trust=1.0):
         self.initialize()
         for perform_step in range(self.max_step):
-            # Compute current trust probability
-            current_trust = max(initial_trust * np.exp(-trust_decay_rate * perform_step), trust_floor)
-
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
 
-            # Step 1: Possibly follow parrot suggestion based on fading trust
+            # Step 1: Decide action with trust modulation
+            trust_flag = False
             suggested_action = parrot.suggest(self.state)
-            if suggested_action and np.random.rand() < current_trust:
+            if suggested_action is not None and np.random.rand() < trust:
                 action = suggested_action
-            else:
-                if self.next_action:
+                trust_flag = True
+            else:  # only if no trust, turn to internally recorded next action
+                if self.next_action is not None:
                     action = self.next_action
                 else:
                     exp_prob_row = np.exp(q_row / tau)
@@ -241,9 +240,9 @@ class Agent:
             next_state[action] = 1 - self.state[action]
             next_state_index = self.binary_list_to_int(next_state)
 
-            # Step 2: Prepare next_action suggestion
+            # Step 2: Decide next_action with trust modulation
             suggested_next_action = parrot.suggest(next_state)
-            if suggested_next_action is not None and np.random.rand() < current_trust:
+            if suggested_next_action is not None and trust_flag is True:
                 self.next_action = suggested_next_action
             else:
                 next_q_row = self.Q_table[next_state_index]
@@ -261,11 +260,12 @@ class Agent:
                     action] + alpha * reward
                 self.initialize()
                 break
-            elif suggested_next_action is not None and np.random.rand() < current_trust:
+            elif suggested_next_action is not None and trust_flag is True:
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
                     action] + alpha * gamma * valence
                 self.state = next_state.copy()
             else:
+                # without trust on external parrots, relying on internal evaluation
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
                     action] + alpha * gamma * next_state_quality
                 self.state = next_state.copy()
