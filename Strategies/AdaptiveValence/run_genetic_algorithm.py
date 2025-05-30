@@ -21,8 +21,8 @@ def func(agent_num=None, decay_rate=None, loop=None, return_dict=None, sema=None
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    learning_length = 100
-    population_size = 100
+    learning_length = 300
+    population_size = 200
     valence_bounds = (0, 50)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
@@ -50,7 +50,7 @@ def func(agent_num=None, decay_rate=None, loop=None, return_dict=None, sema=None
                 for _ in range(episodes_per_block):
                     agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma,
                                             valence=valence_population[i], parrot=parrot, evaluation=False)
-                fitness_list.append(1 / agent.steps if agent.steps > 0 else 1e6)
+                fitness_list.append(1 / (agent.steps + 1e-6))
 
             # GA: selection, crossover, mutation
             fitness_array = np.array(fitness_list)
@@ -72,12 +72,14 @@ def func(agent_num=None, decay_rate=None, loop=None, return_dict=None, sema=None
             valence_population[mutation_mask] += np.random.normal(0, 5, size=np.sum(mutation_mask))
             valence_population = np.clip(valence_population, valence_bounds[0], valence_bounds[1])
 
-        # Save the best valence of the block
-        best_index = np.argmax(fitness_list)
-        best_valence = valence_population[best_index]
+        # Select top-k indices based on fitness
+        top_k = 5
+        top_indices = np.argsort(fitness_list)[-top_k:]
+        top_valences = valence_population[top_indices]
+        best_valence = np.mean(top_valences)
         valence_evolution.append(best_valence)
 
-        # Advance Q-table state for agents with best valence found
+        # Advance Q-table state for agents with the best valence found
         for i, agent in enumerate(agents_list):
             agent.Q_table = copy.deepcopy(q_table_snapshots[i])
             for _ in range(episodes_per_block):
@@ -85,7 +87,7 @@ def func(agent_num=None, decay_rate=None, loop=None, return_dict=None, sema=None
                                         valence=best_valence, parrot=parrot, evaluation=False)
             q_table_snapshots[i] = copy.deepcopy(agent.Q_table)
 
-    return_dict[loop] = [pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality]
+    return_dict[loop] = [valence_evolution]
     sema.release()
 
 
@@ -96,33 +98,31 @@ if __name__ == '__main__':
     concurrency = 50
     agent_num = 100
     repetition = 100
-    decay_rate_list = [0.01, 0.03, 0.05]
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
-    for decay_rate in decay_rate_list:
-        with mp.Manager() as manager:  # immediate memory cleanup
-            jobs = []
-            return_dict = manager.dict()
-            sema = Semaphore(concurrency)
+    with mp.Manager() as manager:  # immediate memory cleanup
+        jobs = []
+        return_dict = manager.dict()
+        sema = Semaphore(concurrency)
 
-            for loop in range(repetition):
-                sema.acquire()
-                p = mp.Process(target=func, args=(agent_num, decay_rate, loop, return_dict, sema))
-                jobs.append(p)
-                p.start()
+        for loop in range(repetition):
+            sema.acquire()
+            p = mp.Process(target=func, args=(agent_num, loop, return_dict, sema))
+            jobs.append(p)
+            p.start()
 
-            for proc in jobs:
-                proc.join()
+        for proc in jobs:
+            proc.join()
 
-            results = return_dict.values()
-            pair_performance = sum([result[0] for result in results]) / repetition
-            pair_knowledge = sum([result[1] for result in results]) / repetition
-            pair_steps = sum([result[2] for result in results]) / repetition
-            pair_knowledge_quality = sum([result[3] for result in results]) / repetition
+        results = return_dict.values()
+        pair_performance = sum([result[0] for result in results]) / repetition
+        pair_knowledge = sum([result[1] for result in results]) / repetition
+        pair_steps = sum([result[2] for result in results]) / repetition
+        pair_knowledge_quality = sum([result[3] for result in results]) / repetition
 
-        pair_performance_across_episodes.append(pair_performance)
-        pair_knowledge_across_episodes.append(pair_knowledge)
-        pair_steps_across_episodes.append(pair_steps)
-        pair_knowledge_quality_across_episodes.append(pair_knowledge_quality)
+    pair_performance_across_episodes.append(pair_performance)
+    pair_knowledge_across_episodes.append(pair_knowledge)
+    pair_steps_across_episodes.append(pair_steps)
+    pair_knowledge_quality_across_episodes.append(pair_knowledge_quality)
 
     with open("pair_performance_across_decay_valence", 'wb') as out_file:
         pickle.dump(pair_performance_across_episodes, out_file)

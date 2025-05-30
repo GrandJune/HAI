@@ -12,9 +12,9 @@
       <sourceFolder url="file://$MODULE_DIR$/Accuracy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Valence" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Strategies/FadingValence" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies/IncreasingTrust" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Turbulence" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveValence" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (base) (2)" jdkType="Python SDK" />
