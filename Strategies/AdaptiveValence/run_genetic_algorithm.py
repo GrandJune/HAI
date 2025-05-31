@@ -21,13 +21,13 @@ def func(loop=None, return_dict=None, sema=None):
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    learning_length = 300
-    population_size = 200
+    learning_length = 200
+    population_size = 100
     valence_bounds = (0, 50)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10 # add more local peaks to increase complexity
-    generation_per_block = 100
+    generation_per_block = 20
     episodes_per_block = 10
 
     # Initialize reality and parrot; fixed
