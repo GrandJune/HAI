@@ -22,12 +22,12 @@ def func(loop=None, return_dict=None, sema=None):
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     learning_length = 200
-    population_size = 100
+    population_size = 200
     valence_bounds = (0, 50)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10 # add more local peaks to increase complexity
-    generation_per_block = 20
+    generation_per_block = 40
     episodes_per_block = 10
 
     # Initialize reality and parrot; fixed

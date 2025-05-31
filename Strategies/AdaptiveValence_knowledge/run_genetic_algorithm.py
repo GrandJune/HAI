@@ -21,13 +21,13 @@ def func(loop=None, return_dict=None, sema=None):
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    learning_length = 200
-    population_size = 100
+    learning_length = 300
+    population_size = 200
     valence_bounds = (0, 50)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10 # add more local peaks to increase complexity
-    generation_per_block = 20
+    generation_per_block = 40
     episodes_per_block = 10
 
     # Initialize reality and parrot; fixed
@@ -50,7 +50,7 @@ def func(loop=None, return_dict=None, sema=None):
                 for _ in range(episodes_per_block):
                     agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma,
                                             valence=valence_population[i], parrot=parrot, evaluation=False)
-                fitness_list.append(1 / (agent.steps + 1e-6))
+                fitness_list.append(agent.knowledge)
 
             # GA: selection, crossover, mutation
             fitness_array = np.array(fitness_list)
