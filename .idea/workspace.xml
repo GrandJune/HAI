@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Parrot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Reality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Results.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/run_genetic_algorithm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/slurm_run_genetic_algorithm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Parrot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Reality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Results.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/run_genetic_algorithm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/slurm_run_genetic_algorithm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/run_genetic_algorithm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,48 +69,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Python.Agent (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Agent (2).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Agent.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Bayesian.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Organization.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Parrot (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Parrot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Q_learning (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Q_learning (2).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Q_learning (3).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Q_learning.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Reality (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Reality.executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.Test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.run_baseline.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Python_Workplace/HAI/Strategies/AdaptiveValence&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.Agent (1).executor": "Run",
+    "Python.Agent (2).executor": "Run",
+    "Python.Agent.executor": "Run",
+    "Python.Bayesian.executor": "Run",
+    "Python.Organization.executor": "Run",
+    "Python.Parrot (1).executor": "Run",
+    "Python.Parrot.executor": "Run",
+    "Python.Q_learning (1).executor": "Run",
+    "Python.Q_learning (2).executor": "Run",
+    "Python.Q_learning (3).executor": "Run",
+    "Python.Q_learning.executor": "Run",
+    "Python.Reality (1).executor": "Run",
+    "Python.Reality.executor": "Run",
+    "Python.Test (1).executor": "Run",
+    "Python.Test.executor": "Run",
+    "Python.run_baseline.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "E:/Python_Workplace/HAI/Strategies",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Python_Workplace\HAI\Strategies" />
       <recent name="E:\Python_Workplace\HAI\Strategies\AdaptiveValence" />
       <recent name="E:\Python_Workplace\HAI\Strategies\AdaptiveTrust" />
       <recent name="E:\Python_Workplace\HAI\Accuracy" />
       <recent name="E:\Python_Workplace\HAI\Coverage" />
-      <recent name="E:\Python_Workplace\HAI\Parrots" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Parrots" />
@@ -294,15 +306,7 @@
       <workItem from="1747836250902" duration="8375000" />
       <workItem from="1748006518865" duration="64666000" />
       <workItem from="1748606942196" duration="4570000" />
-      <workItem from="1748674796408" duration="5903000" />
-    </task>
-    <task id="LOCAL-00048" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1745499343858</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1745499343858</updated>
+      <workItem from="1748674796408" duration="6116000" />
     </task>
     <task id="LOCAL-00049" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -688,7 +692,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748675462240</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748695190082</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1748695190082</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
