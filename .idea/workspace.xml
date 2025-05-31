@@ -5,22 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Agent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Parrot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Reality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Results.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/run_genetic_algorithm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/slurm_run_genetic_algorithm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Agent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Parrot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Reality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Results.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/run_genetic_algorithm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/slurm_run_genetic_algorithm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Parrot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/run_genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Parrot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/run_genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,15 +305,7 @@
       <workItem from="1747836250902" duration="8375000" />
       <workItem from="1748006518865" duration="64666000" />
       <workItem from="1748606942196" duration="4570000" />
-      <workItem from="1748674796408" duration="6116000" />
-    </task>
-    <task id="LOCAL-00049" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1745588725046</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1745588725046</updated>
+      <workItem from="1748674796408" duration="6398000" />
     </task>
     <task id="LOCAL-00050" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -700,7 +691,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748695190082</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748695373047</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1748695373047</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
