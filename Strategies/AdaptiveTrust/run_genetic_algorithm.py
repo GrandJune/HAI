@@ -21,13 +21,13 @@ def func(loop=None, return_dict=None, sema=None):
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    learning_length = 200
+    learning_length = 300
     population_size = 100
     trust_bounds = (0.0, 1.0)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10 # add more local peaks to increase complexity
-    generation_per_block = 20
+    generation_per_block = 30
     episodes_per_block = 10
 
     # Initialize reality and parrot; fixed
@@ -96,7 +96,7 @@ def func(loop=None, return_dict=None, sema=None):
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    repetition = 50
+    repetition = 100
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     with mp.Manager() as manager:  # immediate memory cleanup
         jobs = []
