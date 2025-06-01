@@ -21,7 +21,7 @@ def func(loop=None, return_dict=None, sema=None):
     tau = 20  # temperature parameter
     alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
-    learning_length = 300
+    learning_length = 200
     population_size = 200
     trust_bounds = (0.0, 1.0)
     mutation_rate = 0.1
@@ -69,7 +69,7 @@ def func(loop=None, return_dict=None, sema=None):
 
             # Mutation
             mutation_mask = np.random.rand(population_size) < mutation_rate
-            trust_population[mutation_mask] += np.random.normal(0, 0.1, size=np.sum(mutation_mask))
+            trust_population[mutation_mask] += np.random.normal(-0.1, 0.1, size=np.sum(mutation_mask))
             trust_population = np.clip(trust_population, trust_bounds[0], trust_bounds[1])
 
         # Select top-k indices based on fitness
