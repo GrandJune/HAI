@@ -23,13 +23,15 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10
+    turbulence_freq = 50
+    turbulence_intensity = 0.3
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            if episode % 100 == 0:
-                reality.change(likelihood=0.1)  # will also update the reality of agents
+            if episode % turbulence_freq == 0:
+                reality.change(likelihood=turbulence_intensity)  # will also update the reality of agents
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
         agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
         organic_performance_list.append(agent.performance)
@@ -48,8 +50,8 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            if episode % 100 == 0:
-                reality.change(likelihood=0.1)  # will also update the reality of parrot and pair_agents
+            if episode % turbulence_freq == 0:
+                reality.change(likelihood=turbulence_intensity)  # will also update the reality of parrot and pair_agents
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
         pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
         pair_performance_list.append(pair_agent.performance)

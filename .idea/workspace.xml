@@ -6,18 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -304,15 +294,7 @@
       <workItem from="1748006518865" duration="64666000" />
       <workItem from="1748606942196" duration="4570000" />
       <workItem from="1748674796408" duration="9089000" />
-      <workItem from="1748766334054" duration="3585000" />
-    </task>
-    <task id="LOCAL-00053" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1746768125164</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1746768125164</updated>
+      <workItem from="1748766334054" duration="4728000" />
     </task>
     <task id="LOCAL-00054" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -698,7 +680,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748700884302</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748782525253</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1748782525253</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
