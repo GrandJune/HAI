@@ -7,5 +7,5 @@
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
-#SBATCH --nodelist=xcnf16
+#SBATCH --nodelist=xcnf6
 python run_genetic_algorithm.py
