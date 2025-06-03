@@ -5,28 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/Agent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/Parrot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/Reality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/Results.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/run_baseline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/slurm_run_baseline" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coverage/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/run_genetic_algorithm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Turbulence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/run_baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/slurm_run_baseline" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence_turbulence_0.6_coverage_0.6/run_baseline.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,15 +296,7 @@
       <workItem from="1748606942196" duration="4570000" />
       <workItem from="1748674796408" duration="9089000" />
       <workItem from="1748766334054" duration="8911000" />
-      <workItem from="1748870874651" duration="3249000" />
-    </task>
-    <task id="LOCAL-00056" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1747120253319</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1747120253319</updated>
+      <workItem from="1748870874651" duration="3709000" />
     </task>
     <task id="LOCAL-00057" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -708,7 +682,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748784046112</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748915898241</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1748915898242</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
