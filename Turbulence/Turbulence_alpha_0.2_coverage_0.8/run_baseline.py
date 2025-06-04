@@ -45,7 +45,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     organic_knowledge_quality = sum(organic_knowledge_quality_list) / agent_num
 
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-    parrot = Parrot(N=N, reality=reality, coverage=1, accuracy=1.0)
+    parrot = Parrot(N=N, reality=reality, coverage=0.8, accuracy=1.0)
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
