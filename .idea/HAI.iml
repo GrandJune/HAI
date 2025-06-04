@@ -17,7 +17,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveValence" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveTrust_knowledge" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveValence_knowledge" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Turbulence_turbulence_0.6_coverage_0.2_alpha_0.2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.2_alpha_0.2" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.8 (base) (2)" jdkType="Python SDK" />
