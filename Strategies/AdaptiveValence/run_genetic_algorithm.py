@@ -48,8 +48,8 @@ def func(loop=None, return_dict=None, sema=None):
                 agent.Q_table = copy.deepcopy(q_table_snapshots[i])  # Reset Q-table to prior state
                 agent.performance = 0
                 for _ in range(episodes_per_block):
-                    agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma,
-                                            valence=valence_population[i], parrot=parrot, evaluation=False)
+                    agent.learn_with_dynamic_trust_parrot(tau=tau, alpha=alpha, gamma=gamma,
+                                            valence=valence_population[i], parrot=parrot, trust=0.5, evaluation=False)
                 fitness_list.append(1 / (agent.steps + 1e-6))
 
             # GA: selection, crossover, mutation
@@ -96,7 +96,7 @@ def func(loop=None, return_dict=None, sema=None):
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    repetition = 50
+    repetition = 100
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     with mp.Manager() as manager:  # immediate memory cleanup
         jobs = []

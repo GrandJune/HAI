@@ -23,22 +23,22 @@ def func(loop=None, return_dict=None, sema=None):
     gamma = 0.9 # discount factor
     learning_length = 200
     population_size = 200
-    valence_bounds = (-50, 50)
+    trust_bounds = (0.0, 1.0)
     mutation_rate = 0.1
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10 # add more local peaks to increase complexity
-    generation_per_block = 40
+    generation_per_block = 20
     episodes_per_block = 10
 
     # Initialize reality and parrot; fixed
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
     # Initial population and agents
-    valence_population = np.random.uniform(valence_bounds[0], valence_bounds[1], population_size)
+    trust_population = np.random.uniform(trust_bounds[0], trust_bounds[1], population_size)
     agents_list = [Agent(N=N, reality=reality) for _ in range(population_size)]
     # Storage
     q_table_snapshots = [copy.deepcopy(agent.Q_table) for agent in agents_list]
-    valence_evolution = []
+    trust_evolution = []
 
     for block in range(learning_length // episodes_per_block):
         for generation in range(generation_per_block):
@@ -47,15 +47,17 @@ def func(loop=None, return_dict=None, sema=None):
             for i, agent in enumerate(agents_list):
                 agent.Q_table = copy.deepcopy(q_table_snapshots[i])  # Reset Q-table to prior state
                 agent.performance = 0
+                performance_list = []
                 for _ in range(episodes_per_block):
                     agent.learn_with_dynamic_trust_parrot(tau=tau, alpha=alpha, gamma=gamma,
-                                            valence=valence_population[i], parrot=parrot, trust=0.5, evaluation=True)
-                fitness_list.append(agent.knowledge)
+                                            valence=50, parrot=parrot, evaluation=False, trust=trust_population[i])
+                    performance_list.append(agent.performance)
+                fitness_list.append(sum(performance_list) / len(performance_list))
 
             # GA: selection, crossover, mutation
             fitness_array = np.array(fitness_list)
             top_indices = np.argsort(fitness_array)[-population_size // 2:]  # top 50%
-            survivors = valence_population[top_indices]
+            survivors = trust_population[top_indices]
 
             # Crossover
             new_population = []
@@ -65,19 +67,19 @@ def func(loop=None, return_dict=None, sema=None):
                 child = crossover_point * parents[0] + (1 - crossover_point) * parents[1]
                 new_population.append(child)
 
-            valence_population = np.array(new_population)
+            trust_population = np.array(new_population)
 
             # Mutation
             mutation_mask = np.random.rand(population_size) < mutation_rate
-            valence_population[mutation_mask] += np.random.normal(-10, 10, size=np.sum(mutation_mask))
-            valence_population = np.clip(valence_population, valence_bounds[0], valence_bounds[1])
+            trust_population[mutation_mask] += np.random.normal(-0.1, 0.1, size=np.sum(mutation_mask))
+            trust_population = np.clip(trust_population, trust_bounds[0], trust_bounds[1])
 
         # Select top-k indices based on fitness
         top_k = 5
         top_indices = np.argsort(fitness_list)[-top_k:]
-        top_valences = valence_population[top_indices]
+        top_valences = trust_population[top_indices]
         best_valence = np.mean(top_valences)
-        valence_evolution.append(best_valence)
+        trust_evolution.append(best_valence)
 
         # Advance Q-table state for agents with the best valence found
         for i, agent in enumerate(agents_list):
@@ -87,7 +89,7 @@ def func(loop=None, return_dict=None, sema=None):
                                         valence=best_valence, parrot=parrot, evaluation=False)
             q_table_snapshots[i] = copy.deepcopy(agent.Q_table)
 
-    return_dict[loop] = [valence_evolution]
+    return_dict[loop] = [trust_evolution]
     sema.release()
 
 
@@ -96,7 +98,7 @@ def func(loop=None, return_dict=None, sema=None):
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    repetition = 100
+    repetition = 50
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     with mp.Manager() as manager:  # immediate memory cleanup
         jobs = []

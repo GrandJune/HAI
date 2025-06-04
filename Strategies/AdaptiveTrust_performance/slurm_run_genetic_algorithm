@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --time=3-00:00:00
-#SBATCH --job-name=Trust_2
+#SBATCH --job-name=Trust_1
 #SBATCH --mail-type=FAIL
 #SBATCH --mem=500gb
-#SBATCH --partition=normal
+#SBATCH --partition=long
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
-#SBATCH --nodelist=xcnf18
+#SBATCH --nodelist=xcnf15
 python run_genetic_algorithm.py

@@ -49,7 +49,7 @@ def func(loop=None, return_dict=None, sema=None):
                 agent.performance = 0
                 for _ in range(episodes_per_block):
                     agent.learn_with_dynamic_trust_parrot(tau=tau, alpha=alpha, gamma=gamma,
-                                            valence=50, parrot=parrot, evaluation=False, trust=trust_population[i])
+                                            valence=10, parrot=parrot, evaluation=False, trust=trust_population[i])
                 fitness_list.append(1 / (agent.steps + 1e-6))
 
             # GA: selection, crossover, mutation

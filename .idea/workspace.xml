@@ -5,13 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Parrot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Reality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Results.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/run_genetic_algorithm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_performance/slurm_run_genetic_algorithm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Parrot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Reality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Results.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/run_genetic_algorithm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_performance/slurm_run_genetic_algorithm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Parrot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Reality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Results.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/run_baseline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/slurm_run_baseline" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.9/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.9/Parrot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.9/Reality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.9/Results.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.9/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.9/run_baseline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.9/slurm_run_baseline" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accuracy/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/run_baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/run_genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust/slurm_run_genetic_algorithm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/run_genetic_algorithm.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveTrust_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_0.2_coverage_0.8/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_0.2_coverage_0.8/run_baseline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/run_genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence/slurm_run_genetic_algorithm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/run_genetic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/run_genetic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/slurm_run_genetic_algorithm" beforeDir="false" afterPath="$PROJECT_DIR$/Strategies/AdaptiveValence_knowledge/slurm_run_genetic_algorithm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_0.2/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_0.2/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_0.2_coverage_0.8/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_0.2_coverage_0.8/Results.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +133,8 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Turbulence" />
-      <recent name="E:\Python_Workplace\HAI" />
       <recent name="E:\Python_Workplace\HAI\Strategies" />
+      <recent name="E:\Python_Workplace\HAI" />
       <recent name="E:\Python_Workplace\HAI\Strategies\AdaptiveValence" />
       <recent name="E:\Python_Workplace\HAI\Strategies\AdaptiveTrust" />
     </key>
@@ -304,15 +339,7 @@
       <workItem from="1748870874651" duration="3728000" />
       <workItem from="1748916390594" duration="959000" />
       <workItem from="1748917459896" duration="5357000" />
-      <workItem from="1749026653896" duration="2434000" />
-    </task>
-    <task id="LOCAL-00064" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1747731111177</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1747731111177</updated>
+      <workItem from="1749026653896" duration="5546000" />
     </task>
     <task id="LOCAL-00065" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -698,7 +725,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749027059090</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1749038080169</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1749038080169</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
