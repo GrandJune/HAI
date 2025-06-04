@@ -19,7 +19,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     np.random.seed(None)
     N = 10 # problem dimension
     tau = 20  # temperature parameter
-    alpha = 0.8  # learning rate
+    alpha = 0.2  # learning rate
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10
@@ -45,7 +45,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     organic_knowledge_quality = sum(organic_knowledge_quality_list) / agent_num
 
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-    parrot = Parrot(N=N, reality=reality, coverage=0.5, accuracy=1.0)
+    parrot = Parrot(N=N, reality=reality, coverage=1, accuracy=1.0)
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
@@ -73,8 +73,8 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     agent_num = 100
-    repetition = 100
-    learning_length_list = [50, 100, 150, 200, 250, 300, 350, 400, 450]
+    repetition = 50
+    learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     for learning_length in learning_length_list:
