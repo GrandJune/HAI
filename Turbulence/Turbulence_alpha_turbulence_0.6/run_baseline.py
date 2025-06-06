@@ -19,12 +19,12 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     np.random.seed(None)
     N = 10 # problem dimension
     tau = 20  # temperature parameter
-    alpha = 0.2  # learning rate
+    alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10
     # turbulence_freq = 50
-    turbulence_intensity = 0.4
+    turbulence_intensity = 0.6
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
@@ -132,5 +132,15 @@ if __name__ == '__main__':
         pickle.dump(pair_knowledge_quality_across_episodes, out_file)
 
     t1 = time.time()
-    print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
+    duration = int(t1 - t0)
+
+    days = duration // 86400
+    hours = (duration % 86400) // 3600
+    minutes = (duration % 3600) // 60
+    seconds = duration % 60
+
+    if days > 0:
+        print(f"Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
+    else:
+        print(f"Duration: {hours:02}:{minutes:02}:{seconds:02}")
     print("Across Episodes", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time

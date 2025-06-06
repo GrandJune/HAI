@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --time=3-00:00:00
-#SBATCH --job-name=Valence_1
+#SBATCH --job-name=Turbulence
 #SBATCH --mail-type=FAIL
-#SBATCH --mem=500gb
+#SBATCH --mem=300gb
 #SBATCH --partition=long
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
-python run_genetic_algorithm.py
+python run_baseline.py

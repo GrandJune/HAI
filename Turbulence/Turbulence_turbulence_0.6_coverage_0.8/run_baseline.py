@@ -131,5 +131,15 @@ if __name__ == '__main__':
         pickle.dump(pair_knowledge_quality_across_episodes, out_file)
 
     t1 = time.time()
-    print(time.strftime("%H:%M:%S", time.gmtime(t1 - t0)))  # Duration
+    duration = int(t1 - t0)
+
+    days = duration // 86400
+    hours = (duration % 86400) // 3600
+    minutes = (duration % 3600) // 60
+    seconds = duration % 60
+
+    if days > 0:
+        print(f"Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
+    else:
+        print(f"Duration: {hours:02}:{minutes:02}:{seconds:02}")
     print("Across Episodes", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time

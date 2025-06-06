@@ -47,9 +47,9 @@ def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    agent_num = 100
+    agent_num = 200
     repetition = 100
-    learning_length = 100
+    learning_length = 300
     accuracy_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     for accuracy in accuracy_list:

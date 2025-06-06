@@ -24,7 +24,7 @@ def func(agent_num=None, learning_length=None, coverage=None, loop=None, return_
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10  # add more local peaks to increase complexity
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-    parrot = Parrot(N=N, reality=reality, coverage=coverage, accuracy=1.0)
+    parrot = Parrot(N=N, reality=reality, coverage=coverage, accuracy=0.2)
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
