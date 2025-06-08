@@ -79,39 +79,19 @@ class Agent:
             self.knowledge_quality = self.get_Q_table_quality()
 
     def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, valence=50, parrot=None, evaluation=False):
-        """
-        Learn with guidance from a parrot (AI assistant) that can suggest accurate actions.
-        An episode concludes when reaching a peak (local or global). Q-values are updated for
-        antecedent state-action pairs.
-
-        Args:
-            tau (float, optional): Temperature parameter that controls exploration vs exploitation. 
-                Higher values (e.g. 30) lead to more random exploration, lower values favor exploitation.
-                Defaults to 20.0.
-            alpha (float, optional): Learning rate that controls how much new information updates existing Q-values.
-                Defaults to 0.8.
-            gamma (float, optional): Discount factor that determines importance of future rewards.
-                A value of 0.9 was found optimal in Denrell (2004). Defaults to 0.9.
-
-        Each step:
-        1. Agent considers both its own preferred action and parrot's suggested action
-        2. If agent has knowledge (non-zero Q-value) for its preferred action, uses that
-        3. Otherwise defers to parrot's suggestion
-        4. Updates Q-values based on rewards and future state values
-        5. Episode ends upon reaching any peak
-        """
         self.initialize()
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
             # first examine whether AI advice is available
             suggested_action = parrot.suggest(self.state)
-            if suggested_action:
+            # if an input of state returns valid guidance, then that state is considered guided, and valence is assigned.
+            if suggested_action and (valence > max(q_row)):
                 action = suggested_action
             else:
                 if self.next_action:
                     action = self.next_action
-                else:
+                else:  # without guidance, conduct pure experiential search
                     exp_prob_row = np.exp(q_row / tau)
                     prob_row = exp_prob_row / np.sum(exp_prob_row)
                     action = np.random.choice(range(self.N), p=prob_row)
@@ -119,13 +99,13 @@ class Agent:
             next_state = self.state.copy()
             next_state[action] = 1 - self.state[action]  # flipping
             next_state_index = self.binary_list_to_int(next_state)
+            next_q_row = self.Q_table[next_state_index]
 
             suggested_next_action = parrot.suggest(next_state)
-            if suggested_next_action is not None:
+            if suggested_next_action is not None and (valence > max(next_q_row)):
                 self.next_action = suggested_next_action
-                # next state quality becomes the valence
+                next_state_quality = valence
             else:
-                next_q_row = self.Q_table[next_state_index]
                 next_exp_prob_row = np.exp(next_q_row / tau)
                 next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
                 self.next_action = np.random.choice(range(self.N), p=next_prob_row)
@@ -138,12 +118,7 @@ class Agent:
                 # Re-initialize
                 self.initialize()
                 break
-            elif suggested_next_action is not None:  # with clue from parrot
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * valence
-                # Sequential search
-                self.state = next_state.copy()
-                # next_action already recorded
-            else:  # without clue from parrot
+            else:  # without guidance from parrot
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
                 self.state = next_state.copy()
                 # next_action already recorded

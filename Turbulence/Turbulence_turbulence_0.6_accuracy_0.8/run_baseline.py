@@ -5,7 +5,7 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-from Agent import Agent
+from Agent_turbulence import Agent
 from Parrot import Parrot
 import multiprocessing as mp
 import time
@@ -19,11 +19,10 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     np.random.seed(None)
     N = 10 # problem dimension
     tau = 20  # temperature parameter
-    alpha = 0.2  # learning rate
+    alpha = 0.8  # learning rate
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10
-    # turbulence_freq = 50
     turbulence_intensity = 0.6
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
@@ -45,7 +44,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     organic_knowledge_quality = sum(organic_knowledge_quality_list) / agent_num
 
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-    parrot = Parrot(N=N, reality=reality, coverage=0.2, accuracy=0.6)
+    parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=0.8)
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
