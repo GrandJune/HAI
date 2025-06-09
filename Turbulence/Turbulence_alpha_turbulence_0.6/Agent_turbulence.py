@@ -86,7 +86,7 @@ class Agent:
             # first examine whether AI advice is available
             suggested_action = parrot.suggest(self.state)
             # if an input of state returns valid guidance, then that state is considered guided, and valence is assigned.
-            if suggested_action and (valence > max(q_row)):
+            if suggested_action:
                 action = suggested_action
             else:
                 if self.next_action:
@@ -102,7 +102,7 @@ class Agent:
             next_q_row = self.Q_table[next_state_index]
 
             suggested_next_action = parrot.suggest(next_state)
-            if suggested_next_action is not None and (valence > max(next_q_row)):
+            if suggested_next_action is not None:
                 self.next_action = suggested_next_action
                 next_state_quality = valence
             else:
@@ -368,18 +368,22 @@ if __name__ == '__main__':
     from Parrot import Parrot
     repeat = 1
     reward_list, step_list = [], []
-    reality = Reality(N=10, global_peak=50, local_peaks=[10, 10])
+    reality = Reality(N=10, global_peak_value=50, local_peak_value=10)
     parrot = Parrot(N=10, reality=reality, coverage=1.0, accuracy=1.0)
 
     agent = Agent(N=10, reality=reality)
-    for _ in range(300):
-        agent.learn_with_parrot(tau=20, alpha=0.8, gamma=0.9, trust=1.0, valence=50, parrot=parrot)
-    agent.get_Q_table_quality()
+    for index in range(300):
+        agent.learn_with_parrot(tau=20, alpha=0.8, gamma=0.9, valence=50, parrot=parrot)
+        if index % 100 == 0:
+            agent.visualize_1()
+            flat_list = [item for sublist in agent.Q_table for item in sublist]
+            top_10 = sorted(flat_list, reverse=True)[:10]
+            print(top_10)
 
-    agent_2 = Agent(N=10, reality=reality)
-    for _ in range(300):
-        agent_2.learn(tau=20, alpha=0.8, gamma=0.9)
-    agent_2.get_Q_table_quality()
+    # agent_2 = Agent(N=10, reality=reality)
+    # for _ in range(300):
+    #     agent_2.learn(tau=20, alpha=0.8, gamma=0.9)
+    # agent_2.get_Q_table_quality()
 
 
     # if agent.performance == 50:

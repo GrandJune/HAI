@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Accuracy/Agent_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Accuracy/run_baseline_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Accuracy/slurm_run_baseline_turbulence" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Coverage/Agent_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Coverage/run_baseline_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Coverage/slurm_run_baseline_turbulence" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parrots/Agent_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parrots/run_baseline_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Parrots/slurm_run_baseline_turbulence" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Results.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +63,7 @@
     "Python.Agent (1).executor": "Run",
     "Python.Agent (2).executor": "Run",
     "Python.Agent.executor": "Run",
+    "Python.Agent_turbulence.executor": "Run",
     "Python.Bayesian.executor": "Run",
     "Python.Organization.executor": "Run",
     "Python.Parrot (1).executor": "Run",
@@ -112,8 +107,8 @@
       <recent name="E:\Python_Workplace\HAI\Parrots" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Reality (1)">
-    <configuration name="Parrot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Agent_turbulence">
+    <configuration name="Agent_turbulence" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HAI" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -122,12 +117,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Accuracy" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Accuracy/Parrot.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Agent_turbulence.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -230,11 +225,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Agent_turbulence" />
         <item itemvalue="Python.Reality (1)" />
         <item itemvalue="Python.Test (1)" />
         <item itemvalue="Python.Reality" />
         <item itemvalue="Python.run_baseline" />
-        <item itemvalue="Python.Parrot (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -311,6 +306,7 @@
       <workItem from="1749041937210" duration="2082000" />
       <workItem from="1749191687246" duration="27018000" />
       <workItem from="1749387758962" duration="1809000" />
+      <workItem from="1749476069765" duration="3528000" />
     </task>
     <task id="LOCAL-00072" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -730,6 +726,7 @@
     <SUITE FILE_PATH="coverage/HAI$Agent__2_.coverage" NAME="Agent (2) Coverage Results" MODIFIED="1747489170321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Coverage" />
     <SUITE FILE_PATH="coverage/HAI$Agent__1_.coverage" NAME="Agent (1) Coverage Results" MODIFIED="1746429478209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Parrot__1_.coverage" NAME="Parrot (1) Coverage Results" MODIFIED="1747729299155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Accuracy" />
+    <SUITE FILE_PATH="coverage/HAI$Agent_turbulence.coverage" NAME="Agent_turbulence Coverage Results" MODIFIED="1749476818053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6" />
     <SUITE FILE_PATH="coverage/HAI$Q_learning__1_.coverage" NAME="Q_learning (1) Coverage Results" MODIFIED="1744364056831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fang2009" />
     <SUITE FILE_PATH="coverage/HAI$run_baseline.coverage" NAME="run_baseline Coverage Results" MODIFIED="1747744936385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Valence" />
   </component>
