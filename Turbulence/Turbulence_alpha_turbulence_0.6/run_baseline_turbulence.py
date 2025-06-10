@@ -24,7 +24,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10
     # turbulence_freq = 50
-    turbulence_intensity = 0.6
+    turbulence_intensity = 0.4
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
     organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):

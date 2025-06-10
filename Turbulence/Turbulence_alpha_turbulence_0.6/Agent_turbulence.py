@@ -44,12 +44,9 @@ class Agent:
         for perform_step in range(self.max_step):
             cur_state_index = self.binary_list_to_int(self.state)
             q_row = self.Q_table[cur_state_index]
-            if self.next_action:
-                action = self.next_action
-            else:
-                exp_prob_row = np.exp(q_row / tau)
-                prob_row = exp_prob_row / np.sum(exp_prob_row)
-                action = np.random.choice(range(self.N), p=prob_row)
+            exp_prob_row = np.exp(q_row / tau)
+            prob_row = exp_prob_row / np.sum(exp_prob_row)
+            action = np.random.choice(range(self.N), p=prob_row)
             self.search_trajectory.append([cur_state_index, action])
             next_state = self.state.copy()
             if action < self.N:
@@ -72,7 +69,6 @@ class Agent:
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
                 # Sequential search
                 self.state = next_state.copy()
-                self.next_action = next_action
 
         if evaluation:
             self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
@@ -86,30 +82,20 @@ class Agent:
             # first examine whether AI advice is available
             suggested_action = parrot.suggest(self.state)
             # if an input of state returns valid guidance, then that state is considered guided, and valence is assigned.
-            if suggested_action:
-                action = suggested_action
-            else:
-                if self.next_action:
-                    action = self.next_action
-                else:  # without guidance, conduct pure experiential search
-                    exp_prob_row = np.exp(q_row / tau)
-                    prob_row = exp_prob_row / np.sum(exp_prob_row)
-                    action = np.random.choice(range(self.N), p=prob_row)
+            if suggested_action is not None:
+                # assign valence to the guided state-action pair
+                temp_action_q = self.Q_table[cur_state_index][suggested_action]
+                self.Q_table[cur_state_index][suggested_action] = valence
+            exp_prob_row = np.exp(q_row / tau)
+            prob_row = exp_prob_row / np.sum(exp_prob_row)
+            action = np.random.choice(range(self.N), p=prob_row)
+            if suggested_action is not None and action != suggested_action:
+                # roll back if not adopted
+                self.Q_table[cur_state_index][suggested_action] = temp_action_q
             self.search_trajectory.append([cur_state_index, action])
             next_state = self.state.copy()
             next_state[action] = 1 - self.state[action]  # flipping
             next_state_index = self.binary_list_to_int(next_state)
-            next_q_row = self.Q_table[next_state_index]
-
-            suggested_next_action = parrot.suggest(next_state)
-            if suggested_next_action is not None:
-                self.next_action = suggested_next_action
-                next_state_quality = valence
-            else:
-                next_exp_prob_row = np.exp(next_q_row / tau)
-                next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-                self.next_action = np.random.choice(range(self.N), p=next_prob_row)
-                next_state_quality = self.Q_table[next_state_index][self.next_action]
             reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
             if reward:  # peak
                 self.performance = reward
@@ -119,9 +105,18 @@ class Agent:
                 self.initialize()
                 break
             else:  # without guidance from parrot
+                # the next proper action; to calculate the quality of the next state
+                next_suggestion = parrot.suggest(next_state)
+                if next_suggestion is not None:
+                    next_state_quality = valence
+                else:
+                    next_q_row = self.Q_table[next_state_index]
+                    next_exp_prob_row = np.exp(next_q_row / tau)
+                    next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+                    next_action = np.random.choice(range(self.N), p=next_prob_row)
+                    next_state_quality = self.Q_table[next_state_index][next_action]
                 self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
                 self.state = next_state.copy()
-                # next_action already recorded
 
         if evaluation:
             self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
