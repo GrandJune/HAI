@@ -23,13 +23,16 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10
+    # turbulence_freq = 50
+    turbulence_intensity = 0.4
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-    parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
     organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
+        # after learning: change the reality
+        reality.change(likelihood=turbulence_intensity)
         agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
@@ -41,11 +44,15 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     organic_steps = sum(organic_steps_list) / agent_num
     organic_knowledge_quality = sum(organic_knowledge_quality_list) / agent_num
 
+    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+    parrot = Parrot(N=N, reality=reality, coverage=1, accuracy=1.0)
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length - 1):
+        for episode in range(learning_length):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
+        # after learning: change the reality
+        reality.change(likelihood=turbulence_intensity)
         pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
@@ -67,7 +74,8 @@ if __name__ == '__main__':
     concurrency = 50
     agent_num = 100
     repetition = 50
-    learning_length_list = [50, 100, 150, 200, 250, 300, 350]
+    # learning_length_list = [50, 100, 150, 200, 250, 300, 350]
+    learning_length_list = [250, 300, 350]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     for learning_length in learning_length_list:
