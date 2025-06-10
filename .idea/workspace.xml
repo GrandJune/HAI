@@ -5,24 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Agent_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Parrot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Reality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Results.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/run_baseline_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/slurm_run_baseline" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/run_baseline_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/slurm_run_baseline_turbulence" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/slurm_run_baseline_turbulence" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Agent_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/run_baseline_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/slurm_run_baseline" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Parrot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/run_baseline_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/slurm_run_baseline" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +71,6 @@
     "Python.Agent (1).executor": "Run",
     "Python.Agent (2).executor": "Run",
     "Python.Agent.executor": "Run",
-    "Python.Agent_turbulence.executor": "Run",
     "Python.Bayesian.executor": "Run",
     "Python.Organization.executor": "Run",
     "Python.Parrot (1).executor": "Run",
@@ -86,7 +79,6 @@
     "Python.Q_learning (2).executor": "Run",
     "Python.Q_learning (3).executor": "Run",
     "Python.Q_learning.executor": "Run",
-    "Python.Reality (1).executor": "Run",
     "Python.Reality.executor": "Run",
     "Python.Test (1).executor": "Run",
     "Python.Test.executor": "Run",
@@ -97,7 +89,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "E:/Python_Workplace/HAI/Turbulence",
+    "last_opened_file_path": "/Users/junyi/Documents/GitHub/HAI/Turbulence/Turbulence_alpha_turbulence_0.4_1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -109,20 +101,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Python_Workplace\HAI\Turbulence" />
-      <recent name="E:\Python_Workplace\HAI\Parrots" />
+      <recent name="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1" />
       <recent name="E:\Python_Workplace\HAI\Accuracy" />
       <recent name="E:\Python_Workplace\HAI\Coverage" />
-      <recent name="E:\Python_Workplace\HAI\Turbulence\Turbulence_turbulence_0.6_coverage_0.8" />
+      <recent name="E:\Python_Workplace\HAI\Parrots" />
+      <recent name="E:\Python_Workplace\HAI\Valence" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Python_Workplace\HAI\Turbulence\Turbulence_alpha_0.2" />
-      <recent name="E:\Python_Workplace\HAI\Turbulence" />
       <recent name="E:\Python_Workplace\HAI\Parrots" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Agent_turbulence">
-    <configuration name="Agent_turbulence" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Test (1)">
+    <configuration name="Agent (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HAI" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -131,12 +121,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Coverage" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6/Agent_turbulence.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Coverage/Agent.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -145,7 +135,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Reality (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Parrot (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HAI" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,12 +144,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Parrots" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Accuracy" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Parrots/Reality.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Accuracy/Parrot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -182,7 +172,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="E:\Python_Workplace\HAI\Turbulence\Turbulence_alpha_0.2\Reality.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Turbulence/Reality.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -239,11 +229,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Agent_turbulence" />
-        <item itemvalue="Python.Reality (1)" />
         <item itemvalue="Python.Test (1)" />
         <item itemvalue="Python.Reality" />
         <item itemvalue="Python.run_baseline" />
+        <item itemvalue="Python.Parrot (1)" />
+        <item itemvalue="Python.Agent (2)" />
       </list>
     </recent_temporary>
   </component>
@@ -309,19 +299,327 @@
       <workItem from="1747484707624" duration="12469000" />
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
-      <workItem from="1748006518865" duration="64666000" />
-      <workItem from="1748606942196" duration="4570000" />
-      <workItem from="1748674796408" duration="9089000" />
-      <workItem from="1748766334054" duration="8911000" />
-      <workItem from="1748870874651" duration="3728000" />
-      <workItem from="1748916390594" duration="959000" />
-      <workItem from="1748917459896" duration="5357000" />
-      <workItem from="1749026653896" duration="5564000" />
-      <workItem from="1749041937210" duration="2082000" />
-      <workItem from="1749191687246" duration="27018000" />
-      <workItem from="1749387758962" duration="1809000" />
-      <workItem from="1749476069765" duration="11015000" />
-      <workItem from="1749552675629" duration="1717000" />
+      <workItem from="1748006518865" duration="45917000" />
+    </task>
+    <task id="LOCAL-00035" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1744294566196</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1744294566196</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1744294593768</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1744294593768</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1744362611370</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1744362611371</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1744892760079</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1744892760080</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1744976178747</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1744976178747</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1744979324660</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1744979324660</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745067671912</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1745067671912</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745143324379</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1745143324379</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745154271596</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1745154271596</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745222522912</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1745222522912</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745325781771</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1745325781771</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745326819732</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1745326819732</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745327698695</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1745327698695</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745499343858</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1745499343858</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745588725046</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1745588725046</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1745842603225</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1745842603225</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1746015034930</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1746015034930</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1746106586622</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1746106586623</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1746768125164</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1746768125164</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747036160129</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1747036160130</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747119619179</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1747119619179</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747120253319</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1747120253319</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747483082561</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1747483082561</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747485033281</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1747485033282</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747490355308</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1747490355308</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747654997097</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1747654997097</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747655553585</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1747655553585</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747657900846</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1747657900846</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747658565557</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1747658565557</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747731111177</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1747731111177</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747740561245</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1747740561246</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747742220801</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1747742220802</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747745095333</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1747745095333</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747988708309</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1747988708309</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1747988814788</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1747988814788</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748001957003</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1748001957003</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748075655492</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1748075655492</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748075928362</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1748075928362</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748093344304</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1748093344304</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1748240598082</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1748240598082</updated>
     </task>
     <task id="LOCAL-00075" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -395,327 +693,7 @@
       <option name="project" value="LOCAL" />
       <updated>1748349926895</updated>
     </task>
-    <task id="LOCAL-00084" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748353376048</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1748353376048</updated>
-    </task>
-    <task id="LOCAL-00085" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748510835735</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1748510835735</updated>
-    </task>
-    <task id="LOCAL-00086" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748519891379</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1748519891379</updated>
-    </task>
-    <task id="LOCAL-00087" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748520221599</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1748520221599</updated>
-    </task>
-    <task id="LOCAL-00088" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748524145028</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1748524145029</updated>
-    </task>
-    <task id="LOCAL-00089" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748527174550</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1748527174550</updated>
-    </task>
-    <task id="LOCAL-00090" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748608672018</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1748608672018</updated>
-    </task>
-    <task id="LOCAL-00091" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748611395517</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1748611395517</updated>
-    </task>
-    <task id="LOCAL-00092" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748611582916</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1748611582916</updated>
-    </task>
-    <task id="LOCAL-00093" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748612287898</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1748612287898</updated>
-    </task>
-    <task id="LOCAL-00094" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748613643885</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1748613643885</updated>
-    </task>
-    <task id="LOCAL-00095" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748675190699</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1748675190700</updated>
-    </task>
-    <task id="LOCAL-00096" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748675462240</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1748675462240</updated>
-    </task>
-    <task id="LOCAL-00097" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748695190082</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1748695190082</updated>
-    </task>
-    <task id="LOCAL-00098" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748695373047</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1748695373047</updated>
-    </task>
-    <task id="LOCAL-00099" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748695667428</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1748695667428</updated>
-    </task>
-    <task id="LOCAL-00100" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748699456734</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1748699456734</updated>
-    </task>
-    <task id="LOCAL-00101" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748700884302</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1748700884302</updated>
-    </task>
-    <task id="LOCAL-00102" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748782525253</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1748782525253</updated>
-    </task>
-    <task id="LOCAL-00103" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748783565234</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1748783565234</updated>
-    </task>
-    <task id="LOCAL-00104" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748784046112</created>
-      <option name="number" value="00104" />
-      <option name="presentableId" value="LOCAL-00104" />
-      <option name="project" value="LOCAL" />
-      <updated>1748784046112</updated>
-    </task>
-    <task id="LOCAL-00105" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748915898241</created>
-      <option name="number" value="00105" />
-      <option name="presentableId" value="LOCAL-00105" />
-      <option name="project" value="LOCAL" />
-      <updated>1748915898242</updated>
-    </task>
-    <task id="LOCAL-00106" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748916367367</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1748916367367</updated>
-    </task>
-    <task id="LOCAL-00107" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748916422116</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1748916422117</updated>
-    </task>
-    <task id="LOCAL-00108" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748916988902</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1748916988902</updated>
-    </task>
-    <task id="LOCAL-00109" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748917763498</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1748917763499</updated>
-    </task>
-    <task id="LOCAL-00110" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748920850362</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1748920850362</updated>
-    </task>
-    <task id="LOCAL-00111" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749026608427</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1749026608427</updated>
-    </task>
-    <task id="LOCAL-00112" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749027059090</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1749027059090</updated>
-    </task>
-    <task id="LOCAL-00113" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749038080169</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1749038080169</updated>
-    </task>
-    <task id="LOCAL-00114" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749041910880</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1749041910880</updated>
-    </task>
-    <task id="LOCAL-00115" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749200797881</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1749200797881</updated>
-    </task>
-    <task id="LOCAL-00116" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749200901108</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1749200901108</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749208294136</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1749208294136</updated>
-    </task>
-    <task id="LOCAL-00118" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749302208752</created>
-      <option name="number" value="00118" />
-      <option name="presentableId" value="LOCAL-00118" />
-      <option name="project" value="LOCAL" />
-      <updated>1749302208752</updated>
-    </task>
-    <task id="LOCAL-00119" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749387727118</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1749387727118</updated>
-    </task>
-    <task id="LOCAL-00120" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749388017378</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1749388017378</updated>
-    </task>
-    <task id="LOCAL-00121" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749480427191</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1749480427192</updated>
-    </task>
-    <task id="LOCAL-00122" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749552502724</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1749552502724</updated>
-    </task>
-    <task id="LOCAL-00123" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1749552638497</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1749552638497</updated>
-    </task>
-    <option name="localTasksCounter" value="124" />
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -731,7 +709,6 @@
     <SUITE FILE_PATH="coverage/HAI$Organization.coverage" NAME="Organization Coverage Results" MODIFIED="1744198118349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Denrell2004" />
     <SUITE FILE_PATH="coverage/HAI$Q_learning__2_.coverage" NAME="Q_learning (2) Coverage Results" MODIFIED="1745056025106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots_remove_align" />
     <SUITE FILE_PATH="coverage/HAI$Test__1_.coverage" NAME="Test (1) Coverage Results" MODIFIED="1748347488747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Strategies/FadingValence" />
-    <SUITE FILE_PATH="coverage/HAI$Reality__1_.coverage" NAME="Reality (1) Coverage Results" MODIFIED="1748519828196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Test.coverage" NAME="Test Coverage Results" MODIFIED="1746435705041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Parrot.coverage" NAME="Parrot Coverage Results" MODIFIED="1747035798393" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Reality.coverage" NAME="Reality Coverage Results" MODIFIED="1748332660152" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Turbulence" />
@@ -741,7 +718,6 @@
     <SUITE FILE_PATH="coverage/HAI$Agent__2_.coverage" NAME="Agent (2) Coverage Results" MODIFIED="1747489170321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Coverage" />
     <SUITE FILE_PATH="coverage/HAI$Agent__1_.coverage" NAME="Agent (1) Coverage Results" MODIFIED="1746429478209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Parrots" />
     <SUITE FILE_PATH="coverage/HAI$Parrot__1_.coverage" NAME="Parrot (1) Coverage Results" MODIFIED="1747729299155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Accuracy" />
-    <SUITE FILE_PATH="coverage/HAI$Agent_turbulence.coverage" NAME="Agent_turbulence Coverage Results" MODIFIED="1749476818053" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.6" />
     <SUITE FILE_PATH="coverage/HAI$Q_learning__1_.coverage" NAME="Q_learning (1) Coverage Results" MODIFIED="1744364056831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Fang2009" />
     <SUITE FILE_PATH="coverage/HAI$run_baseline.coverage" NAME="run_baseline Coverage Results" MODIFIED="1747744936385" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Valence" />
   </component>
