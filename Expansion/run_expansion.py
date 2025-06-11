@@ -5,7 +5,7 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-from Agent import Agent
+from Agent_turbulence import Agent
 from Parrot import Parrot
 import multiprocessing as mp
 import time
@@ -17,27 +17,41 @@ from Reality import Reality
 
 def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
-    N = 10 # problem dimension
-    tau = 20  # temperature parameter
-    alpha = 0.8  # learning rate
-    gamma = 0.9 # discount factor
-    global_peak_value = 50 # as per (Fang, 2009)
+    N_original = 10
+    N_expanded = 12
+    tau = 20
+    alpha = 0.8
+    gamma = 0.9
+    global_peak_value = 50
     local_peak_value = 10
-    # turbulence_freq = 50
-    turbulence_intensity = 0.5
-    organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
+
+    # Organic group
+    organic_performance_list, organic_knowledge_list, organic_steps_list, organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
-        reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-        agent = Agent(N=N, reality=reality)
+        reality = Reality(N=N_original, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+        agent = Agent(N=N_original, reality=reality)
+
         for episode in range(learning_length):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma)
-        reality.change(likelihood=turbulence_intensity)
-        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
+
+        # --- Expand to 12D ---
+        old_Q = agent.Q_table.copy()
+        agent.N = N_expanded
+        new_Q = np.zeros((2 ** N_expanded, N_expanded))
+        new_Q[:2 ** N_original, :N_original] = old_Q  # preserve old Q values
+        agent.Q_table = new_Q
+
+        # Assign expanded reality
+        agent.reality = Reality(N=N_expanded, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+
+        # Evaluation in expanded space
+        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
         organic_steps_list.append(agent.steps)
         organic_knowledge_quality_list.append(agent.knowledge_quality)
-    organic_performance_list = [1 if each == 50 else 0 for each in organic_performance_list]  # the likelihood of finding global peak
+
+    organic_performance_list = [1 if each == global_peak_value else 0 for each in organic_performance_list]
     organic_performance = sum(organic_performance_list) / agent_num
     organic_performance_var = np.var(organic_performance_list)
     organic_knowledge = sum(organic_knowledge_list) / agent_num
@@ -45,21 +59,33 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     organic_steps_var = np.var(organic_steps_list)
     organic_knowledge_quality = sum(organic_knowledge_quality_list) / agent_num
 
+    # Pair group
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
-        # Should initialize Reality within this loop
-        reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-        parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
-        pair_agent = Agent(N=N, reality=reality)
+        reality = Reality(N=N_original, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+        parrot = Parrot(N=N_original, reality=reality, coverage=1.0, accuracy=1.0)
+        agent = Agent(N=N_original, reality=reality)
+
         for episode in range(learning_length):
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
-        reality.change(likelihood=turbulence_intensity)
-        pair_agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)
-        pair_performance_list.append(pair_agent.performance)
-        pair_knowledge_list.append(pair_agent.knowledge)
-        pair_steps_list.append(pair_agent.steps)
-        pair_knowledge_quality_list.append(pair_agent.knowledge_quality)
-    pair_performance_list = [1 if each == 50 else 0 for each in pair_performance_list] # the likelihood of finding global peak
+            agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=global_peak_value)
+
+        # --- Expand to 12D ---
+        old_Q = agent.Q_table.copy()
+        agent.N = N_expanded
+        new_Q = np.zeros((2 ** N_expanded, N_expanded))
+        new_Q[:2 ** N_original, :N_original] = old_Q
+        agent.Q_table = new_Q
+
+        # Assign expanded reality
+        agent.reality = Reality(N=N_expanded, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+
+        agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)
+        pair_performance_list.append(agent.performance)
+        pair_knowledge_list.append(agent.knowledge)
+        pair_steps_list.append(agent.steps)
+        pair_knowledge_quality_list.append(agent.knowledge_quality)
+
+    pair_performance_list = [1 if each == global_peak_value else 0 for each in pair_performance_list]
     pair_performance = sum(pair_performance_list) / agent_num
     pair_performance_var = np.var(pair_performance_list)
     pair_knowledge = sum(pair_knowledge_list) / agent_num
@@ -68,9 +94,10 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     pair_knowledge_quality = sum(pair_knowledge_quality_list) / agent_num
 
     return_dict[loop] = [organic_performance, organic_knowledge, organic_steps, organic_knowledge_quality,
-                         pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality, organic_performance_var,
-                         pair_performance_var, organic_steps_var, pair_steps_var]
+                         pair_performance, pair_knowledge, pair_steps, pair_knowledge_quality,
+                         organic_performance_var, pair_performance_var, organic_steps_var, pair_steps_var]
     sema.release()
+
 
 
 if __name__ == '__main__':
