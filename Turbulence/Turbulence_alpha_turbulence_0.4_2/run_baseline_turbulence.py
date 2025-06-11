@@ -51,7 +51,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         parrot = Parrot(N=N, reality=reality, coverage=0.2, accuracy=0.8)
         pair_agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            if episode % 50 == 50:
+            if episode % 50 == 0:
                 reality.change(likelihood=0.5)
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
         pair_agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)
