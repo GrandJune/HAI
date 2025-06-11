@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --time=3-00:00:00
-#SBATCH --job-name=Disable
+#SBATCH --job-name=Parrot
 #SBATCH --mail-type=FAIL
 #SBATCH --mem=150gb
-#SBATCH --partition=long
+#SBATCH --partition=normal
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
-#SBATCH --nodelist=xcnf23
-python run_disable_parrots.py
+#SBATCH --nodelist=xcnf25
+python run_baseline.py

@@ -23,13 +23,13 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     gamma = 0.9 # discount factor
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10
-
+    reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
+    parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
     organic_performance_list, organic_knowledge_list, organic_steps_list,organic_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
-        reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)
+            agent.learn(tau=tau, alpha=alpha, gamma=gamma)
         agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
@@ -43,15 +43,10 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
 
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
-        reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-        parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
         pair_agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length // 2):
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=False)
-        # disable: will it lead to similar outcomes? -> Justify the Echoes of Oracles
-        for episode in range(learning_length // 2):
-            pair_agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)
-        pair_agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True) # evaluation
+        for episode in range(learning_length - 1):
+            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
+        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)
@@ -71,7 +66,7 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     agent_num = 100
-    repetition = 50
+    repetition = 100
     learning_length_list = [50, 100, 150, 200, 250, 300, 350, 400, 450]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []

@@ -5,26 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Disable_parrots/disable_exhibits_echoes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/Bayesian.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/Results.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/Test.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/run_baseline.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/run_baseline_turbulence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/slurm_run_baseline" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MaskAction/slurm_run_baseline_turbulence" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Agent_turbulence.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Parrot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Reality.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/turbulence_lead_to_more_steps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accuracy/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coverage/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage_accuracy_0.2/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage_accuracy_0.5/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Disable_parrots/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Parrot.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Disable_parrots/run_disable_parrots.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/run_disable_parrots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/run_baseline_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/run_baseline_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/run_baseline_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Parrot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Disable_parrots/slurm_run_disable_parrots" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/slurm_run_disable_parrots" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaskAction/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaskAction/Parrot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaskAction/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaskAction/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_baseline_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/slurm_run_baseline" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +38,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -99,7 +103,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "E:/Python_Workplace/HAI/Disable_parrots",
+    "last_opened_file_path": "E:/Python_Workplace/HAI",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -111,11 +115,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Python_Workplace\HAI\Disable_parrots" />
+      <recent name="E:\Python_Workplace\HAI" />
       <recent name="E:\Python_Workplace\HAI\Turbulence\Turbulence_alpha_turbulence_0.4" />
+      <recent name="E:\Python_Workplace\HAI\Disable_parrots" />
       <recent name="E:\Python_Workplace\HAI\Coverage_accuracy_0.2" />
       <recent name="E:\Python_Workplace\HAI\Coverage_accuracy_0.5" />
-      <recent name="E:\Python_Workplace\HAI\Accuracy" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Turbulence\Turbulence_alpha_0.2" />
@@ -324,15 +328,7 @@
       <workItem from="1749387758962" duration="1809000" />
       <workItem from="1749476069765" duration="11015000" />
       <workItem from="1749552675629" duration="1717000" />
-      <workItem from="1749627433627" duration="15575000" />
-    </task>
-    <task id="LOCAL-00084" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748353376048</created>
-      <option name="number" value="00084" />
-      <option name="presentableId" value="LOCAL-00084" />
-      <option name="project" value="LOCAL" />
-      <updated>1748353376048</updated>
+      <workItem from="1749627433627" duration="18088000" />
     </task>
     <task id="LOCAL-00085" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -718,7 +714,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749649370754</updated>
     </task>
-    <option name="localTasksCounter" value="133" />
+    <task id="LOCAL-00133" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1749654083630</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1749654083630</updated>
+    </task>
+    <option name="localTasksCounter" value="134" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
