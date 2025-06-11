@@ -74,55 +74,55 @@ class Agent:
             self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
             self.knowledge_quality = self.get_Q_table_quality()
 
-    def learn_with_parrot_0(self, tau=20.0, alpha=0.8, gamma=0.9, valence=50, parrot=None, evaluation=False):
-        self.initialize()
-        for perform_step in range(self.max_step):
-            cur_state_index = self.binary_list_to_int(self.state)
-            q_row = self.Q_table[cur_state_index]
-            # first examine whether AI advice is available
-            suggested_action = parrot.suggest(self.state)
-            # if an input of state returns valid guidance, then that state is considered guided, and valence is assigned.
-            if suggested_action is not None:
-                q_row[suggested_action] += gamma * valence  # inject a valence bonus; bia the attention toward guidance
-                # This discounts the valence, treating it as a future-oriented value. it is a promising option
-                # add gamma; not as much as global peak; because gamma is a discount factor compared to reward
-            shifted_q = q_row - np.max(q_row)  # avoid overflow
-            exp_prob_row = np.exp(shifted_q / tau)
-            prob_row = exp_prob_row / np.sum(exp_prob_row)
-            action = np.random.choice(range(self.N), p=prob_row)
-            followed_guidance = (suggested_action is not None and action == suggested_action)
-            self.search_trajectory.append([cur_state_index, action])
-            next_state = self.state.copy()
-            next_state[action] = 1 - self.state[action]  # flipping
-            next_state_index = self.binary_list_to_int(next_state)
-            reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
-            if reward:  # peak
-                self.performance = reward
-                self.steps = perform_step + 1
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
-                # Re-initialize
-                self.initialize()
-                break
-            elif followed_guidance:
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * valence
-            else:  # without guidance from parrot
-                # the next proper action; to calculate the quality of the next state
-                next_suggestion = parrot.suggest(next_state)
-                if next_suggestion is not None:
-                    next_state_quality = valence
-                else:
-                    next_q_row = self.Q_table[next_state_index]
-                    shifted_next_q = next_q_row - np.max(next_q_row)  # avoid overflow
-                    next_exp_prob_row = np.exp(shifted_next_q / tau)
-                    next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
-                    next_action = np.random.choice(range(self.N), p=next_prob_row)
-                    next_state_quality = self.Q_table[next_state_index][next_action]
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
-                self.state = next_state.copy()
-
-        if evaluation:
-            self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
-            self.knowledge_quality = self.get_Q_table_quality()
+    # def learn_with_parrot_0(self, tau=20.0, alpha=0.8, gamma=0.9, valence=50, parrot=None, evaluation=False):
+    #     self.initialize()
+    #     for perform_step in range(self.max_step):
+    #         cur_state_index = self.binary_list_to_int(self.state)
+    #         q_row = self.Q_table[cur_state_index]
+    #         # first examine whether AI advice is available
+    #         suggested_action = parrot.suggest(self.state)
+    #         # if an input of state returns valid guidance, then that state is considered guided, and valence is assigned.
+    #         if suggested_action is not None:
+    #             q_row[suggested_action] += gamma * valence  # inject a valence bonus; bia the attention toward guidance
+    #             # This discounts the valence, treating it as a future-oriented value. it is a promising option
+    #             # add gamma; not as much as global peak; because gamma is a discount factor compared to reward
+    #         shifted_q = q_row - np.max(q_row)  # avoid overflow
+    #         exp_prob_row = np.exp(shifted_q / tau)
+    #         prob_row = exp_prob_row / np.sum(exp_prob_row)
+    #         action = np.random.choice(range(self.N), p=prob_row)
+    #         followed_guidance = (suggested_action is not None and action == suggested_action)
+    #         self.search_trajectory.append([cur_state_index, action])
+    #         next_state = self.state.copy()
+    #         next_state[action] = 1 - self.state[action]  # flipping
+    #         next_state_index = self.binary_list_to_int(next_state)
+    #         reward = self.reality.payoff_map[next_state_index]  # equal to non-zero when next state is peaks
+    #         if reward:  # peak
+    #             self.performance = reward
+    #             self.steps = perform_step + 1
+    #             self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * reward
+    #             # Re-initialize
+    #             self.initialize()
+    #             break
+    #         elif followed_guidance:
+    #             self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * valence
+    #         else:  # without guidance from parrot
+    #             # the next proper action; to calculate the quality of the next state
+    #             next_suggestion = parrot.suggest(next_state)
+    #             if next_suggestion is not None:
+    #                 next_state_quality = valence
+    #             else:
+    #                 next_q_row = self.Q_table[next_state_index]
+    #                 shifted_next_q = next_q_row - np.max(next_q_row)  # avoid overflow
+    #                 next_exp_prob_row = np.exp(shifted_next_q / tau)
+    #                 next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
+    #                 next_action = np.random.choice(range(self.N), p=next_prob_row)
+    #                 next_state_quality = self.Q_table[next_state_index][next_action]
+    #             self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][action] + alpha * gamma * next_state_quality
+    #             self.state = next_state.copy()
+    #
+    #     if evaluation:
+    #         self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
+    #         self.knowledge_quality = self.get_Q_table_quality()
 
     def learn_with_parrot(self, tau=20.0, alpha=0.8, gamma=0.9, valence=50, parrot=None, evaluation=False):
         self.initialize()
@@ -136,7 +136,8 @@ class Agent:
                 q_row[suggested_action] += gamma * valence  # temporary boost
 
             # Sample action from softmax-biased distribution
-            exp_prob_row = np.exp(q_row / tau)
+            shifted_q = q_row - np.max(q_row)
+            exp_prob_row = np.exp(shifted_q / tau)
             prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N), p=prob_row)
 
@@ -166,8 +167,9 @@ class Agent:
                 if next_suggestion is not None:
                     next_state_quality = valence
                 else:
-                    next_q_row = self.Q_table[next_state_index]
-                    next_exp_prob_row = np.exp(next_q_row / tau)
+                    next_q_row = self.Q_table[next_state_index].copy()
+                    shifted_next_q = next_q_row - np.max(next_q_row)  # avoid overflow
+                    next_exp_prob_row = np.exp(shifted_next_q / tau)
                     next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
                     next_action = np.random.choice(range(self.N), p=next_prob_row)
                     next_state_quality = self.Q_table[next_state_index][next_action]
