@@ -5,7 +5,7 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-from Agent_turbulence import Agent
+from Agent import Agent
 from Parrot import Parrot
 import multiprocessing as mp
 import time
@@ -52,8 +52,6 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         for episode in range(learning_length):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
         reality.change(likelihood=turbulence_intensity)
-        print("Old peak:", [1] * N)
-        print("New peak:", reality.global_peak_state)
         pair_agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
@@ -75,8 +73,8 @@ if __name__ == '__main__':
     concurrency = 50
     agent_num = 100
     repetition = 50
-    learning_length_list = [300]
-    # learning_length_list = [50, 100, 150, 200]
+    # learning_length_list = [300]
+    learning_length_list = [50, 100, 150, 200, 250, 300, 350]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes = [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
     for learning_length in learning_length_list:
