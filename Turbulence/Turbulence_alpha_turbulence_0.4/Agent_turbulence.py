@@ -86,7 +86,8 @@ class Agent:
                 q_row[suggested_action] += gamma * valence  # inject a valence bonus; bia the attention toward guidance
                 # This discounts the valence, treating it as a future-oriented value. it is a promising option
                 # add gamma; not as much as global peak; because gamma is a discount factor compared to reward
-            exp_prob_row = np.exp(q_row / tau)
+            shifted_q = q_row - np.max(q_row)  # avoid overflow
+            exp_prob_row = np.exp(shifted_q / tau)
             prob_row = exp_prob_row / np.sum(exp_prob_row)
             action = np.random.choice(range(self.N), p=prob_row)
             followed_guidance = (suggested_action is not None and action == suggested_action)

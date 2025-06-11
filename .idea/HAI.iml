@@ -25,7 +25,7 @@
       <sourceFolder url="file://$MODULE_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
-    <orderEntry type="jdk" jdkName="/opt/anaconda3" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.8 (base) (2)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
