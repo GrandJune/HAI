@@ -5,7 +5,7 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-from Agent_turbulence import Agent
+from Agent import Agent
 from Parrot import Parrot
 import multiprocessing as mp
 import time

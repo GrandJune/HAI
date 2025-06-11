@@ -11,7 +11,6 @@
       <sourceFolder url="file://$MODULE_DIR$/Coverage" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Accuracy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Valence" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Strategies" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Turbulence" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveTrust" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveValence" isTestSource="false" />
@@ -22,6 +21,8 @@
       <sourceFolder url="file://$MODULE_DIR$/Strategies/AdaptiveValence_performance" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Turbulence/Turbulence_alpha_0.2_coverage_0.8" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.2_alpha_0.2_accuracy_0.6" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Disable_parrots" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/MaskAction" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
     </content>
