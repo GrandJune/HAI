@@ -5,7 +5,7 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-from Agent_turbulence import Agent
+from Agent import Agent
 from Parrot import Parrot
 import multiprocessing as mp
 import time
@@ -29,7 +29,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     for _ in range(agent_num):
         agent = Agent(N=N, reality=reality)
         for episode in range(learning_length):
-            agent.learn(tau=tau, alpha=alpha, gamma=gamma)
+            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)
         agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
@@ -44,9 +44,9 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length - 1):
-            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50)
-        pair_agent.learn_with_parrot(tau=0.1, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=True) # evaluation
+        for episode in range(learning_length):
+            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=False)
+        pair_agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True) # evaluation
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)
         pair_steps_list.append(pair_agent.steps)

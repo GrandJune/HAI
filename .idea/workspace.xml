@@ -6,8 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/Agent_turbulence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/Bayesian.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Bayesian.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Parrot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Reality.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/run_disable_parrots.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/slurm_run_disable_parrots" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots_to_Organic/slurm_run_baseline_turbulence" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,15 +316,7 @@
       <workItem from="1749387758962" duration="1809000" />
       <workItem from="1749476069765" duration="11015000" />
       <workItem from="1749552675629" duration="1717000" />
-      <workItem from="1749627433627" duration="4248000" />
-    </task>
-    <task id="LOCAL-00080" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748266603262</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1748266603262</updated>
+      <workItem from="1749627433627" duration="6239000" />
     </task>
     <task id="LOCAL-00081" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -701,7 +702,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749631394311</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1749639563164</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1749639563164</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
