@@ -28,9 +28,11 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
     for _ in range(agent_num):
         reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
         agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length):
+        for episode in range(learning_length // 2):
             agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)
         reality.change(likelihood=0.4)
+        for episode in range(learning_length // 2):
+            agent.learn(tau=tau, alpha=alpha, gamma=gamma, evaluation=False)
         agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True)  # evaluation
         organic_performance_list.append(agent.performance)
         organic_knowledge_list.append(agent.knowledge)
@@ -47,9 +49,11 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
         reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
         parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=1.0)
         pair_agent = Agent(N=N, reality=reality)
-        for episode in range(learning_length):
+        for episode in range(learning_length // 2):
             pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=False)
         reality.change(likelihood=0.4)
+        for episode in range(learning_length // 2):
+            pair_agent.learn_with_parrot(tau=tau, alpha=alpha, gamma=gamma, parrot=parrot, valence=50, evaluation=False)
         pair_agent.learn(tau=0.1, alpha=alpha, gamma=gamma, evaluation=True) # evaluation
         pair_performance_list.append(pair_agent.performance)
         pair_knowledge_list.append(pair_agent.knowledge)

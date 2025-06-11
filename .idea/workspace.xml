@@ -8,8 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Disable_parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Results.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Disable_parrots/run_disable_parrots.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/run_disable_parrots.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/run_baseline_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/run_baseline_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/slurm_run_baseline" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/run_baseline_turbulence.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -310,15 +311,7 @@
       <workItem from="1749387758962" duration="1809000" />
       <workItem from="1749476069765" duration="11015000" />
       <workItem from="1749552675629" duration="1717000" />
-      <workItem from="1749627433627" duration="8599000" />
-    </task>
-    <task id="LOCAL-00082" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748348709233</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1748348709233</updated>
+      <workItem from="1749627433627" duration="11109000" />
     </task>
     <task id="LOCAL-00083" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -704,7 +697,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749642178564</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1749644721761</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1749644721761</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
