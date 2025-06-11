@@ -112,7 +112,8 @@ class Agent:
                     next_state_quality = valence
                 else:
                     next_q_row = self.Q_table[next_state_index]
-                    next_exp_prob_row = np.exp(next_q_row / tau)
+                    shifted_next_q = next_q_row - np.max(next_q_row)  # avoid overflow
+                    next_exp_prob_row = np.exp(shifted_next_q / tau)
                     next_prob_row = next_exp_prob_row / np.sum(next_exp_prob_row)
                     next_action = np.random.choice(range(self.N), p=next_prob_row)
                     next_state_quality = self.Q_table[next_state_index][next_action]
