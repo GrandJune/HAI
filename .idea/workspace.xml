@@ -5,10 +5,86 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Expansion/run_expansion.py" beforeDir="false" afterPath="$PROJECT_DIR$/Expansion/run_expansion.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_baseline_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.2/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.2/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.2/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.2/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.2/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.2/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.2/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.5/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.5/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.5/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.5/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.5/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.5/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy_coverage_0.5/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.2/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage_accuracy_0.5/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Disable_parrots/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Disable_parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Expansion/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Expansion/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MaskAction/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaskAction/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/run_baseline_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/slurm_run_baseline_turbulence" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/slurm_run_baseline_turbulence" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Agent_turbulence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/run_baseline_turbulence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_2/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Results.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Agent_turbulence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.5/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Agent_turbulence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_accuracy_0.8/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Agent_turbulence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.5/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Agent_turbulence.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Parrot.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Reality.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Results.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/Test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_turbulence_0.6_coverage_0.8/slurm_run_baseline" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +159,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "E:/Python_Workplace/HAI/Disable_parrots",
+    "last_opened_file_path": "E:/Python_Workplace/HAI/Valence",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -95,11 +171,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Python_Workplace\HAI\Valence" />
+      <recent name="E:\Python_Workplace\HAI\MaskAction" />
+      <recent name="E:\Python_Workplace\HAI\Accuracy" />
+      <recent name="E:\Python_Workplace\HAI\Coverage" />
       <recent name="E:\Python_Workplace\HAI\Disable_parrots" />
-      <recent name="E:\Python_Workplace\HAI" />
-      <recent name="E:\Python_Workplace\HAI\Turbulence\Turbulence_alpha_turbulence_0.5" />
-      <recent name="E:\Python_Workplace\HAI\Turbulence\Turbulence_alpha_turbulence_0.4" />
-      <recent name="E:\Python_Workplace\HAI\Coverage_accuracy_0.2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Turbulence\Turbulence_alpha_0.2" />
@@ -308,15 +384,7 @@
       <workItem from="1749387758962" duration="1809000" />
       <workItem from="1749476069765" duration="11015000" />
       <workItem from="1749552675629" duration="1717000" />
-      <workItem from="1749627433627" duration="25746000" />
-    </task>
-    <task id="LOCAL-00089" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748527174550</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1748527174550</updated>
+      <workItem from="1749627433627" duration="30205000" />
     </task>
     <task id="LOCAL-00090" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -702,7 +770,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749670789134</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1749671599647</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1749671599647</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
