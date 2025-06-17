@@ -2,10 +2,10 @@
 #SBATCH --time=3-00:00:00
 #SBATCH --job-name=Parrot
 #SBATCH --mail-type=FAIL
-#SBATCH --mem=150gb
-#SBATCH --partition=normal
+#SBATCH --mem=200gb
+#SBATCH --partition=long
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
-#SBATCH --nodelist=xcnf25
+#SBATCH --nodelist=xcnf23
 python run_baseline.py

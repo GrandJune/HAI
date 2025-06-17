@@ -152,55 +152,6 @@ class Agent:
             self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
             self.knowledge_quality = self.get_Q_table_quality()
 
-    def learn_with_action_mask(self, tau=0.1, alpha=0.8, gamma=0.9, evaluation=False, action_mask=None):
-        """
-        Perform evaluation with specified actions masked (i.e., unavailable) in certain states.
-        action_mask: a dict like {state_index: [action1, action2, ...]}
-        """
-        self.initialize()
-        for perform_step in range(self.max_step):
-            cur_state_index = self.binary_list_to_int(self.state)
-            q_row = self.Q_table[cur_state_index].copy()
-
-            # Mask forbidden actions
-            mask_actions = action_mask.get(cur_state_index, []) if action_mask else []
-            available_actions = [i for i in range(self.N) if i not in mask_actions]
-
-            if not available_actions:
-                break  # Agent is stuck
-
-            # Compute softmax over available actions
-            masked_q = np.array([q_row[i] if i in available_actions else -np.inf for i in range(self.N)])
-            shifted_q = masked_q - np.nanmax(masked_q)  # for numerical stability
-            exp_prob_row = np.exp(shifted_q / tau)
-            prob_row = exp_prob_row / np.nansum(exp_prob_row)
-            action = np.random.choice(range(self.N), p=prob_row)
-
-            self.search_trajectory.append([cur_state_index, action])
-
-            next_state = self.state.copy()
-            next_state[action] = 1 - self.state[action]
-            next_state_index = self.binary_list_to_int(next_state)
-            reward = self.reality.payoff_map[next_state_index]
-
-            if reward:
-                self.performance = reward
-                self.steps = perform_step + 1
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
-                    action] + alpha * reward
-                break
-            else:
-                next_q_row = self.Q_table[next_state_index]
-                next_action = np.argmax(next_q_row)
-                next_state_quality = next_q_row[next_action]
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
-                    action] + alpha * gamma * next_state_quality
-                self.state = next_state.copy()
-
-        if evaluation:
-            self.knowledge = np.count_nonzero(np.any(self.Q_table != 0, axis=1)) / (2 ** self.N)
-            self.knowledge_quality = self.get_Q_table_quality()
-
     # def learn_with_fading_valence_parrot(self, tau=20.0, alpha=0.8, gamma=0.9,
     #                              initial_valence=50, parrot=None,
     #                              evaluation=False, decay_rate=0.05, valence_floor=10):
@@ -350,7 +301,7 @@ class Agent:
         Summarize the Q-table's quality by calculating the average proportion of positive Q-values
         among accurate actions (actions that flip bits differing from the global peak), across all states.
         """
-        global_peak = [1] * self.N
+        global_peak = self.reality.global_peak_state.copy()
         proportions = []
 
         for state_index in range(2 ** self.N):

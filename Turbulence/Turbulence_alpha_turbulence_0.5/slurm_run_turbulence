@@ -8,4 +8,4 @@
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --nodelist=xcnf22
-python run_baseline_turbulence.py
+python run_turbulence.py

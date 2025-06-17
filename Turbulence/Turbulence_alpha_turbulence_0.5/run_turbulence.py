@@ -77,8 +77,8 @@ if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
     agent_num = 200
-    repetition = 50
-    learning_length_list = [50, 100, 150, 200, 250, 300, 350, 400, 450]
+    repetition = 100
+    learning_length_list = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
     # learning_length_list = [100, 200, 300, 400]
     organic_performance_across_episodes, organic_knowledge_across_episodes, organic_steps_across_episodes, organic_knowledge_quality_across_episodes, organic_performance_var_across_episodes = [], [], [], [], []
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes, pair_performance_var_across_episodes = [], [], [], [], []
@@ -167,7 +167,7 @@ if __name__ == '__main__':
     seconds = duration % 60
 
     if days > 0:
-        print(f"Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
+        print(f"Turbulence Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
     else:
         print(f"Duration: {hours:02}:{minutes:02}:{seconds:02}")
     print("Across Episodes", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time
