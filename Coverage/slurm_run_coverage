@@ -1,11 +1,10 @@
 #!/bin/bash
 #SBATCH --time=3-00:00:00
-#SBATCH --job-name=Accuracy
+#SBATCH --job-name=Coverage
 #SBATCH --mail-type=FAIL
-#SBATCH --mem=150gb
+#SBATCH --mem=400gb
 #SBATCH --partition=long
 #SBATCH --cpus-per-task=50
 #SBATCH --ntasks=1
-#SBATCH --nodes=1
-#SBATCH --nodelist=xcnf8
-python run_baseline_turbulence.py
+#SBATCH --nodelist=xcnf9
+srun python run_coverage.py

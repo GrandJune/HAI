@@ -8,4 +8,4 @@
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --nodelist=xcnf19
-python run_baseline.py
+python run_accuracy.py

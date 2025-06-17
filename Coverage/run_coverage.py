@@ -5,16 +5,17 @@
 # @Software  : PyCharm
 # Observing PEP 8 coding style
 import numpy as np
-from Agent import Agent
+from Agent_turbulence import Agent
 from Parrot import Parrot
 import multiprocessing as mp
 import time
 from multiprocessing import Semaphore
 import pickle
+
 from Reality import Reality
 
 
-def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_dict=None, sema=None):
+def func(agent_num=None, learning_length=None, coverage=None, loop=None, return_dict=None, sema=None):
     np.random.seed(None)
     N = 10 # problem dimension
     tau = 20  # temperature parameter
@@ -23,7 +24,7 @@ def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_
     global_peak_value = 50 # as per (Fang, 2009)
     local_peak_value = 10  # add more local peaks to increase complexity
     reality = Reality(N=N, global_peak_value=global_peak_value, local_peak_value=local_peak_value)
-    parrot = Parrot(N=N, reality=reality, coverage=1.0, accuracy=accuracy)
+    parrot = Parrot(N=N, reality=reality, coverage=coverage, accuracy=1.0)
     pair_performance_list, pair_knowledge_list, pair_steps_list, pair_knowledge_quality_list = [], [], [], []
     for _ in range(agent_num):
         pair_agent = Agent(N=N, reality=reality)
@@ -47,12 +48,12 @@ def func(agent_num=None, learning_length=None, accuracy=None, loop=None, return_
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    agent_num = 200
-    repetition = 100
-    learning_length = 300
-    accuracy_list = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    agent_num = 100
+    repetition = 50
+    learning_length = 100
+    coverage_list = [0.2, 0.4, 0.6, 0.8, 1.0]
     pair_performance_across_episodes, pair_knowledge_across_episodes, pair_steps_across_episodes, pair_knowledge_quality_across_episodes = [], [], [], []
-    for accuracy in accuracy_list:
+    for coverage in coverage_list:
         with mp.Manager() as manager:  # immediate memory cleanup
             jobs = []
             return_dict = manager.dict()
@@ -60,7 +61,7 @@ if __name__ == '__main__':
 
             for loop in range(repetition):
                 sema.acquire()
-                p = mp.Process(target=func, args=(agent_num, learning_length, accuracy, loop, return_dict, sema))
+                p = mp.Process(target=func, args=(agent_num, learning_length, coverage, loop, return_dict, sema))
                 jobs.append(p)
                 p.start()
 
@@ -78,13 +79,13 @@ if __name__ == '__main__':
         pair_steps_across_episodes.append(pair_steps)
         pair_knowledge_quality_across_episodes.append(pair_knowledge_quality)
 
-    with open("pair_performance_across_accuracy", 'wb') as out_file:
+    with open("pair_performance_across_coverage", 'wb') as out_file:
         pickle.dump(pair_performance_across_episodes, out_file)
-    with open("pair_knowledge_across_accuracy", 'wb') as out_file:
+    with open("pair_knowledge_across_coverage", 'wb') as out_file:
         pickle.dump(pair_knowledge_across_episodes, out_file)
-    with open("pair_steps_across_accuracy", 'wb') as out_file:
+    with open("pair_steps_across_coverage", 'wb') as out_file:
         pickle.dump(pair_steps_across_episodes, out_file)
-    with open("pair_knowledge_quality_across_accuracy", 'wb') as out_file:
+    with open("pair_knowledge_quality_across_coverage", 'wb') as out_file:
         pickle.dump(pair_knowledge_quality_across_episodes, out_file)
 
     t1 = time.time()
@@ -96,7 +97,7 @@ if __name__ == '__main__':
     seconds = duration % 60
 
     if days > 0:
-        print(f"Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
+        print(f"Coverage Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
     else:
-        print(f"Duration: {hours:02}:{minutes:02}:{seconds:02}")
+        print(f"Coverage Duration: {hours:02}:{minutes:02}:{seconds:02}")
     print("Across Episodes", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time

@@ -76,7 +76,7 @@ def func(agent_num=None, learning_length=None, loop=None, return_dict=None, sema
 if __name__ == '__main__':
     t0 = time.time()
     concurrency = 50
-    agent_num = 200
+    agent_num = 100
     repetition = 100
     learning_length_list = [50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
     # learning_length_list = [100, 200, 300, 400]

@@ -96,7 +96,7 @@ if __name__ == '__main__':
     seconds = duration % 60
 
     if days > 0:
-        print(f"Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
+        print(f"Accuracy Duration: {days}d {hours:02}:{minutes:02}:{seconds:02}")
     else:
-        print(f"Duration: {hours:02}:{minutes:02}:{seconds:02}")
+        print(f"Accuracy Duration: {hours:02}:{minutes:02}:{seconds:02}")
     print("Across Episodes", time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime(time.time())))  # Complete time

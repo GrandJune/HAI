@@ -6,19 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Accuracy/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Coverage/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Expansion/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Expansion/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Agent.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/run_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/run_baseline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/run_accuracy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Accuracy/slurm_run_baseline_turbulence" beforeDir="false" afterPath="$PROJECT_DIR$/Accuracy/slurm_run_accuracy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/run_baseline.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/run_coverage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/slurm_run_baseline" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Coverage/slurm_run_baseline_turbulence" beforeDir="false" afterPath="$PROJECT_DIR$/Coverage/slurm_run_coverage" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Disable_parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Disable_parrots/Results.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Parrots/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/run_baseline_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/slurm_run_baseline" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/slurm_run_baseline_turbulence" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/slurm_run_baseline_turbulence" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Agent.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/slurm_run_turbulence" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Valence/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Valence/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_turbulence.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -319,15 +317,7 @@
       <workItem from="1749476069765" duration="11015000" />
       <workItem from="1749552675629" duration="1717000" />
       <workItem from="1749627433627" duration="33808000" />
-      <workItem from="1749820631806" duration="4871000" />
-    </task>
-    <task id="LOCAL-00091" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748611395517</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1748611395517</updated>
+      <workItem from="1749820631806" duration="6490000" />
     </task>
     <task id="LOCAL-00092" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -713,7 +703,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749706530305</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1750164519510</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1750164519511</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
