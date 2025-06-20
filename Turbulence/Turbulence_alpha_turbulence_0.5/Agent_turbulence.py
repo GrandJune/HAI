@@ -158,9 +158,9 @@ class Agent:
                     action] + alpha * reward
                 self.initialize()
                 break
-            elif followed_guidance:  # Reinforce parrot-following path
-                self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
-                    action] + alpha * gamma * valence
+            # elif followed_guidance:  # Reinforce parrot-following path
+            #     self.Q_table[cur_state_index][action] = (1 - alpha) * self.Q_table[cur_state_index][
+            #         action] + alpha * gamma * valence
             else:
                 # Estimate next state value
                 next_suggestion = parrot.suggest(next_state)
