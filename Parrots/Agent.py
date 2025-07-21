@@ -317,8 +317,16 @@ class Agent:
                 continue
 
             q_row = self.Q_table[state_index]
-            positive_q_count = sum(q_row[a] > 0 for a in accurate_actions)
-            proportion = positive_q_count / len(accurate_actions)
+            # positive_q_count = sum(q_row[a] > 0 for a in accurate_actions)  # positive and accurate q
+            # proportion = positive_q_count / len(accurate_actions)  # divided by len(accurate_actions) or len(positive_q)?
+            # since positive_q_count is a subset of accurate_actions, then should be divided by len(accurate_actions)
+            # This measures the proportion of accurate actions that have a positive Q-value
+
+            # alternatvie
+            positive_actions = [i for i in range(self.N) if q_row[i] > 0]
+            count = sum(1 for action in positive_actions if action in accurate_actions)
+            # This measures the proportion of positive actions that are accurate
+            proportion = count / len(positive_actions)
             proportions.append(proportion)
 
         overall_quality = np.mean(proportions) if proportions else 0.0

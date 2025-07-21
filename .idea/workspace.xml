@@ -5,27 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/Results_serial.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Agent_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Parrot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Reality.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Results_serial.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/run_turbulence.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/turbulence_lead_to_worse_knowledge_accumulation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/Agent_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Results_one.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/Results_one.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/run_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/run_turbulence_serial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/run_turbulence_serial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/slurm_run_turbulence" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/slurm_run_turbulence" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/slurm_run_turbulence_serial" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/slurm_run_turbulence_serial" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.5/turbulence_lead_to_more_steps" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_afterward/turbulence_lead_to_more_steps" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parrots/Agent.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Agent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Agent_turbulence.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Results_serial.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_serial/Results_serial.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,15 +313,8 @@
       <workItem from="1750251936443" duration="7944000" />
       <workItem from="1751626695141" duration="1692000" />
       <workItem from="1751629393454" duration="3086000" />
-      <workItem from="1751718617709" duration="3147000" />
-    </task>
-    <task id="LOCAL-00095" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1748675190699</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1748675190700</updated>
+      <workItem from="1751718617709" duration="4335000" />
+      <workItem from="1752841275056" duration="4944000" />
     </task>
     <task id="LOCAL-00096" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -724,7 +700,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750426575199</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1751960126341</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1751960126341</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
