@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <change afterPath="$PROJECT_DIR$/Landscape/Directed Landscape.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Landscape/NK Landscape Instance.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Agent_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Parrots/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Parrots/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Agent_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Agent_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Parrot.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Parrot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Reality.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Reality.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Results.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Results.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/run_baseline_turbulence.py" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/run_baseline_turbulence.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1/slurm_run_baseline" beforeDir="false" afterPath="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4/slurm_run_baseline" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +81,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/junyi/Documents/GitHub/HAI/Turbulence/Turbulence_alpha_turbulence_0.4_1",
+    "last_opened_file_path": "/Users/junyi/Documents/GitHub/HAI/Landscape",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -101,11 +93,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Landscape" />
+      <recent name="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4" />
       <recent name="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1" />
       <recent name="E:\Python_Workplace\HAI\Accuracy" />
       <recent name="E:\Python_Workplace\HAI\Coverage" />
-      <recent name="E:\Python_Workplace\HAI\Parrots" />
-      <recent name="E:\Python_Workplace\HAI\Valence" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Parrots" />
@@ -240,8 +232,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b26f3e71634d-JavaScript-PY-251.26094.46" />
-        <option value="bundled-python-sdk-df1d3dd44c63-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.46" />
+        <option value="bundled-python-sdk-07523f343e4f-968fe969f28a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.28539.27" />
       </set>
     </attachedChunks>
   </component>
@@ -300,14 +291,10 @@
       <workItem from="1747727799459" duration="12416000" />
       <workItem from="1747836250902" duration="8375000" />
       <workItem from="1748006518865" duration="45917000" />
-    </task>
-    <task id="LOCAL-00035" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744294566196</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1744294566196</updated>
+      <workItem from="1749575337962" duration="11000" />
+      <workItem from="1765984726992" duration="23000" />
+      <workItem from="1767103894059" duration="2204000" />
+      <workItem from="1770210789939" duration="2341000" />
     </task>
     <task id="LOCAL-00036" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -693,7 +680,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748349926895</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
+      <option name="closed" value="true" />
+      <created>1749574402277</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1749574402277</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
