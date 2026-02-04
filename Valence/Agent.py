@@ -301,7 +301,7 @@ class Agent:
         Summarize the Q-table's quality by calculating the average proportion of positive Q-values
         among accurate actions (actions that flip bits differing from the global peak), across all states.
         """
-        global_peak = [1] * self.N
+        global_peak = self.reality.global_peak_state.copy()
         proportions = []
 
         for state_index in range(2 ** self.N):

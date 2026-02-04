@@ -1,0 +1,4 @@
+We implement a post-learning turbulence shock to test the generalizability of the agents’ internal representations.
+While organically trained agents continue to perform reasonably, those guided by algorithmic advice show a pronounced decline
+—despite flawless historical performance
+—highlighting the brittleness of shortcut-based learning under environmental change.
