@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <change afterPath="$PROJECT_DIR$/Landscape/Directed Landscape.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Landscape/NK Landscape Instance.ipynb" afterDir="false" />
+    <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Modify the Q-learning model into a directed landscape model">
+      <change afterPath="$PROJECT_DIR$/ISR_Submission/Landscape.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ISR_Submission/slurm" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/HAI.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HAI.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Fang2009/Results_Fang_2009.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Fang2009/Results_Fang_2009.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Landscape/Directed Landscape.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ISR_Submission/Directed Landscape.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Landscape/NK Landscape Instance.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ISR_Submission/NK Landscape Instance.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,31 +83,40 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/junyi/Documents/GitHub/HAI/Landscape",
+    "last_opened_file_path": "/Users/junyi/Documents/GitHub/HAI/ISR_Submission",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
     "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ISR_Submission" />
       <recent name="$PROJECT_DIR$/Landscape" />
       <recent name="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4" />
       <recent name="$PROJECT_DIR$/Turbulence/Turbulence_alpha_turbulence_0.4_1" />
       <recent name="E:\Python_Workplace\HAI\Accuracy" />
-      <recent name="E:\Python_Workplace\HAI\Coverage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Python_Workplace\HAI\Parrots" />
     </key>
   </component>
   <component name="RunManager" selected="Python.Test (1)">
+    <configuration default="true" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <steps>
+        <latexmkCompile id="90e49c5a-7930-4259-b5ed-2f7634ccc001" />
+        <pdfViewer id="1eb7fa08-3be2-4537-8bb5-332ddacae139" />
+      </steps>
+      <method v="2" />
+    </configuration>
     <configuration name="Agent (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HAI" />
       <option name="ENV_FILES" value="" />
@@ -117,7 +130,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Coverage/Agent.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -140,7 +155,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Accuracy/Parrot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -163,7 +180,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Turbulence/Reality.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -186,7 +205,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Strategies/FadingValence/Test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -209,7 +230,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Valence/run_baseline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -232,7 +255,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-07523f343e4f-968fe969f28a-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.28539.27" />
+        <option value="bundled-python-sdk-73a66231627c-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.10968.92" />
       </set>
     </attachedChunks>
   </component>
@@ -294,15 +317,9 @@
       <workItem from="1749575337962" duration="11000" />
       <workItem from="1765984726992" duration="23000" />
       <workItem from="1767103894059" duration="2204000" />
-      <workItem from="1770210789939" duration="2341000" />
-    </task>
-    <task id="LOCAL-00036" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744294593768</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1744294593768</updated>
+      <workItem from="1770210789939" duration="2424000" />
+      <workItem from="1794989560421" duration="1897000" />
+      <workItem from="1795001853907" duration="89000" />
     </task>
     <task id="LOCAL-00037" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -688,7 +705,15 @@
       <option name="project" value="LOCAL" />
       <updated>1749574402277</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Modify the Q-learning model into a directed landscape model">
+      <option name="closed" value="true" />
+      <created>1770213188656</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1770213188656</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +722,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initialize" />
     <MESSAGE value="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks" />
+    <MESSAGE value="Modify the Q-learning model into a directed landscape model" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modify the Q-learning model into a directed landscape model" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HAI$Agent.coverage" NAME="Agent Coverage Results" MODIFIED="1744194546602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Denrell2004" />
