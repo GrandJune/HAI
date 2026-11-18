@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Modify the SARSA model into a learnable landscape model">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ISR_Submission/Evaluator_Organic_Learning.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ISR_Submission/Evaluator_Organic_Learning.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ISR_Submission/Organic_experiential_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/ISR_Submission/Organic_experiential_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ISR_Submission/slurm" beforeDir="false" afterPath="$PROJECT_DIR$/ISR_Submission/slurm" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,23 +50,23 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.010380357922629" />
-      <entry key="MS500" value="1.4010905831762432" />
-      <entry key="S2" value="1.79581224347305" />
-      <entry key="S5" value="1.912692005751846" />
-      <entry key="S10" value="1.9553491538447323" />
-      <entry key="S30" value="1.9848891984050356" />
-      <entry key="S60" value="1.9924158394939897" />
-      <entry key="M2" value="1.9962067887105062" />
-      <entry key="M5" value="2.006677183411399" />
-      <entry key="M10" value="2.089785314469779" />
-      <entry key="M15" value="2.2011343942913273" />
-      <entry key="M30" value="2.4487916989695098" />
-      <entry key="H1" value="2.669981648890563" />
-      <entry key="H2" value="2.818538126662083" />
-      <entry key="H4" value="2.9047343081926953" />
-      <entry key="D1" value="2.9834532343504305" />
-      <entry key="W1" value="2.997619250461505" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000302527173497" />
+      <entry key="S5" value="1.038127116876939" />
+      <entry key="S10" value="1.433559997381979" />
+      <entry key="S30" value="3.5258470216035542" />
+      <entry key="S60" value="5.3054848568766095" />
+      <entry key="M2" value="6.7950064565195945" />
+      <entry key="M5" value="8.015678658998286" />
+      <entry key="M10" value="8.5650892927821" />
+      <entry key="M15" value="8.838576571774723" />
+      <entry key="M30" value="9.25601072805254" />
+      <entry key="H1" value="9.568868874645984" />
+      <entry key="H2" value="9.76643828619622" />
+      <entry key="H4" value="9.87824130692991" />
+      <entry key="D1" value="9.978970668657492" />
+      <entry key="W1" value="9.996977164469447" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -88,23 +88,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0122827404974337" />
-      <entry key="MS500" value="0.5334098207665817" />
-      <entry key="S2" value="1.3894867314600847" />
-      <entry key="S5" value="1.7238304721571578" />
-      <entry key="S10" value="1.8558817875914282" />
-      <entry key="S30" value="1.950546409060168" />
-      <entry key="S60" value="1.975091624469613" />
-      <entry key="M2" value="1.9875061320684388" />
-      <entry key="M5" value="2.0031863194828357" />
-      <entry key="M10" value="2.088031765745307" />
-      <entry key="M15" value="2.1999591127821185" />
-      <entry key="M30" value="2.4481973118076747" />
-      <entry key="H1" value="2.669681475195069" />
-      <entry key="H2" value="2.8183870426122732" />
-      <entry key="H4" value="2.904658477282493" />
-      <entry key="D1" value="2.9834405519289864" />
-      <entry key="W1" value="2.997617437557928" />
+      <entry key="MS100" value="0.0633724674868768" />
+      <entry key="MS500" value="0.5759438211746788" />
+      <entry key="S2" value="0.8711843455176806" />
+      <entry key="S5" value="0.9843896525652127" />
+      <entry key="S10" value="1.405866628369354" />
+      <entry key="S30" value="3.5121882073013273" />
+      <entry key="S60" value="5.294520884791342" />
+      <entry key="M2" value="6.787271500823419" />
+      <entry key="M5" value="8.011752117754106" />
+      <entry key="M10" value="8.562948125468866" />
+      <entry key="M15" value="8.83710237807684" />
+      <entry key="M30" value="9.255245789222288" />
+      <entry key="H1" value="9.56847793679005" />
+      <entry key="H2" value="9.766240410977536" />
+      <entry key="H4" value="9.878141722499988" />
+      <entry key="D1" value="9.978953977059703" />
+      <entry key="W1" value="9.996974777588061" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -184,9 +184,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Coverage/Agent.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -209,9 +209,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Accuracy/Parrot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -234,9 +234,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Turbulence/Reality.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -259,9 +259,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Strategies/FadingValence/Test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -284,9 +284,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
+      <option name="RUN_AS_SCRIPT" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Valence/run_baseline.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -309,7 +309,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-3c73f5f83ce7-5c0e4880bfa8-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.12573.39" />
+        <option value="bundled-python-sdk-34611be1ca5a-e0583fc556d1-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-263.7307.206" />
       </set>
     </attachedChunks>
   </component>
@@ -374,15 +374,9 @@
       <workItem from="1770210789939" duration="2424000" />
       <workItem from="1794989560421" duration="1897000" />
       <workItem from="1795001853907" duration="2437000" />
-      <workItem from="1795005170537" duration="2022000" />
-    </task>
-    <task id="LOCAL-00040" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744979324660</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1744979324660</updated>
+      <workItem from="1795005170537" duration="2061000" />
+      <workItem from="1795007533731" duration="169000" />
+      <workItem from="1795007801313" duration="354000" />
     </task>
     <task id="LOCAL-00041" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -768,7 +762,15 @@
       <option name="project" value="LOCAL" />
       <updated>1795005461519</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Modify the SARSA model into a learnable landscape model">
+      <option name="closed" value="true" />
+      <created>1795007446587</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1795007446587</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

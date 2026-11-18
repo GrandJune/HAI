@@ -135,7 +135,7 @@ if __name__ == '__main__':
     t0 = time.time()
 
     landscape_iteration = 40
-    individual_reset_num = 5     # Independent learners on each landscape.
+    individual_reset_num = 100     # Independent learners on each landscape.
     search_iteration = 100       # Fixed evaluation search budget.
     evaluation_reset_num = 3     # Repeated evaluations per learning checkpoint.
 
@@ -143,16 +143,16 @@ if __name__ == '__main__':
     K_list = [2, 4, 6, 8, 9]  # NK interdependence (problem complexity).
 
     # Focal IV: accumulated experiential learning; 0 = no acquired Q-values.
-    learning_steps_list = [0, 100, 250, 500]
+    learning_steps_list = [0, 100, 200, 300, 400, 500]
 
     alpha = 0.8          # SARSA learning rate.
     gamma = 0.9          # Weight of discounted future fitness rewards.
     tau_learning = 1.0   # Learning-phase softmax temperature.
-    tau_evaluation = 0.1 # More exploitative search during evaluation.
+    tau_evaluation = 0.1 # More exploitative search during evaluation. Exploratory: tau=20
 
     compute_accuracy = True  # Exact Q-value accuracy; expensive for large N.
     base_seed = None        # None for unseeded runs.
-    concurrency = 4        # Limit concurrent NK landscapes to available memory.
+    concurrency = 100        # Limit concurrent NK landscapes to available memory.
     output_dir = "Organic_experiential_learning_results"
     os.makedirs(output_dir, exist_ok=True)
 
