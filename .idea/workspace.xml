@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c6b1250a-3dd9-4a7d-bbc1-edde69ef03c6" name="Changes" comment="Modify the SARSA model into a learnable landscape model">
-      <change afterPath="$PROJECT_DIR$/ISR_Submission/Evaluator_Organic_Learning.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ISR_Submission/Organic_experiential_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ISR_Submission/Directed Landscape.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ISR_Submission/NK Landscape Instance.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ISR_Submission/Evaluator_Organic_Learning.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ISR_Submission/Evaluator_Organic_Learning.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ISR_Submission/Organic_experiential_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/ISR_Submission/Organic_experiential_learning.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,23 +50,23 @@
 }</component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.0" />
-      <entry key="M2" value="1.0" />
-      <entry key="M5" value="1.0" />
-      <entry key="M10" value="1.0" />
-      <entry key="M15" value="1.0" />
-      <entry key="M30" value="1.0" />
-      <entry key="H1" value="1.0" />
-      <entry key="H2" value="1.0" />
-      <entry key="H4" value="1.0" />
-      <entry key="D1" value="1.0" />
-      <entry key="W1" value="1.0" />
+      <entry key="MS100" value="1.010380357922629" />
+      <entry key="MS500" value="1.4010905831762432" />
+      <entry key="S2" value="1.79581224347305" />
+      <entry key="S5" value="1.912692005751846" />
+      <entry key="S10" value="1.9553491538447323" />
+      <entry key="S30" value="1.9848891984050356" />
+      <entry key="S60" value="1.9924158394939897" />
+      <entry key="M2" value="1.9962067887105062" />
+      <entry key="M5" value="2.006677183411399" />
+      <entry key="M10" value="2.089785314469779" />
+      <entry key="M15" value="2.2011343942913273" />
+      <entry key="M30" value="2.4487916989695098" />
+      <entry key="H1" value="2.669981648890563" />
+      <entry key="H2" value="2.818538126662083" />
+      <entry key="H4" value="2.9047343081926953" />
+      <entry key="D1" value="2.9834532343504305" />
+      <entry key="W1" value="2.997619250461505" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -90,23 +88,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.6198538499694932" />
-      <entry key="MS500" value="0.90877811644852" />
-      <entry key="S2" value="0.9763700862317316" />
-      <entry key="S5" value="0.9904801721236224" />
-      <entry key="S10" value="0.9952287034263142" />
-      <entry key="S30" value="0.9984070316078845" />
-      <entry key="S60" value="0.9992031983575135" />
-      <entry key="M2" value="0.9996015197855161" />
-      <entry key="M5" value="0.9998405888557781" />
-      <entry key="M10" value="0.9999202912511468" />
-      <entry key="M15" value="0.99994686012813" />
-      <entry key="M30" value="0.999973429711075" />
-      <entry key="H1" value="0.9999867147672887" />
-      <entry key="H2" value="0.999993357361582" />
-      <entry key="H4" value="0.9999966786752754" />
-      <entry key="D1" value="0.9999994464451132" />
-      <entry key="W1" value="0.9999999209207117" />
+      <entry key="MS100" value="0.0122827404974337" />
+      <entry key="MS500" value="0.5334098207665817" />
+      <entry key="S2" value="1.3894867314600847" />
+      <entry key="S5" value="1.7238304721571578" />
+      <entry key="S10" value="1.8558817875914282" />
+      <entry key="S30" value="1.950546409060168" />
+      <entry key="S60" value="1.975091624469613" />
+      <entry key="M2" value="1.9875061320684388" />
+      <entry key="M5" value="2.0031863194828357" />
+      <entry key="M10" value="2.088031765745307" />
+      <entry key="M15" value="2.1999591127821185" />
+      <entry key="M30" value="2.4481973118076747" />
+      <entry key="H1" value="2.669681475195069" />
+      <entry key="H2" value="2.8183870426122732" />
+      <entry key="H4" value="2.904658477282493" />
+      <entry key="D1" value="2.9834405519289864" />
+      <entry key="W1" value="2.997617437557928" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -376,15 +374,7 @@
       <workItem from="1770210789939" duration="2424000" />
       <workItem from="1794989560421" duration="1897000" />
       <workItem from="1795001853907" duration="2437000" />
-      <workItem from="1795005170537" duration="166000" />
-    </task>
-    <task id="LOCAL-00039" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
-      <option name="closed" value="true" />
-      <created>1744976178747</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1744976178747</updated>
+      <workItem from="1795005170537" duration="2022000" />
     </task>
     <task id="LOCAL-00040" summary="Initialize: Figure 1-performance across learning length&#10;&#10;Figure 2-Informed across distance from low peaks">
       <option name="closed" value="true" />
@@ -770,7 +760,15 @@
       <option name="project" value="LOCAL" />
       <updated>1795003698248</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="Modify the SARSA model into a learnable landscape model">
+      <option name="closed" value="true" />
+      <created>1795005461519</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1795005461519</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
